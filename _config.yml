@@ -3,11 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-keywords:
-author: John Doe
+
+title: Android tips
+subtitle: Satur的博客 | Android wonderland
+description: Satur的博客
+keywords: Android blog
+author: Satur
 language: zh-Hans
 timezone:
 
@@ -15,7 +16,7 @@ timezone:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://ophsysbilla.github.io
 root: /
-permalink: :category/:year/:month/:day/:title
+permalink: :year-:month-:day-:title.html
 permalink_defaults:
 
 # Directory

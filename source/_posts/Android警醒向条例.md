@@ -1,20 +1,17 @@
 ---
-layout:     post
-title:      Android 警醒向条例
-subtitle:   依然很简洁的条例，备忘用
-date:       2019-01-23
-author:     OPHsysbilla
-header-img: img/post-bg-android.jpg
-catalog: true
+title: Android 警醒向条例
+date: 2019-01-23 00:00:00
 tags:
     - Android
 ---
+依然很简洁的条例，备忘用
 
 *本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》* 
 
 ## 条例
 1. onActivityResult()发生在onResume()之前
 15. onFinishInflate()在加载完成xml后执行：只有当自定义View，通过在XML中创建时才会调用。不从xml布局文件中解析的话，比如通过new方式创建，则不会执行该方法；
+<!--more-->
 16.  foreach使用前需要判空
 17. overridependingtransition()进入动画需要再startActivity之后，退出动画需要再finish后
 19. view的调用过程:构造方法->onFinishInflate->onSizeChanged->onDraw
