@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   
 <meta name="google-site-verification" content="bK1M-ocDa0E2dznovP-kDBBKlsyySWWuxAs868D6Xfs">
@@ -107,7 +107,7 @@
 
 
 
-  <meta name="keywords" content="Android">
+  <meta name="keywords" content="面试,Java,">
 
 
 
@@ -118,23 +118,23 @@
 
 
 
-<meta name="description" content="title: 66个Java面试答案整理date: 2020-11-09 19:58:03tags: - 面试 categories: 面试ThreadLocal是干嘛的，作用是什么线程池里的参数是什么意思以下内容参考Java线程池实现原理及其在美团业务中的实践  首先检测线程池运行状态，如果不是RUNNING，则直接拒绝，线程池要保证在RUNNING的状态下执行任务。 如果workerCoun">
-<meta name="keywords" content="Android blog">
+<meta name="description" content="ThreadLocal是干嘛的，作用是什么线程池里的参数是什么意思以下内容参考Java线程池实现原理及其在美团业务中的实践  首先检测线程池运行状态，如果不是RUNNING，则直接拒绝，线程池要保证在RUNNING的状态下执行任务。 如果workerCount &amp;lt; corePoolSize，则创建并启动一个线程来执行新提交的任务。 如果workerCount &amp;gt;= corePoolSi">
+<meta name="keywords" content="面试,Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android tips">
-<meta property="og:url" content="http://ophsysbilla.github.io/2020-11-09-66个Java面试答案整理.html">
+<meta property="og:title" content="惹Java面试答案整理">
+<meta property="og:url" content="http://ophsysbilla.github.io/2020-11-09-惹Java面试答案整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="title: 66个Java面试答案整理date: 2020-11-09 19:58:03tags: - 面试 categories: 面试ThreadLocal是干嘛的，作用是什么线程池里的参数是什么意思以下内容参考Java线程池实现原理及其在美团业务中的实践  首先检测线程池运行状态，如果不是RUNNING，则直接拒绝，线程池要保证在RUNNING的状态下执行任务。 如果workerCoun">
+<meta property="og:description" content="ThreadLocal是干嘛的，作用是什么线程池里的参数是什么意思以下内容参考Java线程池实现原理及其在美团业务中的实践  首先检测线程池运行状态，如果不是RUNNING，则直接拒绝，线程池要保证在RUNNING的状态下执行任务。 如果workerCount &amp;lt; corePoolSize，则创建并启动一个线程来执行新提交的任务。 如果workerCount &amp;gt;= corePoolSi">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://p0.meituan.net/travelcube/31bad766983e212431077ca8da92762050214.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201103165654872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlaTM5NjYwMTA1Nw==,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201104114138160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlaTM5NjYwMTA1Nw==,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201104110937322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlaTM5NjYwMTA1Nw==,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201104111007699.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlaTM5NjYwMTA1Nw==,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:updated_time" content="2020-11-09T12:31:05.361Z">
+<meta property="og:updated_time" content="2020-11-09T12:52:01.575Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android tips">
-<meta name="twitter:description" content="title: 66个Java面试答案整理date: 2020-11-09 19:58:03tags: - 面试 categories: 面试ThreadLocal是干嘛的，作用是什么线程池里的参数是什么意思以下内容参考Java线程池实现原理及其在美团业务中的实践  首先检测线程池运行状态，如果不是RUNNING，则直接拒绝，线程池要保证在RUNNING的状态下执行任务。 如果workerCoun">
+<meta name="twitter:title" content="惹Java面试答案整理">
+<meta name="twitter:description" content="ThreadLocal是干嘛的，作用是什么线程池里的参数是什么意思以下内容参考Java线程池实现原理及其在美团业务中的实践  首先检测线程池运行状态，如果不是RUNNING，则直接拒绝，线程池要保证在RUNNING的状态下执行任务。 如果workerCount &amp;lt; corePoolSize，则创建并启动一个线程来执行新提交的任务。 如果workerCount &amp;gt;= corePoolSi">
 <meta name="twitter:image" content="https://p0.meituan.net/travelcube/31bad766983e212431077ca8da92762050214.png">
 
 
@@ -143,7 +143,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
@@ -165,13 +165,13 @@
 
 
 
-  <link rel="canonical" href="http://ophsysbilla.github.io/2020-11-09-66个Java面试答案整理.html">
+  <link rel="canonical" href="http://ophsysbilla.github.io/2020-11-09-惹Java面试答案整理.html">
 
 
 
 
 
-  <title> | Android tips</title>
+  <title>惹Java面试答案整理 | Android tips</title>
   
 
 
@@ -330,7 +330,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2020-11-09-66个Java面试答案整理.html">
+    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2020-11-09-惹Java面试答案整理.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Satur">
@@ -347,7 +347,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">惹Java面试答案整理</h1>
         
 
         <div class="post-meta">
@@ -359,7 +359,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-09T19:58:03+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-09T20:50:10+08:00">
                 2020-11-09
               </time>
             
@@ -369,6 +369,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -397,10 +419,7 @@
       
 
       
-        <hr>
-<p>title: 66个Java面试答案整理<br>date: 2020-11-09 19:58:03<br>tags:</p>
-<pre><code>- 面试
-</code></pre><h2 id="categories-面试"><a href="#categories-面试" class="headerlink" title="categories: 面试"></a>categories: 面试</h2><h2 id="ThreadLocal是干嘛的，作用是什么"><a href="#ThreadLocal是干嘛的，作用是什么" class="headerlink" title="ThreadLocal是干嘛的，作用是什么"></a>ThreadLocal是干嘛的，作用是什么</h2><h2 id="线程池里的参数是什么意思"><a href="#线程池里的参数是什么意思" class="headerlink" title="线程池里的参数是什么意思"></a>线程池里的参数是什么意思</h2><p>以下内容参考<a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html" target="_blank" rel="noopener">Java线程池实现原理及其在美团业务中的实践</a></p>
+        <h2 id="ThreadLocal是干嘛的，作用是什么"><a href="#ThreadLocal是干嘛的，作用是什么" class="headerlink" title="ThreadLocal是干嘛的，作用是什么"></a>ThreadLocal是干嘛的，作用是什么</h2><h2 id="线程池里的参数是什么意思"><a href="#线程池里的参数是什么意思" class="headerlink" title="线程池里的参数是什么意思"></a>线程池里的参数是什么意思</h2><p>以下内容参考<a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html" target="_blank" rel="noopener">Java线程池实现原理及其在美团业务中的实践</a></p>
 <ol>
 <li>首先检测线程池运行状态，如果不是RUNNING，则直接拒绝，线程池要保证在RUNNING的状态下执行任务。</li>
 <li>如果workerCount &lt; corePoolSize，则创建并启动一个线程来执行新提交的任务。</li>
@@ -618,6 +637,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
 
       
       
@@ -714,7 +741,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -736,7 +763,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -769,7 +796,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#categories-面试"><span class="nav-text">categories: 面试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal是干嘛的，作用是什么"><span class="nav-text">ThreadLocal是干嘛的，作用是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程池里的参数是什么意思"><span class="nav-text">线程池里的参数是什么意思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你可能知道的Java知识？"><span class="nav-text">你可能知道的Java知识？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-接口与抽象类区别？"><span class="nav-text">1.接口与抽象类区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-java中的异常有哪⼏几类，分别怎么使用？"><span class="nav-text">2. java中的异常有哪⼏几类，分别怎么使用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-常⽤用的集合类有哪些？⽐如list如何排序？"><span class="nav-text">3. 常⽤用的集合类有哪些？⽐如list如何排序？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-ArrayList和LinkedList内部实现大致是怎样的？他们之间的区别和优缺点？"><span class="nav-text">4. ArrayList和LinkedList内部实现大致是怎样的？他们之间的区别和优缺点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-内存溢出是怎么回事？举个例子。"><span class="nav-text">5. 内存溢出是怎么回事？举个例子。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-和equals的区别"><span class="nav-text">6. ==和equals的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-hashCode-⽅法的作⽤"><span class="nav-text">7. hashCode()⽅法的作⽤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-NIO是什什么？适⽤用于何种场景？"><span class="nav-text">8. NIO是什什么？适⽤用于何种场景？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Hashmap实现原理理？如何保证HashMap线程安全？"><span class="nav-text">9. Hashmap实现原理理？如何保证HashMap线程安全？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-jvm内存结构？为什什么需要GC？"><span class="nav-text">10. jvm内存结构？为什什么需要GC？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-NIO模型，select-epoll的区别，多路复⽤的原理？"><span class="nav-text">11. NIO模型，select/epoll的区别，多路复⽤的原理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-java中⼀一个字符占多少个字节？int，long，double占多少个字节？"><span class="nav-text">12. java中⼀一个字符占多少个字节？int，long，double占多少个字节？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-创建⼀一个类的实例例都有哪些⽅方法？"><span class="nav-text">13. 创建⼀一个类的实例例都有哪些⽅方法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-final-finaly-finalize区别？"><span class="nav-text">14. final/finaly/finalize区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-Session-Cookie区别？"><span class="nav-text">15. Session/Cookie区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-String-StringBuffer-StringBuilder的区别以及实现？"><span class="nav-text">16. String/StringBuffer/StringBuilder的区别以及实现？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-Servlet⽣生命周期"><span class="nav-text">17. Servlet⽣生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-如何⽤用java分配⼀一段连续的1G的内存空间-需要注意些什什么？"><span class="nav-text">18. 如何⽤用java分配⼀一段连续的1G的内存空间?需要注意些什什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-Java有⾃己的内存回收机制，但为什么还存在内存泄漏的问题呢？"><span class="nav-text">19. Java有⾃己的内存回收机制，但为什么还存在内存泄漏的问题呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-什什么是java序列化，如何实现java序列化（写⼀一个例例⼦子）"><span class="nav-text">20. 什什么是java序列化，如何实现java序列化（写⼀一个例例⼦子）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-String-s-new-String-“abc”-创建了几个String-Object？"><span class="nav-text">21. String s = new String(“abc”)创建了几个String Object？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-静态对象："><span class="nav-text">22. 静态对象：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-final关键字："><span class="nav-text">23. final关键字：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-HashMap与HashTable的区别："><span class="nav-text">24. HashMap与HashTable的区别：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-多态："><span class="nav-text">25. 多态：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-集合删除："><span class="nav-text">26. 集合删除：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-参数传递与引⽤用传递："><span class="nav-text">27. 参数传递与引⽤用传递：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-hash冲突："><span class="nav-text">28. hash冲突：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-在java中一个字符能否表示一个汉字："><span class="nav-text">29. 在java中一个字符能否表示一个汉字：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-一致性hash："><span class="nav-text">30. 一致性hash：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-java反射机制"><span class="nav-text">31. java反射机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-幂等的处理理方式："><span class="nav-text">32. 幂等的处理理方式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-hashmap在jdk1-8中的改动"><span class="nav-text">33. hashmap在jdk1.8中的改动?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-java-8-流式使⽤用："><span class="nav-text">34. java 8 流式使⽤用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-java域的概念："><span class="nav-text">35. java域的概念：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-jdk1-8中ConcurrentHashMap-size⼤于8时会转化成红⿊黑树，请问有什么作⽤，如果通过remove操作，size⼩于8了了，会发⽣什么？"><span class="nav-text">36. jdk1.8中ConcurrentHashMap size⼤于8时会转化成红⿊黑树，请问有什么作⽤，如果通过remove操作，size⼩于8了了，会发⽣什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#37-Hashmap为什么是线程不安全的？在多线程情况下扩容会出现-CPU-接近-100-的情况吗？是因为出现了死循环吗？"><span class="nav-text">37. Hashmap为什么是线程不安全的？在多线程情况下扩容会出现 CPU 接近 100%的情况吗？是因为出现了死循环吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-hashmap的计算hash值时为什么要用低-16-位与高-16-位进行异或运算"><span class="nav-text">38. hashmap的计算hash值时为什么要用低 16 位与高 16 位进行异或运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-ConcurrentHashMap在JDK1-8的改动是什么？"><span class="nav-text">39. ConcurrentHashMap在JDK1.8的改动是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-synchronizied是可重入锁吗？和ReentrantLock区别是什么？"><span class="nav-text">40. synchronizied是可重入锁吗？和ReentrantLock区别是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41-String为什么避免在循环里用-拼接"><span class="nav-text">41. String为什么避免在循环里用+拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42-JVM类加载机制特点"><span class="nav-text">42. JVM类加载机制特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可以加载类的时候，对字节码进行修改吗？"><span class="nav-text">可以加载类的时候，对字节码进行修改吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM类加载过程，什么是双亲委派机制？"><span class="nav-text">JVM类加载过程，什么是双亲委派机制？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#何时触发初始化"><span class="nav-text">何时触发初始化</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#类的生命周期是什么？加载器什么时候会被unload？"><span class="nav-text">类的生命周期是什么？加载器什么时候会被unload？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说说Java内存回收"><span class="nav-text">说说Java内存回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jvm的内存模型和java的内存模型"><span class="nav-text">jvm的内存模型和java的内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java内存模型（Java-Memory-Model）与并发问题相关"><span class="nav-text">Java内存模型（Java Memory Model）与并发问题相关</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是内存屏障？是为了解决什么问题？"><span class="nav-text">什么是内存屏障？是为了解决什么问题？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JVM的内存模型"><span class="nav-text">JVM的内存模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈帧、操作数栈和局部变量表分别都是什么作用呢？"><span class="nav-text">栈帧、操作数栈和局部变量表分别都是什么作用呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存的可见性与java内存模型对原子性、可见性、有序性的保证机制；"><span class="nav-text">内存的可见性与java内存模型对原子性、可见性、有序性的保证机制；</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jvm调优"><span class="nav-text">Jvm调优</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal是干嘛的，作用是什么"><span class="nav-text">ThreadLocal是干嘛的，作用是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程池里的参数是什么意思"><span class="nav-text">线程池里的参数是什么意思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你可能知道的Java知识？"><span class="nav-text">你可能知道的Java知识？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-接口与抽象类区别？"><span class="nav-text">1.接口与抽象类区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-java中的异常有哪⼏几类，分别怎么使用？"><span class="nav-text">2. java中的异常有哪⼏几类，分别怎么使用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-常⽤用的集合类有哪些？⽐如list如何排序？"><span class="nav-text">3. 常⽤用的集合类有哪些？⽐如list如何排序？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-ArrayList和LinkedList内部实现大致是怎样的？他们之间的区别和优缺点？"><span class="nav-text">4. ArrayList和LinkedList内部实现大致是怎样的？他们之间的区别和优缺点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-内存溢出是怎么回事？举个例子。"><span class="nav-text">5. 内存溢出是怎么回事？举个例子。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-和equals的区别"><span class="nav-text">6. ==和equals的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-hashCode-⽅法的作⽤"><span class="nav-text">7. hashCode()⽅法的作⽤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-NIO是什什么？适⽤用于何种场景？"><span class="nav-text">8. NIO是什什么？适⽤用于何种场景？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Hashmap实现原理理？如何保证HashMap线程安全？"><span class="nav-text">9. Hashmap实现原理理？如何保证HashMap线程安全？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-jvm内存结构？为什什么需要GC？"><span class="nav-text">10. jvm内存结构？为什什么需要GC？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-NIO模型，select-epoll的区别，多路复⽤的原理？"><span class="nav-text">11. NIO模型，select/epoll的区别，多路复⽤的原理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-java中⼀一个字符占多少个字节？int，long，double占多少个字节？"><span class="nav-text">12. java中⼀一个字符占多少个字节？int，long，double占多少个字节？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-创建⼀一个类的实例例都有哪些⽅方法？"><span class="nav-text">13. 创建⼀一个类的实例例都有哪些⽅方法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-final-finaly-finalize区别？"><span class="nav-text">14. final/finaly/finalize区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-Session-Cookie区别？"><span class="nav-text">15. Session/Cookie区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-String-StringBuffer-StringBuilder的区别以及实现？"><span class="nav-text">16. String/StringBuffer/StringBuilder的区别以及实现？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-Servlet⽣生命周期"><span class="nav-text">17. Servlet⽣生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-如何⽤用java分配⼀一段连续的1G的内存空间-需要注意些什什么？"><span class="nav-text">18. 如何⽤用java分配⼀一段连续的1G的内存空间?需要注意些什什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-Java有⾃己的内存回收机制，但为什么还存在内存泄漏的问题呢？"><span class="nav-text">19. Java有⾃己的内存回收机制，但为什么还存在内存泄漏的问题呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-什什么是java序列化，如何实现java序列化（写⼀一个例例⼦子）"><span class="nav-text">20. 什什么是java序列化，如何实现java序列化（写⼀一个例例⼦子）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-String-s-new-String-“abc”-创建了几个String-Object？"><span class="nav-text">21. String s = new String(“abc”)创建了几个String Object？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-静态对象："><span class="nav-text">22. 静态对象：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-final关键字："><span class="nav-text">23. final关键字：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-HashMap与HashTable的区别："><span class="nav-text">24. HashMap与HashTable的区别：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-多态："><span class="nav-text">25. 多态：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-集合删除："><span class="nav-text">26. 集合删除：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-参数传递与引⽤用传递："><span class="nav-text">27. 参数传递与引⽤用传递：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-hash冲突："><span class="nav-text">28. hash冲突：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-在java中一个字符能否表示一个汉字："><span class="nav-text">29. 在java中一个字符能否表示一个汉字：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-一致性hash："><span class="nav-text">30. 一致性hash：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-java反射机制"><span class="nav-text">31. java反射机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-幂等的处理理方式："><span class="nav-text">32. 幂等的处理理方式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-hashmap在jdk1-8中的改动"><span class="nav-text">33. hashmap在jdk1.8中的改动?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-java-8-流式使⽤用："><span class="nav-text">34. java 8 流式使⽤用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-java域的概念："><span class="nav-text">35. java域的概念：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-jdk1-8中ConcurrentHashMap-size⼤于8时会转化成红⿊黑树，请问有什么作⽤，如果通过remove操作，size⼩于8了了，会发⽣什么？"><span class="nav-text">36. jdk1.8中ConcurrentHashMap size⼤于8时会转化成红⿊黑树，请问有什么作⽤，如果通过remove操作，size⼩于8了了，会发⽣什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#37-Hashmap为什么是线程不安全的？在多线程情况下扩容会出现-CPU-接近-100-的情况吗？是因为出现了死循环吗？"><span class="nav-text">37. Hashmap为什么是线程不安全的？在多线程情况下扩容会出现 CPU 接近 100%的情况吗？是因为出现了死循环吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-hashmap的计算hash值时为什么要用低-16-位与高-16-位进行异或运算"><span class="nav-text">38. hashmap的计算hash值时为什么要用低 16 位与高 16 位进行异或运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-ConcurrentHashMap在JDK1-8的改动是什么？"><span class="nav-text">39. ConcurrentHashMap在JDK1.8的改动是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-synchronizied是可重入锁吗？和ReentrantLock区别是什么？"><span class="nav-text">40. synchronizied是可重入锁吗？和ReentrantLock区别是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41-String为什么避免在循环里用-拼接"><span class="nav-text">41. String为什么避免在循环里用+拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42-JVM类加载机制特点"><span class="nav-text">42. JVM类加载机制特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可以加载类的时候，对字节码进行修改吗？"><span class="nav-text">可以加载类的时候，对字节码进行修改吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM类加载过程，什么是双亲委派机制？"><span class="nav-text">JVM类加载过程，什么是双亲委派机制？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#何时触发初始化"><span class="nav-text">何时触发初始化</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#类的生命周期是什么？加载器什么时候会被unload？"><span class="nav-text">类的生命周期是什么？加载器什么时候会被unload？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说说Java内存回收"><span class="nav-text">说说Java内存回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jvm的内存模型和java的内存模型"><span class="nav-text">jvm的内存模型和java的内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java内存模型（Java-Memory-Model）与并发问题相关"><span class="nav-text">Java内存模型（Java Memory Model）与并发问题相关</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是内存屏障？是为了解决什么问题？"><span class="nav-text">什么是内存屏障？是为了解决什么问题？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JVM的内存模型"><span class="nav-text">JVM的内存模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈帧、操作数栈和局部变量表分别都是什么作用呢？"><span class="nav-text">栈帧、操作数栈和局部变量表分别都是什么作用呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存的可见性与java内存模型对原子性、可见性、有序性的保证机制；"><span class="nav-text">内存的可见性与java内存模型对原子性、可见性、有序性的保证机制；</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jvm调优"><span class="nav-text">Jvm调优</span></a></li></div>
             
 
           </div>
@@ -813,7 +840,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
@@ -912,13 +939,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
