@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  
+<meta name="google-site-verification" content="bK1M-ocDa0E2dznovP-kDBBKlsyySWWuxAs868D6Xfs">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#fff">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#fff">
+
+
+
+
+
+  <meta name="keywords" content="Algorithm,算法,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简略地描述思路，以供后来观之 本笔记只是备忘录，并不是详细解决方案，请使用ctrl+F查询 Algorithm1. 打印字符串全排列递归后需要马上还原（因为所有的），因为递归是一颗深度优先的树（也就是栈），是先从叶子开始改变的">
+<meta name="keywords" content="Algorithm,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法简明笔记">
+<meta property="og:url" content="http://ophsysbilla.github.io/2019-01-23-算法简明笔记.html">
+<meta property="og:site_name" content="Android tips">
+<meta property="og:description" content="简略地描述思路，以供后来观之 本笔记只是备忘录，并不是详细解决方案，请使用ctrl+F查询 Algorithm1. 打印字符串全排列递归后需要马上还原（因为所有的），因为递归是一颗深度优先的树（也就是栈），是先从叶子开始改变的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-25T07:54:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法简明笔记">
+<meta name="twitter:description" content="简略地描述思路，以供后来观之 本笔记只是备忘录，并不是详细解决方案，请使用ctrl+F查询 Algorithm1. 打印字符串全排列递归后需要马上还原（因为所有的），因为递归是一颗深度优先的树（也就是栈），是先从叶子开始改变的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ophsysbilla.github.io/2019-01-23-算法简明笔记.html">
+
+
+
+
+
+  <title>算法简明笔记 | Android tips</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Android tips</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Satur的博客 | Android wonderland</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2019-01-23-算法简明笔记.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Satur">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Android tips">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法简明笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-23T11:09:39+08:00">
+                2019-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>简略地描述思路，以供后来观之</p>
+<p><em>本笔记只是备忘录，<strong>并不是详细解决方案</strong>，请使用<code>ctrl+F</code>查询</em></p>
+<h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><h2 id="1-打印字符串全排列"><a href="#1-打印字符串全排列" class="headerlink" title="1. 打印字符串全排列"></a>1. 打印字符串全排列</h2><p>递归后需要马上还原（因为所有的），因为递归是一颗深度优先的树（也就是栈），是先从叶子开始改变的<br><a id="more"></a></p>
+<h2 id="2-二叉搜索树转为双向链"><a href="#2-二叉搜索树转为双向链" class="headerlink" title="2. 二叉搜索树转为双向链"></a>2. 二叉搜索树转为双向链</h2><p>中序遍历二叉搜索树正好是递增的，只需要把结点左右指针连接中序中前后的结点。（二叉搜索树没有相同值的点）</p>
+<h2 id="3-递归求排列"><a href="#3-递归求排列" class="headerlink" title="3. 递归求排列"></a>3. 递归求排列</h2><p>求排列时若用递归法，递归叶子回溯到父亲时需要还原改变（叶子最先改变，也就是说是从字符串数组最后两位开始的），不然就不是同一串字符串出发的（画出排列树推吧）</p>
+<h2 id="3-复制复杂链表"><a href="#3-复制复杂链表" class="headerlink" title="3. 复制复杂链表"></a>3. 复制复杂链表</h2><p>每个结点复制一个接在该结点后面，a-&gt;a’-&gt;b-&gt;b’-&gt;c-&gt;c’，同时复制原结点所指向的任意结点，最后奇偶结点分离（跳着分离）</p>
+<h2 id="4-最小的k个数"><a href="#4-最小的k个数" class="headerlink" title="4. 最小的k个数"></a>4. 最小的k个数</h2><p> partition函数（快排）最后得到的index就是他在序列中的位置，左边的就是前index个数。（期间可以用二分法逐渐缩小区间，由于是用一个固定位置的数作pivot所以最后得到的index是针对整个数组而言的）</p>
+<h2 id="5-集合和最大堆基于红黑树"><a href="#5-集合和最大堆基于红黑树" class="headerlink" title="5. 集合和最大堆基于红黑树"></a>5. 集合和最大堆基于红黑树</h2><h2 id="6-最大子数组和"><a href="#6-最大子数组和" class="headerlink" title="6. 最大子数组和"></a>6. 最大子数组和</h2><p>如果累加和为负则重新从新元素开始</p>
+<h2 id="7-从1到n数里包含1的个数"><a href="#7-从1到n数里包含1的个数" class="headerlink" title="7. 从1到n数里包含1的个数"></a>7. 从1到n数里包含1的个数</h2><p>O(log10N) ， 十位上，每轮出现10次是指[10,19]这10个数    <a href="http://blog.csdn.net/yi_afly/article/details/52012593" target="_blank" rel="noopener">解析</a>  </p>
+<h2 id="8-逆序对"><a href="#8-逆序对" class="headerlink" title="8. 逆序对"></a>8. 逆序对</h2><p>归并排序的同时进行计数</p>
+<h2 id="9-数组排成最小的数"><a href="#9-数组排成最小的数" class="headerlink" title="9. 数组排成最小的数"></a>9. 数组排成最小的数</h2><p>可以用sprintf将数字写入字符串</p>
+<h2 id="10-二叉树最低公共祖先"><a href="#10-二叉树最低公共祖先" class="headerlink" title="10. 二叉树最低公共祖先"></a>10. 二叉树最低公共祖先</h2><p>（若是二叉搜索树）比一个结点大，比另一个结点小；（若有指向父节点的指针）寻找两个链表的公共结点；（什么都不是）用栈递归到叶子再逐个往上退栈。</p>
+<h2 id="11-二叉树路径和等于某个数"><a href="#11-二叉树路径和等于某个数" class="headerlink" title="11. 二叉树路径和等于某个数"></a>11. 二叉树路径和等于某个数</h2><p>传递vector的引用（用vector作栈方便顺序输出），递归遍历，进入结点时压入该结点，退出时弹出（恢复成父节点进入的情景）</p>
+<h2 id="12-不能继承的类"><a href="#12-不能继承的类" class="headerlink" title="12. 不能继承的类"></a>12. 不能继承的类</h2><p>虚拟继承virtual 父类，把父类构造函数设为私有，并且父类含有一个友元函数，友元函数的类型是由模板类给出的，所以虚拟继承的时候需要把子类的类型当成<typename>参数传入；（只能在堆上）私有构造与析构，用静态getInstance函数返回一个新的父类对象。</typename></p>
+<h2 id="13-C-按类中声明的元素顺序初始化成员"><a href="#13-C-按类中声明的元素顺序初始化成员" class="headerlink" title="13. C++按类中声明的元素顺序初始化成员"></a>13. C++按类中声明的元素顺序初始化成员</h2><h2 id="14-求方程正整数解个数"><a href="#14-求方程正整数解个数" class="headerlink" title="14.  求方程正整数解个数"></a>14.  求方程正整数解个数</h2><p><a href="https://www.nowcoder.com/questionTerminal/4a625528d7be46da8aaa4af999c40346" target="_blank" rel="noopener">求方程正整数解个数</a></p>
+<h2 id="15-多路平衡归并排序"><a href="#15-多路平衡归并排序" class="headerlink" title="15. 多路平衡归并排序"></a>15. 多路平衡归并排序</h2><p>外排序，m个归并项（子表个数）k路归并的归并趟数s=logk(m)，<a href="http://www.360doc.com/content/15/0719/22/22633806_486084820.shtml" target="_blank" rel="noopener">败者树</a></p>
+<h2 id="16-n阶乘末尾0的个数"><a href="#16-n阶乘末尾0的个数" class="headerlink" title="16. n阶乘末尾0的个数"></a>16. n阶乘末尾0的个数</h2><p>（n除以5，即求5的质因数个数）<br>存在0必然是5<em>2的结果，所以必然含有5!(5</em>4<em>3</em>2*1)，所以只要求多少个5的倍数即可</p>
+<h2 id="17-mongodb为什么没有自增id"><a href="#17-mongodb为什么没有自增id" class="headerlink" title="17. mongodb为什么没有自增id"></a>17. mongodb为什么没有自增id</h2><p>因为并发情况下同时插入,分布式存储的情况下无法协调分配连续数字（协调需要消耗网络资源），并且内部也不是按id顺序存的，因为文档长度可变，不知道什么时候文档变长要放到后面去</p>
+<h2 id="18-数n的约数个数"><a href="#18-数n的约数个数" class="headerlink" title="18. 数n的约数个数"></a>18. 数n的约数个数</h2><p>（约数：能把别人整除的叫约数）自然数的约数的个数是有限的，质数的约数是1和本身；合数一定有3个以上的约数。由于约数个数定理知道：约数的个数等于:所有质因数的指数加上1后的乘积;<br>若一个数分解质因数后为(a^m)*(b^n),其中a,b均为质因数;m,n均为相应质因数的指数.<br>则约数个数为(m+1)(n+1).(因为a^0,a^1 … a^m，都是它的约数共m+1个) </p>
+<blockquote>
+<p>例如:<br>(1)12=2^2 <em> 3,质因数有2和3,其指数分别为2和1,那么12的约数有(2+1) </em>(1+1)=6(个);<br>(2)60=22 <em> 3 </em> 5,质因数2, 3, 5的指数分别为2, 1, 1,那么60的约数有(2+1) <em> (1+1) </em> (1+1)=12(个)</p>
+</blockquote>
+<h2 id="19-一个数所有约数之和"><a href="#19-一个数所有约数之和" class="headerlink" title="19. 一个数所有约数之和"></a>19. 一个数所有约数之和</h2><p>一个数所有约数之和 等于先把每个质因数从0次幂一直加到其最高次幂,再把每个相应质因数幂的和相乘.<br>若一个数分解为(a^m)*(b^n),则这个数所有约数的和为:<br>(a^0+a^1+a^2+a^3+…+a^m)(b^0+b^1+b^2+b^3+…+b^n).</p>
+<blockquote>
+<p>例如:<br>(1)12=22<em>3,则12所有约数的和为：(2^0+2^1+2^2)</em>(3^0+3^1)=7<em>4=28;<br>(2)60=22</em>3<em>5=(2^0+2^1+2^2)</em>(3^0+3^1)<em>(5^0+5^1)=7</em>4*6=168.</p>
+</blockquote>
+<h2 id="20-Trie-树"><a href="#20-Trie-树" class="headerlink" title="20. Trie 树"></a>20. Trie 树</h2><h2 id="21-需要同时移动多少步A和B才同时指向一个节点"><a href="#21-需要同时移动多少步A和B才同时指向一个节点" class="headerlink" title="21. 需要同时移动多少步A和B才同时指向一个节点"></a>21. 需要同时移动多少步A和B才同时指向一个节点</h2><p>长度为100的循环链表，指针A和指针B都指向了链表中的同一个节点，A以步长为1向前移动，B以步长为3向前移动，一共需要同时移动多少步A和B才能再次指向同一个节点？</p>
+<ul>
+<li>假定经过n步A、B再次相遇。则A经过的结点为n，B经过的结点为3n；此刻B必然比A多经过了整数倍的链表长度（圈的长度），假定经过了i倍的链表长度，则有3n-n=100i，即2n=100i；满足该等式的最小整数位i=2，n=100。即A经过了100个结点，B经过了300个结点，二者再次相遇。  <ul>
+<li>也可以认为跑圈100m，A速度1m/s B速度3m/s，B比A多跑一圈耗时100/（3-1）=50s</li>
+</ul>
+</li>
+</ul>
+<h2 id="22-模拟加减乘"><a href="#22-模拟加减乘" class="headerlink" title="22. 模拟加减乘"></a>22. 模拟加减乘</h2><p>注意 <code>^按位异或</code>   、<code>&amp; 按位与</code>  、<code>| 按位或</code></p>
+<h3 id="加法运算"><a href="#加法运算" class="headerlink" title="加法运算"></a>加法运算</h3><p>将一个整数用二进制表示，其加法运算就是：相异（^）时，本位为1，进位为0；同为1时本位为0，进位为1；同为0时，本位进位均为0。</p>
+<blockquote>
+<p>故不计进位的和为sum = a^b，进位就是arr = a&amp;b,(与sum相加时先左移一位，因为这是进位）。完成加法直到进位为0.<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? Add(a^b, (a&amp;b)&lt;&lt;<span class="number">1</span>) : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="求相反数"><a href="#求相反数" class="headerlink" title="求相反数"></a>求相反数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求a的相反数：将各位取反加一</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">negative</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;     <span class="comment">//get -a</span></span><br><span class="line">    <span class="keyword">return</span> Add(~a, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="减法运算"><a href="#减法运算" class="headerlink" title="减法运算"></a>减法运算</h3><p>a-b  = a+(-b)　　<br>根据补码的特性，各位取反加1即可（注意得到的是相反数，不是该数的补码，因为符号位改变了）<br>（上面用二进制实现的加减法可以直接应用于负数）<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Minus</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Add(a, negative(b));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="乘法运算"><a href="#乘法运算" class="headerlink" title="乘法运算"></a>乘法运算</h3><p>原理上还是通过加法计算。将b个a相加<br>参考二进制数转十进制数，每位有一个2次幂的权重，当该位为1时，加上 2^x 倍 a<br>所以权重 a 不断 a&lt;&lt;=1<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正数乘法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Multi</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)&#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>)</span><br><span class="line">            ans = Add(ans, a);</span><br><span class="line">        a = a &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        b = b &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正数除法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Divide</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> coun = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a &gt;= b)</span><br><span class="line">    &#123;</span><br><span class="line">        a = Minus(a, b);</span><br><span class="line">        coun = Add(coun, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> coun;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="除法运算"><a href="#除法运算" class="headerlink" title="除法运算"></a>除法运算</h3><p>除法运算是乘法的逆。看a最多能减去多少个b，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断是否是负数，0，正数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isneg</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &amp; <span class="number">0x8000</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">iszero</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !(a &amp; <span class="number">0xFFFF</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ispos</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a&amp;<span class="number">0xFFFF</span>) &amp;&amp; !(a&amp;<span class="number">0x8000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//处理负数的乘法和除法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">My_Multi</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(iszero(a) || iszero(b))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(isneg(a))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(isneg(b))</span><br><span class="line">            <span class="keyword">return</span> Multi(negative(a), negative(b));</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> negative(Multi(negative(a), b));</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(isneg(b))</span><br><span class="line">        <span class="keyword">return</span> negative(Multi(a, negative(b)));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> Multi(a, b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">My_Divide</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(iszero(b))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Error!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(iszero(a))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(isneg(a))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(isneg(b))</span><br><span class="line">            <span class="keyword">return</span> Divide(negative(a), negative(b));</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> negative(Divide(negative(a), b));</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(isneg(b))</span><br><span class="line">        <span class="keyword">return</span> negative(Divide(a, negative(b)));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> Divide(a, b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>计算统中数值一律用补码来表示,因为补码可以使符号位和数值位统一处理，同时可以使减法按照加法来处理。<br>原码 -&gt; 补码： 数值位取反加1 <code>数值位不包括符号位</code><br>补码 -&gt; 原码： 对该补码的数值位继续 取反加1<br>补码的绝对值：（称为真值）正数的真值就是本身，负数的真值是各位（包括符号位）取反加1（即变成原码并把符号位取反）<br> b -&gt; -b ： 各位（包括符号位）取反加1</p>
+</blockquote>
+<h2 id="旋转字符：字符串前面的部分排在后面"><a href="#旋转字符：字符串前面的部分排在后面" class="headerlink" title="旋转字符：字符串前面的部分排在后面"></a>旋转字符：字符串前面的部分排在后面</h2><p>“abcd”的旋转串是”abcd”，”bcda” … “dabc”<br>首先目标串与原串长度要相等</p>
+<ul>
+<li>可以设字符<code>s+s</code>，只要是<code>s+s</code>的子串都是旋转字符<br>比如：<code>&quot;abcd&quot;+&quot;abcd&quot;</code>，即<code>&quot;abcdabcd&quot;</code>中寻找子串，时间复杂度是根据查找子串的时间来定的，所以如果是采用KMP则是O(N)</li>
+</ul>
+<h2 id="字符串提取出现的正负整数总和"><a href="#字符串提取出现的正负整数总和" class="headerlink" title="字符串提取出现的正负整数总和"></a>字符串提取出现的正负整数总和</h2><p>注意可以<code>负负得正</code><br>设置符号位positive，cur当前字符，num每一位不断往高位挪的积累数（字符串转化为数字），res数字总和</p>
+<ul>
+<li>当cur为数字时，<code>num = num * 10 + positive? cur:-cur;</code></li>
+<li>当cur不为数字的时候，说明此时刚刚结束数字的转化，或者是开始部分没有数字，无论哪种都应该加上刚刚转化的数字num，并把num置零重新开始计数<br><code>此时需要注意当cur为负号时，前一位为负则positive=true，否则为负；如果不是负号，则重置positive为正</code></li>
+</ul>
+<h2 id="字符串转换成int范围内数字"><a href="#字符串转换成int范围内数字" class="headerlink" title="字符串转换成int范围内数字"></a>字符串转换成int范围内数字</h2><p>字符串可以是只出现一个0，即 <code>0</code><br>字符串不能出现 <code>-</code>  、<code>-0</code> 、<code>-02</code>  、<code>A12</code><br>如果没有出现违法，只要检查是否每个字符都是数字就可以，</p>
+<ul>
+<li>接下来进入判断，由于int范围是<code>-2147483648</code> 到 <code>2147483647</code><br>先把所有的数字都转为负数（转为负数可以不用再写一遍正数的，最后如果是整数再负负得正回去）</li>
+<li>判断是否溢出，因为<code>-214748364 * 10 + (-8)</code> 刚好是最大整数<br>先判断是否 <code>( res &lt; = -214748364 )|| (res == -214748364 &amp;&amp; cur &lt;= -8 )</code><br>同时也要注意如果是正整数，则转换后不能大于 2147483647<h2 id="字符串replace-a-with-b"><a href="#字符串replace-a-with-b" class="headerlink" title="字符串replace a with b"></a>字符串replace a with b</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">for</span>...)&#123;</span><br><span class="line">	<span class="keyword">if</span>(a[i++]==b[j])&#123; </span><br><span class="line">		j++ ;</span><br><span class="line">		<span class="keyword">if</span>(j==源串长)&#123; <span class="comment">// 不用源串长-1，前面++过了</span></span><br><span class="line">			标记a串 [i-源串长,i] 为<span class="number">0</span>或者某个特定符表示需要删掉</span><br><span class="line">			<span class="comment">//（为了节省时间我们可以不删掉，只是不打印就可以）</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> j=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>当a[i]=0而a[i-1]!=0时表示可以开始将前面积累的字符串打印了<br><code>res = res + cur + to</code><br>注意最后是如果末尾全是0，没有到不是0的过度，我们需要再手动把这部分转换加上 <code>res += cur</code></p>
+</blockquote>
+<h2 id="计算连续出现字符的个数"><a href="#计算连续出现字符的个数" class="headerlink" title="计算连续出现字符的个数"></a>计算连续出现字符的个数</h2><p><code>aabbbcc -&gt; a_2_b_3_c2</code><br>这种连续计数，在字符变化后结束上一轮计数的都是一种做法，注意末尾部分没有转换需要手动加上</p>
+<ul>
+<li>本题从第二个字符开始判断每个字符和前一个字符如果不一样，进入转换，记录数字个数，重置计数个数为1（因为当转换出现，和前个不一样，前个计数为1，例如ab，从b开始，a计数为1）<blockquote>
+<p>如果是 a_2_b_3_c2 -&gt; aabbbcc，求第5个字符是什么，此处是b<br>由于有”_”，可以因此分别数字与字符，保存当前字符cur，记录数字，当数字大于需要求的位置则返回</p>
+</blockquote>
+<h2 id="判断是否每个字符只出现一次"><a href="#判断是否每个字符只出现一次" class="headerlink" title="判断是否每个字符只出现一次"></a>判断是否每个字符只出现一次</h2>可以用Map<br>但是如果只花费O(1)空间，只能使用堆排序，将数组排序对比前后是否相同</li>
+</ul>
+<h2 id="浮点数高精度幂"><a href="#浮点数高精度幂" class="headerlink" title="浮点数高精度幂"></a>浮点数高精度幂</h2><h2 id="替换空为-20"><a href="#替换空为-20" class="headerlink" title="替换空为%20"></a>替换空为%20</h2><p>先扫描一遍记录总长度为len+2*blank，再从后往前复制</p>
+<blockquote>
+<p>一般挪动数组元素的，都需要从右往左复制</p>
+</blockquote>
+<h2 id="reverse字符串"><a href="#reverse字符串" class="headerlink" title="reverse字符串"></a>reverse字符串</h2><h3 id="reverse整个串"><a href="#reverse整个串" class="headerlink" title="reverse整个串"></a>reverse整个串</h3><p>while(start&lt;end){<br>    swap(c[start],c[end]);<br>    start++;<br>    end–;<br>}</p>
+<h3 id="reverse前后部分顺序"><a href="#reverse前后部分顺序" class="headerlink" title="reverse前后部分顺序"></a>reverse前后部分顺序</h3><p>abcde-&gt;deabc<br>先翻转abc，再翻转de，再翻转整个串</p>
+<h2 id="变成回文串需要的最少字符"><a href="#变成回文串需要的最少字符" class="headerlink" title="变成回文串需要的最少字符"></a>变成回文串需要的最少字符</h2><p>str长为N，$N*N$ 的动态规划表 dp[i][j]表示str[i..j]这段字符最少需要多个字符使str[i..j]变成回文串</p>
+<p>dp[i][j]=<br>$$\begin{cases} 0, &amp; i=j<br>\ 0 , &amp;  str[i]=str[j] \quad and \quad |i-j|=2<br>\ 1 , &amp; str[i]!=str[j] \quad and \quad|i-j|\geq2<br>\ dp[i+1]dp[j-1] , &amp; str[i]=str[j] \quad and \quad |i-j|\geq2<br>\ max{dp[i+1][j],dp[i][j-1]}+1 , &amp; str[i]==str[j] \quad and \quad |i-j|\geq2&amp;\end{cases}$$</p>
+<p>未完待续</p>
+<h2 id="判断最长左右括号"><a href="#判断最长左右括号" class="headerlink" title="判断最长左右括号"></a>判断最长左右括号</h2><p><code>()()</code> 与 <code>(())</code>合法，返回最长的合法出现的括号位置</p>
+<ul>
+<li>先检查<code>(</code> 和 <code>)</code>的数量是否相等</li>
+<li>设dp[i]表示str[0..i]位置上，以str[i]结尾的最长有效括号长度 $….(()())为6$<ol>
+<li>str[i]==<code>(</code>，有效括号长度子串以<code>)</code>结尾，故dp[i]=0;</li>
+<li>str[i]==<code>)</code>，dp[i-1]代表str[i-1]结尾的最长有效括号长度，上一处没有被匹配过的位置<code>i-1-dp[i-1]</code>上如果是<code>(</code>，可以和str[i]凑成一对，此时dp[i]=dp[i-1]+2，同时dp[i-1]前面即str[i-2]之前的dp[i-2]也应该算上</li>
+</ol>
+</li>
+<li>最后求解 <code>Max(dp[0..N-1])</code> 就是最终结果</li>
+</ul>
+<h2 id="计算字符串-4-3-4-4-3-的结果"><a href="#计算字符串-4-3-4-4-3-的结果" class="headerlink" title="计算字符串 4((3(-4)+-4*3))的结果"></a>计算字符串 4<em>((3</em>(-4)+-4*3))的结果</h2><p>每次碰到<code>(</code>就进入递归进入下一层，<code>)</code>就结束递归，并传递参数 (char [], 下一个位置位置  )数组返回(计算的结果, 结束的位置)<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Recur(<span class="keyword">char</span> [] , <span class="keyword">int</span> i)&#123;</span><br><span class="line">	<span class="keyword">while</span>(i &lt; length &amp;&amp; ch[i] !=<span class="string">')'</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>( ch[i] 是数字 )&#123;</span><br><span class="line">			pre = pre * <span class="number">10</span> + ch[i] - <span class="string">'0'</span>;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span> (ch[i] 是操作符 )&#123;</span><br><span class="line">			队列a入队pre</span><br><span class="line">			队列a入队ch[i]</span><br><span class="line">			pre = <span class="number">0</span>;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;<span class="keyword">else</span>(ch[i] == <span class="string">'('</span>)&#123;</span><br><span class="line">			<span class="built_in">array</span> = 递归本函数(ch,i+<span class="number">1</span>)</span><br><span class="line">			pre = <span class="built_in">array</span>[<span class="number">0</span>];</span><br><span class="line">			i = <span class="built_in">array</span>[<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="整数N的二进制全排中0左边必有1的个数"><a href="#整数N的二进制全排中0左边必有1的个数" class="headerlink" title="整数N的二进制全排中0左边必有1的个数"></a>整数N的二进制全排中0左边必有1的个数</h2><h2 id="按顺序拼接字符串使总结果字典序最小"><a href="#按顺序拼接字符串使总结果字典序最小" class="headerlink" title="按顺序拼接字符串使总结果字典序最小"></a>按顺序拼接字符串使总结果字典序最小</h2><ul>
+<li>先按照拼接的方式将数组排列，即 return (a+b)&gt;(b+a)</li>
+<li>将排序后数组从头到尾组合起来<blockquote>
+<p>贪心算法，有详细需证明它的贪心策略是正确</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="新类型字符a、Aa、AA-中第k个字符是哪种类型的"><a href="#新类型字符a、Aa、AA-中第k个字符是哪种类型的" class="headerlink" title="新类型字符a、Aa、AA 中第k个字符是哪种类型的"></a>新类型字符a、Aa、AA 中第k个字符是哪种类型的</h2><p>从k-1个字符开始往左对大写字母计数，碰到小写字母停止</p>
+<ul>
+<li>根据奇偶判断<code>k</code>和<code>k+1</code>是AA，还是Aa，还是<code>k+1</code>是单独的a</li>
+</ul>
+<h2 id="回文段最少切割数"><a href="#回文段最少切割数" class="headerlink" title="回文段最少切割数"></a>回文段最少切割数</h2><p>dp[i]是子串str[i..len-1]需要切几次才能使str[i..len-1]全切成回文串，dp[0]是最后结果</p>
+<p>从右往左，i初始为len-1</p>
+<ul>
+<li>如果 str[i..j]是回文串,<code>dp[i]=dp[j+1]+1</code>，只需从str[j+1..len-1]寻找最经济的切割法</li>
+<li>j 从 [i..len-1] 遍历，<code>dp[i]=Min{dp[j+1]+1},i&lt;=j&lt;len且str[i..j]为回文串</code></li>
+<li>快速判断是否是回文串的方法是回文子串长度的相同方法，设<code>p[i][j]</code>为i..j间是否是回文串的判定<br>以下情况<code>p[i][j]</code>是回文串：<ul>
+<li>str[i..j]长度为1</li>
+<li>str[i..j]长度为2，且2个字符相等</li>
+<li>子串str[i+1..j-1]是回文串（即p[i][j]=true），且str[i]==str[j]，最外面的两个字符串相等。</li>
+<li>i 是从右往左，j是从i往右，所以<code>i..j</code>间长度是展开的便于计算p[i][j]</li>
+</ul>
+</li>
+</ul>
+<h1 id="推荐阅读："><a href="#推荐阅读：" class="headerlink" title="推荐阅读："></a>推荐阅读：</h1><ol>
+<li><a href="http://blog.csdn.net/linglun3/article/details/44835223" target="_blank" rel="noopener">【阿里】算法工程师笔试题整理（13&amp;14年）</a></li>
+<li><a href="https://blog.csdn.net/panda_AJ/article/details/69420293?utm_source=blogxgwz2" target="_blank" rel="noopener">剑指offer题目及答案</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019-01-23-Android警醒向条例.html" rel="next" title="Android 警醒向条例">
+                <i class="fa fa-chevron-left"></i> Android 警醒向条例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019-01-25-错误的PorterDuffXferMode混合模式.html" rel="prev" title="错误的PorterDuffXferMode混合模式">
+                错误的PorterDuffXferMode混合模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Satur</p>
+              <p class="site-description motion-element" itemprop="description">Satur的博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Algorithm"><span class="nav-text">Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-打印字符串全排列"><span class="nav-text">1. 打印字符串全排列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-二叉搜索树转为双向链"><span class="nav-text">2. 二叉搜索树转为双向链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-递归求排列"><span class="nav-text">3. 递归求排列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-复制复杂链表"><span class="nav-text">3. 复制复杂链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-最小的k个数"><span class="nav-text">4. 最小的k个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-集合和最大堆基于红黑树"><span class="nav-text">5. 集合和最大堆基于红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-最大子数组和"><span class="nav-text">6. 最大子数组和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-从1到n数里包含1的个数"><span class="nav-text">7. 从1到n数里包含1的个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-逆序对"><span class="nav-text">8. 逆序对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-数组排成最小的数"><span class="nav-text">9. 数组排成最小的数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-二叉树最低公共祖先"><span class="nav-text">10. 二叉树最低公共祖先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-二叉树路径和等于某个数"><span class="nav-text">11. 二叉树路径和等于某个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-不能继承的类"><span class="nav-text">12. 不能继承的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-C-按类中声明的元素顺序初始化成员"><span class="nav-text">13. C++按类中声明的元素顺序初始化成员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-求方程正整数解个数"><span class="nav-text">14.  求方程正整数解个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-多路平衡归并排序"><span class="nav-text">15. 多路平衡归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-n阶乘末尾0的个数"><span class="nav-text">16. n阶乘末尾0的个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-mongodb为什么没有自增id"><span class="nav-text">17. mongodb为什么没有自增id</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-数n的约数个数"><span class="nav-text">18. 数n的约数个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-一个数所有约数之和"><span class="nav-text">19. 一个数所有约数之和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-Trie-树"><span class="nav-text">20. Trie 树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-需要同时移动多少步A和B才同时指向一个节点"><span class="nav-text">21. 需要同时移动多少步A和B才同时指向一个节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-模拟加减乘"><span class="nav-text">22. 模拟加减乘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加法运算"><span class="nav-text">加法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求相反数"><span class="nav-text">求相反数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减法运算"><span class="nav-text">减法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#乘法运算"><span class="nav-text">乘法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#除法运算"><span class="nav-text">除法运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转字符：字符串前面的部分排在后面"><span class="nav-text">旋转字符：字符串前面的部分排在后面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串提取出现的正负整数总和"><span class="nav-text">字符串提取出现的正负整数总和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串转换成int范围内数字"><span class="nav-text">字符串转换成int范围内数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串replace-a-with-b"><span class="nav-text">字符串replace a with b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算连续出现字符的个数"><span class="nav-text">计算连续出现字符的个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否每个字符只出现一次"><span class="nav-text">判断是否每个字符只出现一次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数高精度幂"><span class="nav-text">浮点数高精度幂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换空为-20"><span class="nav-text">替换空为%20</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reverse字符串"><span class="nav-text">reverse字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#reverse整个串"><span class="nav-text">reverse整个串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reverse前后部分顺序"><span class="nav-text">reverse前后部分顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变成回文串需要的最少字符"><span class="nav-text">变成回文串需要的最少字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断最长左右括号"><span class="nav-text">判断最长左右括号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算字符串-4-3-4-4-3-的结果"><span class="nav-text">计算字符串 4((3(-4)+-4*3))的结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数N的二进制全排中0左边必有1的个数"><span class="nav-text">整数N的二进制全排中0左边必有1的个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按顺序拼接字符串使总结果字典序最小"><span class="nav-text">按顺序拼接字符串使总结果字典序最小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新类型字符a、Aa、AA-中第k个字符是哪种类型的"><span class="nav-text">新类型字符a、Aa、AA 中第k个字符是哪种类型的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回文段最少切割数"><span class="nav-text">回文段最少切割数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推荐阅读："><span class="nav-text">推荐阅读：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Satur</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
