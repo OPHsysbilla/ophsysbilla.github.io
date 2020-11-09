@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   
 <meta name="google-site-verification" content="bK1M-ocDa0E2dznovP-kDBBKlsyySWWuxAs868D6Xfs">
@@ -107,7 +107,7 @@
 
 
 
-  <meta name="keywords" content="Android">
+  <meta name="keywords" content="面试,">
 
 
 
@@ -118,18 +118,20 @@
 
 
 
-<meta name="description" content="Satur的博客">
-<meta name="keywords" content="Android blog">
+<meta name="description" content="OKHTTP(Socket 连接池、Http缓存、责任链)、Retrofit(动态代理) Okhttp3 总结研究 （面试） 说说组件化和插件化，热更新技术原理 知识图谱 Android初级、中级、高级、资深工程师(架构师、专家)技能图谱  面试官: 说一下你做过哪些性能优化?">
+<meta name="keywords" content="面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android面试答案整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-09-Android面试答案整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="Satur的博客">
+<meta property="og:description" content="OKHTTP(Socket 连接池、Http缓存、责任链)、Retrofit(动态代理) Okhttp3 总结研究 （面试） 说说组件化和插件化，热更新技术原理 知识图谱 Android初级、中级、高级、资深工程师(架构师、专家)技能图谱  面试官: 说一下你做过哪些性能优化?">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-09T10:48:47.178Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/3/27/17117aa6eb5b454e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2020-11-09T12:37:06.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试答案整理">
-<meta name="twitter:description" content="Satur的博客">
+<meta name="twitter:description" content="OKHTTP(Socket 连接池、Http缓存、责任链)、Retrofit(动态代理) Okhttp3 总结研究 （面试） 说说组件化和插件化，热更新技术原理 知识图谱 Android初级、中级、高级、资深工程师(架构师、专家)技能图谱  面试官: 说一下你做过哪些性能优化?">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/3/27/17117aa6eb5b454e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 
 
 
@@ -137,7 +139,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
@@ -364,6 +366,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -391,7 +415,49 @@
       
 
       
-        
+        <p>OKHTTP(Socket 连接池、Http缓存、责任链)、Retrofit(动态代理)</p>
+<p><a href="https://blog.csdn.net/u012881042/article/details/79759203?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param" target="_blank" rel="noopener">Okhttp3 总结研究 （面试）</a></p>
+<p>说说组件化和插件化，热更新技术原理</p>
+<h2 id="知识图谱"><a href="#知识图谱" class="headerlink" title="知识图谱"></a>知识图谱</h2><ol>
+<li><p><a href="https://www.jianshu.com/p/659381fcd4e5" target="_blank" rel="noopener">Android初级、中级、高级、资深工程师(架构师、专家)技能图谱</a></p>
+</li>
+<li><p><a href="https://juejin.im/post/6844904105438134286" target="_blank" rel="noopener">面试官: 说一下你做过哪些性能优化?</a></p>
+</li>
+</ol>
+<a id="more"></a>
+<h2 id="Binder怎么学"><a href="#Binder怎么学" class="headerlink" title="Binder怎么学"></a>Binder怎么学</h2><ol>
+<li><a href="https://mubu.com/doc/explore/21079" target="_blank" rel="noopener">为什么Binder的通信只进行了一次拷贝</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1698142" target="_blank" rel="noopener">聊聊怎样学习Binder</a>内有c++代码简单传输的过程</li>
+</ol>
+<h3 id="理解AIDL中的in，out，inout吗"><a href="#理解AIDL中的in，out，inout吗" class="headerlink" title="理解AIDL中的in，out，inout吗"></a>理解AIDL中的in，out，inout吗</h3><ol>
+<li><p>一文看得懂的源码：<a href="https://cloud.tencent.com/developer/article/1698142" target="_blank" rel="noopener">聊聊怎样学习Binder</a></p>
+</li>
+<li><p>一文超翔实的源码：<a href="https://blog.csdn.net/universus/article/details/6211589" target="_blank" rel="noopener">Android Bander设计与实现 - 设计篇</a></p>
+</li>
+</ol>
+<p>### </p>
+<p>Android ANR的产生原因，如何定位ANR</p>
+<h2 id="点击桌面图标进入我们软件应用时发生了什么？"><a href="#点击桌面图标进入我们软件应用时发生了什么？" class="headerlink" title="点击桌面图标进入我们软件应用时发生了什么？"></a>点击桌面图标进入我们软件应用时发生了什么？</h2><p>通过翻阅 Application 启动的源码，当我们点击桌面图标进入我们软件应用的时候，会由 AMS 通过 Socket 给 Zygote 发送一个 fork 子进程的消息，当 Zygote fork 子进程完成之后会通过反射启动 ActivityThread##main 函数，最后又由 AMS 通过 aidl 告诉 ActivityThread##H 来反射启动创建Application 实例，并且依次执行 <code>attachBaseContext</code> 、<code>onCreate</code> 生命周期，由此可见我们不能在这 2 个生命周期里做主线程耗时操作。</p>
+<h2 id="OOM是什么，怎么导致的？"><a href="#OOM是什么，怎么导致的？" class="headerlink" title="OOM是什么，怎么导致的？"></a>OOM是什么，怎么导致的？</h2><ul>
+<li>java.lang.OutOfMemoryError: Java heap space ——&gt;java堆内存溢出，此种情况最常见，一般由于内存泄露或者堆的大小设置不当引起。对于内存泄露，需要通过内存监控软件查找程序中的泄露代码，而堆大小可以通过虚拟机参数-Xms,-Xmx等修改。</li>
+<li>java.lang.OutOfMemoryError: PermGen space ——&gt;java永久代溢出，即方法区溢出了，一般出现于大量Class或者jsp页面，或者采用cglib等反射机制的情况，因为上述情况会产生大量的Class信息存储于方法区。此种情况可以通过更改方法区的大小来解决，使用类似-XX:PermSize=64m -XX:MaxPermSize=256m的形式修改。另外，过多的常量尤其是字符串也会导致方法区溢出。</li>
+<li>java.lang.StackOverflowError ——&gt; 不会抛OOM error，但也是比较常见的Java内存溢出。JAVA虚拟机栈溢出，一般是由于程序中存在死循环或者深度递归调用造成的，栈大小设置太小也会出现此种溢出。可以通过虚拟机参数-Xss来设置栈的大小。</li>
+</ul>
+<h2 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h2><ol>
+<li><a href="https://blog.csdn.net/carson_ho/article/details/54136311" target="_blank" rel="noopener">Android事件分发机制 详解攻略，您值得拥有</a></li>
+</ol>
+<h2 id="如何减少卡顿？刷新原理"><a href="#如何减少卡顿？刷新原理" class="headerlink" title="如何减少卡顿？刷新原理"></a>如何减少卡顿？刷新原理</h2><p><img src="https://user-gold-cdn.xitu.io/2020/3/27/17117aa6eb5b454e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<h2 id="Glide是如何监听周期的？"><a href="#Glide是如何监听周期的？" class="headerlink" title="Glide是如何监听周期的？"></a>Glide是如何监听周期的？</h2><h4 id="监听生命周期"><a href="#监听生命周期" class="headerlink" title="监听生命周期"></a>监听生命周期</h4><p>用了一个没有UI的Fragment（名为RequestManagerFragment）入到传入的非Application的Context的FragmentManager中</p>
+<p>监听传入的Context的AcitivityLifeCycle（由RequestManager实现的事实上）</p>
+<h4 id="监听网络状态"><a href="#监听网络状态" class="headerlink" title="监听网络状态"></a>监听网络状态</h4><p>依然是用上面的fragment的AcitivityLifeCycle回调达到的</p>
+<p>在onStart和onStop的时候分别注册、反注册网络状态的监听，来达到在变得有网的情况下重启请求的目的</p>
+<h4 id="监听内存状态"><a href="#监听内存状态" class="headerlink" title="监听内存状态"></a>监听内存状态</h4><p>在Glide构造的时候会调用registerComponentCallbacks进行全局注册</p>
+<blockquote>
+<p>registerComponentCallbacks是ApplicationContext提供具有内存过低等时机的回调（onTrimMemory、onLowMemory、onConfigurationChanged）</p>
+</blockquote>
+<p>在<code>onTrimMemory</code>时，会依次执行：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">memoryCache.trimMemory(level)<span class="comment">;</span></span><br><span class="line">bitmapPool.trimMemory(level)<span class="comment">;</span></span><br><span class="line">arrayPool.trimMemory(level)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h3 id="两个Activity切换生命周期是怎样的？"><a href="#两个Activity切换生命周期是怎样的？" class="headerlink" title="两个Activity切换生命周期是怎样的？"></a><a href="https://blog.csdn.net/lei396601057/article/details/109272301" target="_blank" rel="noopener">两个Activity切换生命周期是怎样的？</a></h3>
       
     </div>
     
@@ -405,6 +471,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
       
 
       
@@ -425,8 +497,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020-11-09-计算机网络常见面试整理.html" rel="prev" title="网络常见面试整理">
-                网络常见面试整理 <i class="fa fa-chevron-right"></i>
+              <a href="/2020-11-09-计算机网络常见面试整理.html" rel="prev" title="计算机网络常见面试整理">
+                计算机网络常见面试整理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -481,8 +553,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -497,7 +578,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -508,7 +589,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -519,7 +600,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -542,6 +623,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#知识图谱"><span class="nav-text">知识图谱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binder怎么学"><span class="nav-text">Binder怎么学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#理解AIDL中的in，out，inout吗"><span class="nav-text">理解AIDL中的in，out，inout吗</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点击桌面图标进入我们软件应用时发生了什么？"><span class="nav-text">点击桌面图标进入我们软件应用时发生了什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OOM是什么，怎么导致的？"><span class="nav-text">OOM是什么，怎么导致的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件分发"><span class="nav-text">事件分发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何减少卡顿？刷新原理"><span class="nav-text">如何减少卡顿？刷新原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glide是如何监听周期的？"><span class="nav-text">Glide是如何监听周期的？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#监听生命周期"><span class="nav-text">监听生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听网络状态"><span class="nav-text">监听网络状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听内存状态"><span class="nav-text">监听内存状态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个Activity切换生命周期是怎样的？"><span class="nav-text">两个Activity切换生命周期是怎样的？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -580,7 +677,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -679,6 +776,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

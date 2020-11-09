@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   
 <meta name="google-site-verification" content="bK1M-ocDa0E2dznovP-kDBBKlsyySWWuxAs868D6Xfs">
@@ -107,7 +107,7 @@
 
 
 
-  <meta name="keywords" content="Algorithm,算法,">
+  <meta name="keywords" content="Algorithm,算法,面试,">
 
 
 
@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="寻找两个有序数组的中位数要求算法的时间复杂度为 O(log(m + n))即找出第(m+n)/2个元素设k=(m+n)/2，则需要在两个数组中分别寻找第k/2个元素，原因如下：题目中要求的时间复杂度为 O(log(m + n))，很容易想到的方法就是二分，现在有两个数组，要对那个数组进行二分合适？由于找的是中位数，那么这个数字的两边的元素个数是相等的，所以只需要确定一个数组中的两边元素，两一个数组">
-<meta name="keywords" content="Algorithm,算法">
+<meta name="description" content="约瑟夫环问题 见此 单调栈 42. 接雨水  84. 柱状图中最大的矩形  保卫王国 - 牛客   无损压缩算法：deflate、Huffman Coding寻找两个有序数组的中位数要求算法的时间复杂度为 O(log(m + n))即找出第(m+n)/2个元素设k=(m+n)/2，则需要在两个数组中分别寻找第k/2个元素，原因如下：">
+<meta name="keywords" content="Algorithm,算法,面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题目思考与记录">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-02-29-leetcode题目思考与记录.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="寻找两个有序数组的中位数要求算法的时间复杂度为 O(log(m + n))即找出第(m+n)/2个元素设k=(m+n)/2，则需要在两个数组中分别寻找第k/2个元素，原因如下：题目中要求的时间复杂度为 O(log(m + n))，很容易想到的方法就是二分，现在有两个数组，要对那个数组进行二分合适？由于找的是中位数，那么这个数字的两边的元素个数是相等的，所以只需要确定一个数组中的两边元素，两一个数组">
+<meta property="og:description" content="约瑟夫环问题 见此 单调栈 42. 接雨水  84. 柱状图中最大的矩形  保卫王国 - 牛客   无损压缩算法：deflate、Huffman Coding寻找两个有序数组的中位数要求算法的时间复杂度为 O(log(m + n))即找出第(m+n)/2个元素设k=(m+n)/2，则需要在两个数组中分别寻找第k/2个元素，原因如下：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-30T07:37:29.000Z">
+<meta property="og:updated_time" content="2020-11-09T12:36:40.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题目思考与记录">
-<meta name="twitter:description" content="寻找两个有序数组的中位数要求算法的时间复杂度为 O(log(m + n))即找出第(m+n)/2个元素设k=(m+n)/2，则需要在两个数组中分别寻找第k/2个元素，原因如下：题目中要求的时间复杂度为 O(log(m + n))，很容易想到的方法就是二分，现在有两个数组，要对那个数组进行二分合适？由于找的是中位数，那么这个数字的两边的元素个数是相等的，所以只需要确定一个数组中的两边元素，两一个数组">
+<meta name="twitter:description" content="约瑟夫环问题 见此 单调栈 42. 接雨水  84. 柱状图中最大的矩形  保卫王国 - 牛客   无损压缩算法：deflate、Huffman Coding寻找两个有序数组的中位数要求算法的时间复杂度为 O(log(m + n))即找出第(m+n)/2个元素设k=(m+n)/2，则需要在两个数组中分别寻找第k/2个元素，原因如下：">
 
 
 
@@ -137,7 +137,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
@@ -376,8 +376,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
                   </a>
                 </span>
 
@@ -413,7 +413,18 @@
       
 
       
-        <h5 id="寻找两个有序数组的中位数"><a href="#寻找两个有序数组的中位数" class="headerlink" title="寻找两个有序数组的中位数"></a>寻找两个有序数组的中位数</h5><p>要求算法的时间复杂度为 O(log(m + n))<br>即找出第(m+n)/2个元素<br>设k=(m+n)/2，则需要在两个数组中分别寻找第k/2个元素，原因如下：<br>题目中要求的时间复杂度为 O(log(m + n))，很容易想到的方法就是二分，现在有两个数组，要对那个数组进行二分合适？由于找的是中位数，那么这个数字的两边的元素个数是相等的，所以只需要确定一个数组中的两边元素，两一个数组的对应的补上去就可以了，为了提高效率，要选择最短的数组做二分查找 — <a href="https://blog.csdn.net/Shuffle_Ts/article/details/93142735" target="_blank" rel="noopener">原文</a></p>
+        <h2 id="约瑟夫环问题"><a href="#约瑟夫环问题" class="headerlink" title="约瑟夫环问题"></a>约瑟夫环问题</h2><p> <a href="https://blog.csdn.net/lei396601057/article/details/109312337" target="_blank" rel="noopener">见此</a></p>
+<h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><ol>
+<li><p><a href="https://leetcode-cn.com/problems/trapping-rain-water/" target="_blank" rel="noopener">42. 接雨水</a></p>
+</li>
+<li><p><a href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/" target="_blank" rel="noopener">84. 柱状图中最大的矩形</a></p>
+</li>
+<li><p>保卫王国 - 牛客</p>
+</li>
+</ol>
+<h2 id="无损压缩算法：deflate、Huffman-Coding"><a href="#无损压缩算法：deflate、Huffman-Coding" class="headerlink" title="无损压缩算法：deflate、Huffman Coding"></a>无损压缩算法：deflate、Huffman Coding</h2><h5 id="寻找两个有序数组的中位数"><a href="#寻找两个有序数组的中位数" class="headerlink" title="寻找两个有序数组的中位数"></a>寻找两个有序数组的中位数</h5><p>要求算法的时间复杂度为 O(log(m + n))<br>即找出第(m+n)/2个元素<br>设k=(m+n)/2，则需要在两个数组中分别寻找第k/2个元素，原因如下：</p>
+<a id="more"></a>
+<p>题目中要求的时间复杂度为 O(log(m + n))，很容易想到的方法就是二分，现在有两个数组，要对那个数组进行二分合适？由于找的是中位数，那么这个数字的两边的元素个数是相等的，所以只需要确定一个数组中的两边元素，两一个数组的对应的补上去就可以了，为了提高效率，要选择最短的数组做二分查找 — <a href="https://blog.csdn.net/Shuffle_Ts/article/details/93142735" target="_blank" rel="noopener">原文</a></p>
 <h5 id="为什么Java中int型数据取值范围是-2-31-2-31-1"><a href="#为什么Java中int型数据取值范围是-2-31-2-31-1" class="headerlink" title="为什么Java中int型数据取值范围是[-2^{31}, 2^{31}-1]"></a>为什么Java中int型数据取值范围是[-2^{31}, 2^{31}-1]</h5><p><a href="https://blog.csdn.net/AlpinistWang/article/details/87994617?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">为什么Java中int型数据取值范围是[-2^{31}, 2^{31}-1]</a></p>
 <h5 id="判断一个有符号int型整数是不是溢出："><a href="#判断一个有符号int型整数是不是溢出：" class="headerlink" title="判断一个有符号int型整数是不是溢出："></a>判断一个有符号int型整数是不是溢出：</h5><p>x &gt; INT_MAX / 10 || x == INT_MAX &amp;&amp; x <em> 10 + 7 就会溢出<br>x &lt; INT_MIN / 10 || x == INT_MIN. &amp;&amp;  x </em> 10 + 8 就会溢出</p>
 <h5 id="反转数字"><a href="#反转数字" class="headerlink" title="反转数字"></a>反转数字</h5><p>push一位数字x：int res = res * 10 + x<br>Pop一位数字：res /= 10<br>需要警惕是否溢出</p>
@@ -443,6 +454,8 @@
           
             <a href="/tags/算法/" rel="tag"># 算法</a>
           
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
         </div>
       
 
@@ -454,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019-09-17-ANR分析记录.html" rel="next" title="ANR分析记录">
-                <i class="fa fa-chevron-left"></i> ANR分析记录
+              <a href="/2019-07-04-数据库面试答案.html" rel="next" title="数据库面试答案">
+                <i class="fa fa-chevron-left"></i> 数据库面试答案
               </a>
             
           </div>
@@ -545,7 +558,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -556,7 +569,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -567,7 +580,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -600,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#寻找两个有序数组的中位数"><span class="nav-text">寻找两个有序数组的中位数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么Java中int型数据取值范围是-2-31-2-31-1"><span class="nav-text">为什么Java中int型数据取值范围是[-2^{31}, 2^{31}-1]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#判断一个有符号int型整数是不是溢出："><span class="nav-text">判断一个有符号int型整数是不是溢出：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#反转数字"><span class="nav-text">反转数字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Lru最近访问"><span class="nav-text">Lru最近访问</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划"><span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2、3、5硬币面值（无限个数），构成总数为k的方法数"><span class="nav-text">2、3、5硬币面值（无限个数），构成总数为k的方法数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#trim树-搜索自动补全"><span class="nav-text">trim树 - 搜索自动补全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TSP问题"><span class="nav-text">TSP问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三重dp"><span class="nav-text">三重dp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拓扑-？"><span class="nav-text">拓扑 + ？</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#约瑟夫环问题"><span class="nav-text">约瑟夫环问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单调栈"><span class="nav-text">单调栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无损压缩算法：deflate、Huffman-Coding"><span class="nav-text">无损压缩算法：deflate、Huffman Coding</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#寻找两个有序数组的中位数"><span class="nav-text">寻找两个有序数组的中位数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么Java中int型数据取值范围是-2-31-2-31-1"><span class="nav-text">为什么Java中int型数据取值范围是[-2^{31}, 2^{31}-1]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#判断一个有符号int型整数是不是溢出："><span class="nav-text">判断一个有符号int型整数是不是溢出：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#反转数字"><span class="nav-text">反转数字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Lru最近访问"><span class="nav-text">Lru最近访问</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划"><span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2、3、5硬币面值（无限个数），构成总数为k的方法数"><span class="nav-text">2、3、5硬币面值（无限个数），构成总数为k的方法数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#trim树-搜索自动补全"><span class="nav-text">trim树 - 搜索自动补全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TSP问题"><span class="nav-text">TSP问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三重dp"><span class="nav-text">三重dp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拓扑-？"><span class="nav-text">拓扑 + ？</span></a></li></ol></li></div>
             
 
           </div>
@@ -644,7 +657,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -743,6 +756,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

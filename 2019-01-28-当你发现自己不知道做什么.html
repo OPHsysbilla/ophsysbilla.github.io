@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   
 <meta name="google-site-verification" content="bK1M-ocDa0E2dznovP-kDBBKlsyySWWuxAs868D6Xfs">
@@ -126,7 +126,7 @@
 <meta property="og:site_name" content="Android tips">
 <meta property="og:description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路  what we need to know 关于Handler的拦截里有谈到，调用callback的时候是根据顺序选择一个来调用的。  优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-18T13:29:59.000Z">
+<meta property="og:updated_time" content="2020-11-09T12:36:16.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="当你发现自己不知道做什么...">
 <meta name="twitter:description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路  what we need to know 关于Handler的拦截里有谈到，调用callback的时候是根据顺序选择一个来调用的。  优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截">
@@ -137,7 +137,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
@@ -403,6 +403,9 @@
 </li>
 <li><p>epoll_wait是什么唤醒机制？</p>
 </li>
+</ul>
+<a id="more"></a>
+<ul>
 <li>系统是如何监听ANR的? 应用发生卡顿，一定是在dispatchMessage中执行了耗时操作。<a href="https://codezjx.com/2017/08/06/anr-trace-analytics/" target="_blank" rel="noopener">通过给主线程的Looper设置一个Printer，计算方法运行前后两次打印的时间差是否超过阈值来判断是否有ANR</a>。tips： /data/anr/traces.txt中会保存一个最近ANR的信息。</li>
 <li>ThreadLocal所操作的变量只存在于各自的线程里，每一个线程都有一个ThreadLocal且拿到的变量是不同的。每个Thread的对象都有一个ThreadLocalMap，当创建一个ThreadLocal的时候，就会将该ThreadLocal对象添加到该Map中，其中键就是ThreadLocal，值可以是任意类型<blockquote>
 <p>《深入理解java虚拟机》周志明，P396原文：要保证线程安全，并不一定就是要进行同步，两者没有因果关系。同步只是保证共享数据争用时的正确性的手段。<strong>如果一个方法本来就不涉及共享数据</strong>，那它自然就无需任何同步措施去保证正确性</p>
@@ -435,8 +438,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019-01-28-唔！SurfaceView了解一下？.html" rel="next" title="唔！SurfaceView了解一下？">
-                <i class="fa fa-chevron-left"></i> 唔！SurfaceView了解一下？
+              <a href="/2019-01-25-Android踩过的坑.html" rel="next" title="Android踩过的坑">
+                <i class="fa fa-chevron-left"></i> Android踩过的坑
               </a>
             
           </div>
@@ -445,8 +448,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019-03-18-Fragment的坑.html" rel="prev" title="Fragment的坑">
-                Fragment的坑 <i class="fa fa-chevron-right"></i>
+              <a href="/2019-07-04-数据库面试答案.html" rel="prev" title="数据库面试答案">
+                数据库面试答案 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -526,7 +529,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -537,7 +540,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -548,7 +551,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -625,7 +628,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -724,6 +727,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

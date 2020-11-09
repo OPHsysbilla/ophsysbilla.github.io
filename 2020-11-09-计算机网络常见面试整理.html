@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   
 <meta name="google-site-verification" content="bK1M-ocDa0E2dznovP-kDBBKlsyySWWuxAs868D6Xfs">
@@ -107,7 +107,7 @@
 
 
 
-  <meta name="keywords" content="Android">
+  <meta name="keywords" content="面试,">
 
 
 
@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="Satur的博客">
-<meta name="keywords" content="Android blog">
+<meta name="description" content="Http加密过程是怎样的让第三方CA来确保server公钥正确">
+<meta name="keywords" content="面试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络常见面试整理">
+<meta property="og:title" content="计算机网络常见面试整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-09-计算机网络常见面试整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="Satur的博客">
+<meta property="og:description" content="Http加密过程是怎样的让第三方CA来确保server公钥正确">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-09T11:06:06.614Z">
+<meta property="og:updated_time" content="2020-11-09T12:31:11.815Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络常见面试整理">
-<meta name="twitter:description" content="Satur的博客">
+<meta name="twitter:title" content="计算机网络常见面试整理">
+<meta name="twitter:description" content="Http加密过程是怎样的让第三方CA来确保server公钥正确">
 
 
 
@@ -137,7 +137,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
@@ -165,7 +165,7 @@
 
 
 
-  <title>网络常见面试整理 | Android tips</title>
+  <title>计算机网络常见面试整理 | Android tips</title>
   
 
 
@@ -341,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">网络常见面试整理</h1>
+          <h1 class="post-title" itemprop="name headline">计算机网络常见面试整理</h1>
         
 
         <div class="post-meta">
@@ -363,6 +363,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -391,7 +413,21 @@
       
 
       
-        
+        <h3 id="Http加密过程是怎样的"><a href="#Http加密过程是怎样的" class="headerlink" title="Http加密过程是怎样的"></a>Http加密过程是怎样的</h3><h4 id="让第三方CA来确保server公钥正确"><a href="#让第三方CA来确保server公钥正确" class="headerlink" title="让第三方CA来确保server公钥正确"></a>让第三方CA来确保server公钥正确</h4><a id="more"></a>
+<p> 1）server向CA提供基本信息、公钥等，CA用CA私钥对server公钥和信息进行加密形成数字证书（防止server被伪造）。<br>2）client向server发出https请求和随机数c，server返回数字证书和随机数s。<br>3）client收到数字证书，用CA公钥对数字证书进行解密，得到server的公钥。</p>
+<blockquote>
+<p>得到server公钥后，client可以用server公钥解密server签名得到摘要。<br>client也把原文hash一遍得到的摘要比对，确认内容没有经过更改</p>
+</blockquote>
+<h4 id="生成会话密钥"><a href="#生成会话密钥" class="headerlink" title="生成会话密钥"></a>生成会话密钥</h4><p>client用server公钥加密client生成的随机数premaster secret，发送给server。<br>server收到加密的随机数premaster secret，用server私钥解密随机数，然后和随机数c、随机数s一起生成会话密钥。此时client也拥有三个随机数生成相同的会话密钥(Session Key)。双方用会话密钥进行加密通信（防止内容被窃听进行加密） </p>
+<blockquote>
+<p>用会话密钥(Session Key)进行加密通信是对称加密的。如DES，AES等对称加密，只有一把钥匙<br>而获得会话密钥的过程是不对称加密的。最常见的非对称加密是RSA，有公钥和私钥，公钥加密只有私钥解密，私钥加密只有对应公钥解密</p>
+</blockquote>
+<h4 id="如何防止数据被篡改"><a href="#如何防止数据被篡改" class="headerlink" title="如何防止数据被篡改"></a>如何防止数据被篡改</h4><ol>
+<li>数字签名是server对通信内容进行hash，得到信息摘要。</li>
+<li>然后用server私钥对摘要进行加密得到数字签名。server把明文连同数字签名一起发送给client</li>
+<li>client用server公钥对数字签名解密得到信息摘要，然后用相同的hash对数据进行计算得到信息摘要，比对两个信息摘要是否一致。</li>
+</ol>
+<h2 id="长连接和短连接是什么？为什么是必要的？"><a href="#长连接和短连接是什么？为什么是必要的？" class="headerlink" title="长连接和短连接是什么？为什么是必要的？"></a>长连接和短连接是什么？为什么是必要的？</h2>
       
     </div>
     
@@ -405,6 +441,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
       
 
       
@@ -425,8 +467,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020-11-09-每一道算法都再理解一遍吧！.html" rel="prev" title="每一道算法都再理解一遍吧！">
-                每一道算法都再理解一遍吧！ <i class="fa fa-chevron-right"></i>
+              <a href="/2020-11-09-Java面试答案整理.html" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -481,8 +523,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -497,7 +548,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -508,7 +559,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -519,7 +570,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -542,6 +593,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http加密过程是怎样的"><span class="nav-text">Http加密过程是怎样的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#让第三方CA来确保server公钥正确"><span class="nav-text">让第三方CA来确保server公钥正确</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成会话密钥"><span class="nav-text">生成会话密钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何防止数据被篡改"><span class="nav-text">如何防止数据被篡改</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#长连接和短连接是什么？为什么是必要的？"><span class="nav-text">长连接和短连接是什么？为什么是必要的？</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -580,7 +647,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -679,6 +746,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

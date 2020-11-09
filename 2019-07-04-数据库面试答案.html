@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   
 <meta name="google-site-verification" content="bK1M-ocDa0E2dznovP-kDBBKlsyySWWuxAs868D6Xfs">
@@ -107,7 +107,7 @@
 
 
 
-  <meta name="keywords" content="Android">
+  <meta name="keywords" content="面试,">
 
 
 
@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="in和or区别在需要使用的这个栏位所在的列为索引或者主键时，使用in或者or的区别不是很大。在没有索引的情况下，随著in或者or的数量越来越多，in的效率不会有很大的下降，但是or会随著记录越来越多的情况下效能下降很快。 not exists 和 not in 比較時，not exists 的效率比較高 in是先执行子查询中的查询，然后再执行主查询，故适合于外表大而内表小的情况。in时不对NUL">
-<meta name="keywords" content="Android blog">
+<meta name="description" content="数据库效率差别比较 in和or区别在需要使用的这个栏位所在的列为索引或者主键时，使用in或者or的区别不是很大。在没有索引的情况下，随著in或者or的数量越来越多，in的效率不会有很大的下降，但是or会随著记录越来越多的情况下效能下降很快。">
+<meta name="keywords" content="面试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库效率差别比较">
+<meta property="og:title" content="数据库面试答案">
 <meta property="og:url" content="http://ophsysbilla.github.io/2019-07-04-数据库面试答案.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="in和or区别在需要使用的这个栏位所在的列为索引或者主键时，使用in或者or的区别不是很大。在没有索引的情况下，随著in或者or的数量越来越多，in的效率不会有很大的下降，但是or会随著记录越来越多的情况下效能下降很快。 not exists 和 not in 比較時，not exists 的效率比較高 in是先执行子查询中的查询，然后再执行主查询，故适合于外表大而内表小的情况。in时不对NUL">
+<meta property="og:description" content="数据库效率差别比较 in和or区别在需要使用的这个栏位所在的列为索引或者主键时，使用in或者or的区别不是很大。在没有索引的情况下，随著in或者or的数量越来越多，in的效率不会有很大的下降，但是or会随著记录越来越多的情况下效能下降很快。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-09T11:16:57.464Z">
+<meta property="og:updated_time" content="2020-11-09T12:31:16.660Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据库效率差别比较">
-<meta name="twitter:description" content="in和or区别在需要使用的这个栏位所在的列为索引或者主键时，使用in或者or的区别不是很大。在没有索引的情况下，随著in或者or的数量越来越多，in的效率不会有很大的下降，但是or会随著记录越来越多的情况下效能下降很快。 not exists 和 not in 比較時，not exists 的效率比較高 in是先执行子查询中的查询，然后再执行主查询，故适合于外表大而内表小的情况。in时不对NUL">
+<meta name="twitter:title" content="数据库面试答案">
+<meta name="twitter:description" content="数据库效率差别比较 in和or区别在需要使用的这个栏位所在的列为索引或者主键时，使用in或者or的区别不是很大。在没有索引的情况下，随著in或者or的数量越来越多，in的效率不会有很大的下降，但是or会随著记录越来越多的情况下效能下降很快。">
 
 
 
@@ -137,7 +137,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
@@ -165,7 +165,7 @@
 
 
 
-  <title>数据库效率差别比较 | Android tips</title>
+  <title>数据库面试答案 | Android tips</title>
   
 
 
@@ -341,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据库效率差别比较</h1>
+          <h1 class="post-title" itemprop="name headline">数据库面试答案</h1>
         
 
         <div class="post-meta">
@@ -363,6 +363,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -391,8 +413,11 @@
       
 
       
-        <ol>
+        <h2 id="数据库效率差别比较"><a href="#数据库效率差别比较" class="headerlink" title="数据库效率差别比较"></a>数据库效率差别比较</h2><ol>
 <li><a href="https://www.itread01.com/content/1548957278.html" target="_blank" rel="noopener">in和or区别</a><br>在需要使用的这个栏位所在的列为索引或者主键时，使用in或者or的区别不是很大。在没有索引的情况下，随著in或者or的数量越来越多，in的效率不会有很大的下降，但是or会随著记录越来越多的情况下效能下降很快。</li>
+</ol>
+<a id="more"></a>
+<ol start="2">
 <li>not exists 和 not in 比較時，not exists 的效率比較高<ul>
 <li><code>in</code>是先执行子查询中的查询，然后再执行主查询，故适合于外表大而内表小的情况。<code>in</code>时不对NULL进行处理。</li>
 <li><code>exists</code>查询它是先执行主查询，即外层表的查询，然后再执行子查询，故适合于外表小而内表大的情况。</li>
@@ -419,6 +444,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
 
       
       
@@ -428,8 +459,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019-06-20-Android-Studio-的新东西.html" rel="next" title="Android Studio 的新东西">
-                <i class="fa fa-chevron-left"></i> Android Studio 的新东西
+              <a href="/2019-01-28-当你发现自己不知道做什么.html" rel="next" title="当你发现自己不知道做什么...">
+                <i class="fa fa-chevron-left"></i> 当你发现自己不知道做什么...
               </a>
             
           </div>
@@ -438,8 +469,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019-08-07-到底有没有在用心学ndk啊.html" rel="prev" title="到底有没有在用心学ndk啊">
-                到底有没有在用心学ndk啊 <i class="fa fa-chevron-right"></i>
+              <a href="/2020-02-29-leetcode题目思考与记录.html" rel="prev" title="leetcode题目思考与记录">
+                leetcode题目思考与记录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -494,8 +525,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -510,7 +550,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -521,7 +561,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -532,7 +572,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -555,6 +595,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库效率差别比较"><span class="nav-text">数据库效率差别比较</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -593,7 +649,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -692,6 +748,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

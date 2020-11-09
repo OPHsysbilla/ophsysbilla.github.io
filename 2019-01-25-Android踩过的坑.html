@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   
 <meta name="google-site-verification" content="bK1M-ocDa0E2dznovP-kDBBKlsyySWWuxAs868D6Xfs">
@@ -107,7 +107,7 @@
 
 
 
-  <meta name="keywords" content="Android">
+  <meta name="keywords" content="Android,">
 
 
 
@@ -118,18 +118,20 @@
 
 
 
-<meta name="description" content="Satur的博客">
-<meta name="keywords" content="Android blog">
+<meta name="description" content="从AutoScroll的View说起Scroller的原理与作用二话不说，先看看判断RecyclerView是否滚动到底部中说到的computeVerticalScrollExtent()函数表示的View内容与View位置的相对滚动 错误使用PorterDuffXferMode后效果并没有得到想要的效果！-&amp;gt; 关了硬件加速还是不行555 为何和谷歌给的样子不同？因为谷歌写的demo里，是两">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ANR分析记录">
-<meta property="og:url" content="http://ophsysbilla.github.io/2019-09-17-ANR分析记录.html">
+<meta property="og:title" content="Android踩过的坑">
+<meta property="og:url" content="http://ophsysbilla.github.io/2019-01-25-Android踩过的坑.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="Satur的博客">
+<meta property="og:description" content="从AutoScroll的View说起Scroller的原理与作用二话不说，先看看判断RecyclerView是否滚动到底部中说到的computeVerticalScrollExtent()函数表示的View内容与View位置的相对滚动 错误使用PorterDuffXferMode后效果并没有得到想要的效果！-&amp;gt; 关了硬件加速还是不行555 为何和谷歌给的样子不同？因为谷歌写的demo里，是两">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-17T03:31:13.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/OPHsysbilla/ophsysbilla.github.io/master/images/bg/hwo_scorll_view_act_hint.png">
+<meta property="og:updated_time" content="2020-11-09T12:34:56.742Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ANR分析记录">
-<meta name="twitter:description" content="Satur的博客">
+<meta name="twitter:title" content="Android踩过的坑">
+<meta name="twitter:description" content="从AutoScroll的View说起Scroller的原理与作用二话不说，先看看判断RecyclerView是否滚动到底部中说到的computeVerticalScrollExtent()函数表示的View内容与View位置的相对滚动 错误使用PorterDuffXferMode后效果并没有得到想要的效果！-&amp;gt; 关了硬件加速还是不行555 为何和谷歌给的样子不同？因为谷歌写的demo里，是两">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/OPHsysbilla/ophsysbilla.github.io/master/images/bg/hwo_scorll_view_act_hint.png">
 
 
 
@@ -137,7 +139,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
@@ -159,13 +161,13 @@
 
 
 
-  <link rel="canonical" href="http://ophsysbilla.github.io/2019-09-17-ANR分析记录.html">
+  <link rel="canonical" href="http://ophsysbilla.github.io/2019-01-25-Android踩过的坑.html">
 
 
 
 
 
-  <title>ANR分析记录 | Android tips</title>
+  <title>Android踩过的坑 | Android tips</title>
   
 
 
@@ -324,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2019-09-17-ANR分析记录.html">
+    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2019-01-25-Android踩过的坑.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Satur">
@@ -341,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ANR分析记录</h1>
+          <h1 class="post-title" itemprop="name headline">Android踩过的坑</h1>
         
 
         <div class="post-meta">
@@ -353,8 +355,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-17T11:31:13+08:00">
-                2019-09-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-25T15:52:06+08:00">
+                2019-01-25
               </time>
             
 
@@ -363,6 +365,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -391,7 +415,70 @@
       
 
       
-        
+        <h2 id="从AutoScroll的View说起Scroller的原理与作用"><a href="#从AutoScroll的View说起Scroller的原理与作用" class="headerlink" title="从AutoScroll的View说起Scroller的原理与作用"></a>从AutoScroll的View说起Scroller的原理与作用</h2><p>二话不说，先看看<a href="https://www.cnblogs.com/jdhdevelop/p/6743501.html" target="_blank" rel="noopener">判断RecyclerView是否滚动到底部</a>中说到的computeVerticalScrollExtent()函数表示的View内容与View位置的相对滚动<br><img src="https://raw.githubusercontent.com/OPHsysbilla/ophsysbilla.github.io/master/images/bg/hwo_scorll_view_act_hint.png" alt="多么美丽的一张图"></p>
+<h2 id="错误使用PorterDuffXferMode后效果并没有得到想要的效果！"><a href="#错误使用PorterDuffXferMode后效果并没有得到想要的效果！" class="headerlink" title="错误使用PorterDuffXferMode后效果并没有得到想要的效果！"></a>错误使用PorterDuffXferMode后效果并没有得到想要的效果！</h2><p>-&gt; 关了硬件加速还是不行555</p>
+<h3 id="为何和谷歌给的样子不同？"><a href="#为何和谷歌给的样子不同？" class="headerlink" title="为何和谷歌给的样子不同？"></a>为何和谷歌给的样子不同？</h3><p>因为谷歌写的demo里，是两个高宽一样的bitmap在相交，如果发现有多余的位置没有被遮住，说明两个相交的位置不一样。</p>
+<a id="more"></a>
+<blockquote>
+<p>源图像在运算时，只是在源图像所在区域与对应区域的目标图像做运算。所以目标图像与源图像不相交的地方是不会参与运算的！这一点非常重要！不相交的地方不会参与运算，所以不相交的地方的图像也不会是脏数据，也不会被更新，所以不相交地方的图像也永远显示的是目标图像。 —— 《<a href="https://www.jianshu.com/p/78c36742d50f" target="_blank" rel="noopener">Android高级进阶——绘图篇（五）setXfermode 设置混合模式</a>》<br><!--more--></p>
+</blockquote>
+<h3 id="谁是源图像谁是目标图像"><a href="#谁是源图像谁是目标图像" class="headerlink" title="谁是源图像谁是目标图像"></a>谁是源图像谁是目标图像</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绘制 目标图像</span></span><br><span class="line">canvas.drawBitmap(dstBitmap, <span class="number">100</span>, <span class="number">100</span>, paint);</span><br><span class="line"><span class="comment">//设置 模式 为 SRC_OUT</span></span><br><span class="line">paint.setXfermode(<span class="keyword">new</span> PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));</span><br><span class="line"><span class="comment">//绘制源图像</span></span><br><span class="line">canvas.drawBitmap(srcBitmap, <span class="number">100</span>, <span class="number">100</span>, paint);</span><br></pre></td></tr></table></figure>
+<h3 id="任何和空白透明像素相交的结果都是空白透明像素哦"><a href="#任何和空白透明像素相交的结果都是空白透明像素哦" class="headerlink" title="任何和空白透明像素相交的结果都是空白透明像素哦"></a>任何和空白透明像素相交的结果都是空白透明像素哦</h3><p>所以SRC_OUT等需要有颜色，而不是透明的。比如SRC_OUT时需要添加颜色。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
+<li>用蒙版做了一个指针指示，里面有提到关于<strong>带透明度</strong>的混合模式与<strong>谷歌给的Api</strong>展示的区别：<a href="https://blog.csdn.net/wolinxuebin/article/details/79513353" target="_blank" rel="noopener">Android 混合模式 —— PorterDuffXferMode</a></li>
+<li>基于谷歌Api的demo修改了让你测试：<a href="https://blog.csdn.net/iispring/article/details/50472485" target="_blank" rel="noopener">Canvas绘图之PorterDuffXfermode使用及工作原理详解</a></li>
+<li>给了一个demo让你自己尝试不同的效果： <a href="https://juejin.im/entry/5a7fdc35f265da4e783297a8" target="_blank" rel="noopener">关于 Xfermode 正确理解姿势</a></li>
+<li>做了一个DST_ATOP的例子：<a href="https://blog.csdn.net/z8z87878/article/details/52841320" target="_blank" rel="noopener">android遮罩Xfermode的学习</a></li>
+<li>解释了SRC_OUT：<a href="https://blog.csdn.net/u013372185/article/details/51768147" target="_blank" rel="noopener">通过消除背景层与重叠部分绘制组合图形</a></li>
+</ul>
+<h2 id="到底有没有在用心学ndk啊"><a href="#到底有没有在用心学ndk啊" class="headerlink" title="到底有没有在用心学ndk啊"></a>到底有没有在用心学ndk啊</h2><ol>
+<li>JNIEnv*env 是一个线程对应一个env，线程间不可以共享同一个env变量。<a href="https://blog.csdn.net/viking_xhg/article/details/78727273" target="_blank" rel="noopener">JNI中Fatal signal 11 (SIGSEGV), code 1的错误</a></li>
+<li>可以使用Android自带的addr2line来分析native的行信息<a href="https://juejin.im/post/5c3c6ec9f265da616a47df88" target="_blank" rel="noopener">Android通过addr2line工具分析native crash log</a></li>
+<li>注意lock后再wait该锁的问题<a href="https://www.javatang.com/archives/2017/10/26/08572060.html" target="_blank" rel="noopener">JVM故障分析系列之五：常见的Thread Dump日志案例分析</a></li>
+</ol>
+<h2 id="使用SurfaceView时需要注意"><a href="#使用SurfaceView时需要注意" class="headerlink" title="使用SurfaceView时需要注意"></a>使用SurfaceView时需要注意</h2><blockquote>
+<ul>
+<li>All SurfaceView and SurfaceHolder.Callback methods will be called from the thread running the SurfaceView’s window (typically the main thread of the application). They thus need to correctly synchronize with any state that is also touched by the drawing thread.</li>
+<li>You must ensure that the drawing thread only touches the underlying Surface while it is valid – betweenSurfaceHolder.Callback.surfaceCreated() andSurfaceHolder.Callback.surfaceDestroyed().</li>
+</ul>
+</blockquote>
+<h3 id="硬件加速？"><a href="#硬件加速？" class="headerlink" title="硬件加速？"></a>硬件加速？</h3><ul>
+<li>Android里所有View控件以自定义View所使用得Canvas是硬件加速的（使用 GPU 进行加速，在 Android 上一般就是指会使用 OpenGL 进行绘制），Surface.lockCanvas获取的就是关闭硬件加速的Canvas。见<a href="https://mp.weixin.qq.com/s/RCix4L4E3TBcP79TMGBmtA" target="_blank" rel="noopener">OpenGL中 Canvas 性能分析</a></li>
+</ul>
+<h3 id="SurfaceView-TextureView的区别"><a href="#SurfaceView-TextureView的区别" class="headerlink" title="SurfaceView/TextureView的区别"></a>SurfaceView/TextureView的区别</h3><ul>
+<li>SurfaceView是一个有自己Surface的View。界面渲染可以放在单独线程而不是主线程中。它更像是一个Window，自身不能做变形和动画。</li>
+<li>TextureView同样也有自己的Surface。但是它只能在拥有硬件加速层层的Window中绘制，它更像是一个普通View，可以做变形和动画。</li>
+<li>普通View都是共享一个Surface的，所有的绘制也都在UI线程中进行，因为UI线程还要处理其他逻辑，因此对View的更新速度和绘制帧率无法保证。这显然不适合相机实时 预览这种情况，因而SurfaceView持有一个单独的Surface，它负责管理这个Surface的格式、尺寸以及显示位置，它的Surface绘制也在单独的线程中进行，因而拥有更高 的绘制效率和帧率。</li>
+</ul>
+<h2 id="非UI线程使用View-post，可能会导致内存泄漏"><a href="#非UI线程使用View-post，可能会导致内存泄漏" class="headerlink" title="非UI线程使用View.post，可能会导致内存泄漏"></a>非UI线程使用View.post，可能会导致内存泄漏</h2><ul>
+<li><a href="http://ivanfan.site/2018/03/18/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" target="_blank" rel="noopener">在API低于24的版本上，非UI线程使用View.post，可能会导致内存泄漏</a>。因为子线程调用View.post()，如果view还未attach到window，只有UI线程的performTraversals才会去把runnable拿出来执行，子线程没有performTraversals，故这个runnable将永远不会执行。<blockquote>
+<ol>
+<li>文章中最后给出的结论是，要保持兼容 API 24 以下的版本，最好不要在非 UI 线程使用 View.post ，而采用 Handler 来 post runnable。</li>
+<li>当然在 API 24 及以上，如果不能保证 View 一定会被 attach，那可以在引用对象销毁时，使用 View.removeCallbacks。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h2 id="Fragment的坑"><a href="#Fragment的坑" class="headerlink" title="Fragment的坑"></a>Fragment的坑</h2><ol>
+<li>子fragment中写了listener，父fragment设置子fragment的listener，然后横竖屏切换时，listener会报空：</li>
+<li>在activity被异常回收之后，如果没有设置onConfigurationChange，activity会重建完整再走一遍生命周期的流程。onSaveInstanceState方法被调用的时候，已经add到FragmentManager中的fragment不被释放，旧的fragment的内存实例始终存在，且view也始终在展示并不会被destroy，因此需要在Acitivty的onCreate()和onSaveInstanceState()处添加代码：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</span><br><span class="line">    savedInstanceState.remove(<span class="string">"android:support:fragments"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Android-Studio-的新东西"><a href="#Android-Studio-的新东西" class="headerlink" title="Android Studio 的新东西"></a>Android Studio 的新东西</h2><ol>
+<li><code>find . | grep hprof-conv</code> 在~\Library\Android\sdk\下找出<code>hprof-conv</code>的位置，再使用命令<code>./hprof-conv -z infile outfile</code> 来转换成Eclipse的Mat工具能够识别的hprof文件，注意使用此命令时，指定的outPutFile路径需要已经被创建，否则会一直返回Usage…展示<code>Usage: hprof-conf [-z] infile outfile</code></li>
+<li><a href="https://blog.csdn.net/T_yoo_csdn/article/details/84950088" target="_blank" rel="noopener">强行刷新gradle依赖缓存，拉取远程依赖版本</a>：<code>./gradlew build --refresh-dependencie</code>。<blockquote>
+<p>只想刷新某个指定的依赖: 直接去~/.gradle/caches/modules-2目录下，rm -fr <code>find . -name xxx</code>，然后直接重编<br>删除含有’aaa’的文件夹依赖：<code>find ~/.gradle/caches -type d | grep &#39;aaa&#39; | xargs rm -r</code></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="CoordinaryLayout-Behavior达成滑动联动特效"><a href="#CoordinaryLayout-Behavior达成滑动联动特效" class="headerlink" title="CoordinaryLayout-Behavior达成滑动联动特效"></a>CoordinaryLayout-Behavior达成滑动联动特效</h2><blockquote>
+<p>Android常规的Touch事件传递机制是自顶向下，由外向内的，一旦确定了事件消费者View，随后的事件都将传递到该View。因为是自顶向下，父控件可以随时拦截事件，下拉刷新、拖拽排序、折叠等交互效果都可以通过这套机制完成。<strong>Touch事件传递机制是Android开发必须掌握的基本内容。但是这套机制存在一个缺陷：子View无法通知父View处理事件。NestedScrolling就是为这个场景设计的。</strong> ———— <a href="https://blog.kyleduo.com/2017/03/08/nested-scrolling/" target="_blank" rel="noopener">Android Nested Scrolling</a></p>
+</blockquote>
+<h2 id="在Window上做动画：Acitivity间自定义动画的可能性"><a href="#在Window上做动画：Acitivity间自定义动画的可能性" class="headerlink" title="在Window上做动画：Acitivity间自定义动画的可能性"></a>在Window上做动画：Acitivity间自定义动画的可能性</h2><p>这两天一直在想做一个Activity间的转场动画可以对单个view进行自定义动画的。因为ShareElement动画不支持5.0以下，所以开始思考其他的方法。<br><!--more--><br>读了<a href="https://blog.csdn.net/weixin_38695860/article/details/71410629" target="_blank" rel="noopener">通过WindowManager添加view以及添加动画</a>后发现其实shareElemet也是在做假动画，本activity一次假动画，下一个Activit一次假动画。这篇<a href="https://blog.csdn.net/wangjinyu501/article/details/38847611" target="_blank" rel="noopener">Android WindowManager及其动画问题</a>中说到，在WindowManager上像在Activity中使用动画效果无效，目前还没细看。</p>
+<ul>
+<li>发现了一个特殊的效果..<a href="https://juejin.im/post/5c498230e51d450672355df1" target="_blank" rel="noopener">图凌闪屏页及Android彩蛋探究</a><h3 id="目前的结论"><a href="#目前的结论" class="headerlink" title="目前的结论"></a>目前的结论</h3>还是做假的动画比较靠谱…</li>
+</ul>
+
       
     </div>
     
@@ -406,6 +493,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
 
       
       
@@ -415,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019-08-13-Android大家都最终见过的内存泄漏.html" rel="next" title="Android大家都最终见过的内存泄漏">
-                <i class="fa fa-chevron-left"></i> Android大家都最终见过的内存泄漏
+              <a href="/2019-01-23-算法简明笔记.html" rel="next" title="算法简明笔记">
+                <i class="fa fa-chevron-left"></i> 算法简明笔记
               </a>
             
           </div>
@@ -425,8 +518,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020-02-29-leetcode题目思考与记录.html" rel="prev" title="leetcode题目思考与记录">
-                leetcode题目思考与记录 <i class="fa fa-chevron-right"></i>
+              <a href="/2019-01-28-当你发现自己不知道做什么.html" rel="prev" title="当你发现自己不知道做什么...">
+                当你发现自己不知道做什么... <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -481,8 +574,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -497,7 +599,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -508,7 +610,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -519,7 +621,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -542,6 +644,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从AutoScroll的View说起Scroller的原理与作用"><span class="nav-text">从AutoScroll的View说起Scroller的原理与作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误使用PorterDuffXferMode后效果并没有得到想要的效果！"><span class="nav-text">错误使用PorterDuffXferMode后效果并没有得到想要的效果！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为何和谷歌给的样子不同？"><span class="nav-text">为何和谷歌给的样子不同？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谁是源图像谁是目标图像"><span class="nav-text">谁是源图像谁是目标图像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任何和空白透明像素相交的结果都是空白透明像素哦"><span class="nav-text">任何和空白透明像素相交的结果都是空白透明像素哦</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#到底有没有在用心学ndk啊"><span class="nav-text">到底有没有在用心学ndk啊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用SurfaceView时需要注意"><span class="nav-text">使用SurfaceView时需要注意</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件加速？"><span class="nav-text">硬件加速？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SurfaceView-TextureView的区别"><span class="nav-text">SurfaceView/TextureView的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非UI线程使用View-post，可能会导致内存泄漏"><span class="nav-text">非UI线程使用View.post，可能会导致内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment的坑"><span class="nav-text">Fragment的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-Studio-的新东西"><span class="nav-text">Android Studio 的新东西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CoordinaryLayout-Behavior达成滑动联动特效"><span class="nav-text">CoordinaryLayout-Behavior达成滑动联动特效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Window上做动画：Acitivity间自定义动画的可能性"><span class="nav-text">在Window上做动画：Acitivity间自定义动画的可能性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目前的结论"><span class="nav-text">目前的结论</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -580,7 +698,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -679,6 +797,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
