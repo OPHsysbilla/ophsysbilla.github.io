@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="Http加密过程是怎样的让第三方CA来确保server公钥正确">
+<meta name="description" content="长连接和短连接是什么？为什么是必要的？Http加密过程是怎样的让第三方CA来确保server公钥正确">
 <meta name="keywords" content="面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络常见面试整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-09-计算机网络常见面试整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="Http加密过程是怎样的让第三方CA来确保server公钥正确">
+<meta property="og:description" content="长连接和短连接是什么？为什么是必要的？Http加密过程是怎样的让第三方CA来确保server公钥正确">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-09T12:31:11.815Z">
+<meta property="og:updated_time" content="2020-11-11T03:59:12.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络常见面试整理">
-<meta name="twitter:description" content="Http加密过程是怎样的让第三方CA来确保server公钥正确">
+<meta name="twitter:description" content="长连接和短连接是什么？为什么是必要的？Http加密过程是怎样的让第三方CA来确保server公钥正确">
 
 
 
@@ -413,7 +413,7 @@
       
 
       
-        <h3 id="Http加密过程是怎样的"><a href="#Http加密过程是怎样的" class="headerlink" title="Http加密过程是怎样的"></a>Http加密过程是怎样的</h3><h4 id="让第三方CA来确保server公钥正确"><a href="#让第三方CA来确保server公钥正确" class="headerlink" title="让第三方CA来确保server公钥正确"></a>让第三方CA来确保server公钥正确</h4><a id="more"></a>
+        <h2 id="长连接和短连接是什么？为什么是必要的？"><a href="#长连接和短连接是什么？为什么是必要的？" class="headerlink" title="长连接和短连接是什么？为什么是必要的？"></a>长连接和短连接是什么？为什么是必要的？</h2><h3 id="Http加密过程是怎样的"><a href="#Http加密过程是怎样的" class="headerlink" title="Http加密过程是怎样的"></a>Http加密过程是怎样的</h3><h4 id="让第三方CA来确保server公钥正确"><a href="#让第三方CA来确保server公钥正确" class="headerlink" title="让第三方CA来确保server公钥正确"></a>让第三方CA来确保server公钥正确</h4><a id="more"></a>
 <p> 1）server向CA提供基本信息、公钥等，CA用CA私钥对server公钥和信息进行加密形成数字证书（防止server被伪造）。<br>2）client向server发出https请求和随机数c，server返回数字证书和随机数s。<br>3）client收到数字证书，用CA公钥对数字证书进行解密，得到server的公钥。</p>
 <blockquote>
 <p>得到server公钥后，client可以用server公钥解密server签名得到摘要。<br>client也把原文hash一遍得到的摘要比对，确认内容没有经过更改</p>
@@ -427,7 +427,19 @@
 <li>然后用server私钥对摘要进行加密得到数字签名。server把明文连同数字签名一起发送给client</li>
 <li>client用server公钥对数字签名解密得到信息摘要，然后用相同的hash对数据进行计算得到信息摘要，比对两个信息摘要是否一致。</li>
 </ol>
-<h2 id="长连接和短连接是什么？为什么是必要的？"><a href="#长连接和短连接是什么？为什么是必要的？" class="headerlink" title="长连接和短连接是什么？为什么是必要的？"></a>长连接和短连接是什么？为什么是必要的？</h2>
+<h2 id="tcp三次握手问题"><a href="#tcp三次握手问题" class="headerlink" title="tcp三次握手问题"></a>tcp三次握手问题</h2><h3 id="为什么TIME-WAIT状态还需要等2MSL后才能返回到CLOSED状态？"><a href="#为什么TIME-WAIT状态还需要等2MSL后才能返回到CLOSED状态？" class="headerlink" title="为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态？"></a>为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态？</h3><p><strong>TIME_WAIT状态的作用就是用来重发可能丢失的ACK报文。</strong></p>
+<blockquote>
+<p>虽然双方都同意关闭连接了，但网络是不可靠的，你无法保证你最后发送的ACK报文会一定被对方收到，因此对方处于LAST_ACK状态下的Socket可能会因为超时未收到ACK报文，而重发FIN报文</p>
+</blockquote>
+<h4 id="TIME-WAIT状态所导致的服务器问题"><a href="#TIME-WAIT状态所导致的服务器问题" class="headerlink" title="TIME_WAIT状态所导致的服务器问题"></a>TIME_WAIT状态所导致的服务器问题</h4><p>一台机器上端口号数量的上限是65536个，<a href="https://segmentfault.com/a/1190000014044351" target="_blank" rel="noopener">TCP服务器最大并发连接数是多少？</a>。</p>
+<ul>
+<li>如果在同一台机器上进行压力测试模拟上万的客户请求，并且循环与服务端进行短连接通信，那么这台机器将产生4000个左右的TIME_WAIT Socket，后续的短连接就会产生address already in use : connect的异常</li>
+<li>如果使用Nginx作为方向代理也需要考虑TIME_WAIT状态，发现系统存在大量TIME_WAIT状态的连接，通过调整内核参数解决。</li>
+</ul>
+<h4 id="心跳包作用及格式"><a href="#心跳包作用及格式" class="headerlink" title="心跳包作用及格式"></a>心跳包作用及格式</h4><p>作用是保持长连接避免不断创建tcp连接</p>
+<p>心跳包格式的定义及处理<br>报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度<br>你发送数据包的格式，是json的还是其他序列化的方式</p>
+<h3 id="Socket连接池干嘛的"><a href="#Socket连接池干嘛的" class="headerlink" title="Socket连接池干嘛的"></a>Socket连接池干嘛的</h3><p>Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接，补充连接池的长连接的数量</p>
+
       
     </div>
     
@@ -603,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http加密过程是怎样的"><span class="nav-text">Http加密过程是怎样的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#让第三方CA来确保server公钥正确"><span class="nav-text">让第三方CA来确保server公钥正确</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成会话密钥"><span class="nav-text">生成会话密钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何防止数据被篡改"><span class="nav-text">如何防止数据被篡改</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#长连接和短连接是什么？为什么是必要的？"><span class="nav-text">长连接和短连接是什么？为什么是必要的？</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#长连接和短连接是什么？为什么是必要的？"><span class="nav-text">长连接和短连接是什么？为什么是必要的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http加密过程是怎样的"><span class="nav-text">Http加密过程是怎样的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#让第三方CA来确保server公钥正确"><span class="nav-text">让第三方CA来确保server公钥正确</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成会话密钥"><span class="nav-text">生成会话密钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何防止数据被篡改"><span class="nav-text">如何防止数据被篡改</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp三次握手问题"><span class="nav-text">tcp三次握手问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么TIME-WAIT状态还需要等2MSL后才能返回到CLOSED状态？"><span class="nav-text">为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TIME-WAIT状态所导致的服务器问题"><span class="nav-text">TIME_WAIT状态所导致的服务器问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#心跳包作用及格式"><span class="nav-text">心跳包作用及格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Socket连接池干嘛的"><span class="nav-text">Socket连接池干嘛的</span></a></li></ol></li></ol></div>
             
 
           </div>
