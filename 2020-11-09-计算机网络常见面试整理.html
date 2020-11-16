@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="长连接和短连接是什么？为什么是必要的？Http加密过程是怎样的让第三方CA来确保server公钥正确">
+<meta name="description" content="长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接">
 <meta name="keywords" content="面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络常见面试整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-09-计算机网络常见面试整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="长连接和短连接是什么？为什么是必要的？Http加密过程是怎样的让第三方CA来确保server公钥正确">
+<meta property="og:description" content="长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-11T03:59:12.945Z">
+<meta property="og:updated_time" content="2020-11-16T05:51:47.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络常见面试整理">
-<meta name="twitter:description" content="长连接和短连接是什么？为什么是必要的？Http加密过程是怎样的让第三方CA来确保server公钥正确">
+<meta name="twitter:description" content="长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接">
 
 
 
@@ -413,12 +413,15 @@
       
 
       
-        <h2 id="长连接和短连接是什么？为什么是必要的？"><a href="#长连接和短连接是什么？为什么是必要的？" class="headerlink" title="长连接和短连接是什么？为什么是必要的？"></a>长连接和短连接是什么？为什么是必要的？</h2><h3 id="Http加密过程是怎样的"><a href="#Http加密过程是怎样的" class="headerlink" title="Http加密过程是怎样的"></a>Http加密过程是怎样的</h3><h4 id="让第三方CA来确保server公钥正确"><a href="#让第三方CA来确保server公钥正确" class="headerlink" title="让第三方CA来确保server公钥正确"></a>让第三方CA来确保server公钥正确</h4><a id="more"></a>
+        <h2 id="长连接和短连接是什么？为什么是必要的？"><a href="#长连接和短连接是什么？为什么是必要的？" class="headerlink" title="长连接和短连接是什么？为什么是必要的？"></a>长连接和短连接是什么？为什么是必要的？</h2><h3 id="心跳包作用及格式"><a href="#心跳包作用及格式" class="headerlink" title="心跳包作用及格式"></a>心跳包作用及格式</h3><p>作用是保持长连接避免不断创建tcp连接</p>
+<p>心跳包格式的定义及处理<br>报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度<br>你发送数据包的格式，是json的还是其他序列化的方式</p>
+<h3 id="Socket连接池干嘛的"><a href="#Socket连接池干嘛的" class="headerlink" title="Socket连接池干嘛的"></a>Socket连接池干嘛的</h3><p>Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接，补充连接池的长连接的数量</p>
+<h2 id="Http加密过程是怎样的"><a href="#Http加密过程是怎样的" class="headerlink" title="Http加密过程是怎样的"></a>Http加密过程是怎样的</h2><h3 id="让第三方CA来确保server公钥正确"><a href="#让第三方CA来确保server公钥正确" class="headerlink" title="让第三方CA来确保server公钥正确"></a>让第三方CA来确保server公钥正确</h3><a id="more"></a>
 <p> 1）server向CA提供基本信息、公钥等，CA用CA私钥对server公钥和信息进行加密形成数字证书（防止server被伪造）。<br>2）client向server发出https请求和随机数c，server返回数字证书和随机数s。<br>3）client收到数字证书，用CA公钥对数字证书进行解密，得到server的公钥。</p>
 <blockquote>
 <p>得到server公钥后，client可以用server公钥解密server签名得到摘要。<br>client也把原文hash一遍得到的摘要比对，确认内容没有经过更改</p>
 </blockquote>
-<h4 id="生成会话密钥"><a href="#生成会话密钥" class="headerlink" title="生成会话密钥"></a>生成会话密钥</h4><p>client用server公钥加密client生成的随机数premaster secret，发送给server。<br>server收到加密的随机数premaster secret，用server私钥解密随机数，然后和随机数c、随机数s一起生成会话密钥。此时client也拥有三个随机数生成相同的会话密钥(Session Key)。双方用会话密钥进行加密通信（防止内容被窃听进行加密） </p>
+<h3 id="生成会话密钥"><a href="#生成会话密钥" class="headerlink" title="生成会话密钥"></a>生成会话密钥</h3><p>client用server公钥加密client生成的随机数premaster secret，发送给server。<br>server收到加密的随机数premaster secret，用server私钥解密随机数，然后和随机数c、随机数s一起生成会话密钥。此时client也拥有三个随机数生成相同的会话密钥(Session Key)。双方用会话密钥进行加密通信（防止内容被窃听进行加密） </p>
 <blockquote>
 <p>用会话密钥(Session Key)进行加密通信是对称加密的。如DES，AES等对称加密，只有一把钥匙<br>而获得会话密钥的过程是不对称加密的。最常见的非对称加密是RSA，有公钥和私钥，公钥加密只有私钥解密，私钥加密只有对应公钥解密</p>
 </blockquote>
@@ -431,14 +434,18 @@
 <blockquote>
 <p>虽然双方都同意关闭连接了，但网络是不可靠的，你无法保证你最后发送的ACK报文会一定被对方收到，因此对方处于LAST_ACK状态下的Socket可能会因为超时未收到ACK报文，而重发FIN报文</p>
 </blockquote>
-<h4 id="TIME-WAIT状态所导致的服务器问题"><a href="#TIME-WAIT状态所导致的服务器问题" class="headerlink" title="TIME_WAIT状态所导致的服务器问题"></a>TIME_WAIT状态所导致的服务器问题</h4><p>一台机器上端口号数量的上限是65536个，<a href="https://segmentfault.com/a/1190000014044351" target="_blank" rel="noopener">TCP服务器最大并发连接数是多少？</a>。</p>
+<h3 id="TIME-WAIT状态所导致的服务器问题"><a href="#TIME-WAIT状态所导致的服务器问题" class="headerlink" title="TIME_WAIT状态所导致的服务器问题"></a>TIME_WAIT状态所导致的服务器问题</h3><p>一台机器上端口号数量的上限是65536个，<a href="https://segmentfault.com/a/1190000014044351" target="_blank" rel="noopener">TCP服务器最大并发连接数是多少？</a>。</p>
 <ul>
 <li>如果在同一台机器上进行压力测试模拟上万的客户请求，并且循环与服务端进行短连接通信，那么这台机器将产生4000个左右的TIME_WAIT Socket，后续的短连接就会产生address already in use : connect的异常</li>
 <li>如果使用Nginx作为方向代理也需要考虑TIME_WAIT状态，发现系统存在大量TIME_WAIT状态的连接，通过调整内核参数解决。</li>
 </ul>
-<h4 id="心跳包作用及格式"><a href="#心跳包作用及格式" class="headerlink" title="心跳包作用及格式"></a>心跳包作用及格式</h4><p>作用是保持长连接避免不断创建tcp连接</p>
-<p>心跳包格式的定义及处理<br>报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度<br>你发送数据包的格式，是json的还是其他序列化的方式</p>
-<h3 id="Socket连接池干嘛的"><a href="#Socket连接池干嘛的" class="headerlink" title="Socket连接池干嘛的"></a>Socket连接池干嘛的</h3><p>Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接，补充连接池的长连接的数量</p>
+<h2 id="HTTPDNS"><a href="#HTTPDNS" class="headerlink" title="HTTPDNS"></a>HTTPDNS</h2><p><a href="https://help.aliyun.com/document_detail/60181.html" target="_blank" rel="noopener">Android Webview + HttpDns最佳实践</a><br><a href="https://mp.weixin.qq.com/s/iaPtSF-twWz-AN66UJUBDg" target="_blank" rel="noopener">DNS优化 - 百度的HTTPDNS</a>大部分标准DNS都是基于UDP与DNS服务器交互的，HTTPDNS则是利用HTTP协议与DNS服务器交互</p>
+<blockquote>
+<p>摘要一则：对于客户端同学，我们在PC上要学会使用tcpdump和Wireshark等工具，适当使用Fiddler和Charles等工具，很多时候电脑和手机的网络环境不见得一致，所以要在手机上使用iNetTools，Ping&amp;DNS或终端工具。学会使用工具后，要学着创造不同的网络环境，有很多工具能帮助你完成这点，比如苹果的Network Link Conditioner，FaceBook的ATC（Augmented Traffic Control）等</p>
+</blockquote>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>nginx负载均衡调度算法默认是 round robin，也就是轮询调度算法<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">j = i;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">    j = (j + <span class="number">1</span>) mod n;</span><br><span class="line">    <span class="keyword">if</span> (W(Sj) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        i = j;</span><br><span class="line">        <span class="keyword">return</span> Si;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">while</span> (j != i);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="压缩算法用的是什么？"><a href="#压缩算法用的是什么？" class="headerlink" title="压缩算法用的是什么？"></a>压缩算法用的是什么？</h2><p>客户端发送<code>Accept-Encoding</code>，服务端回应<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Accept-Encoding: gzip, compress, br</span><br><span class="line">Accept-Encoding: br;q=<span class="number">1.0</span>, gzip;q=<span class="number">0.8</span>, *;q=<span class="number">0.1</span></span><br><span class="line"></span><br><span class="line">（除了 identity 之外，都是无损压缩）</span><br><span class="line">gzip：表明实体采用 GNU zip 编码。（gzip 对媒体文件的压缩效果相对较差）</span><br><span class="line">compress：表明实体采用 Unix 的文件压缩程序。</span><br><span class="line">deflate：表明使用是用 zlib 的格式压缩的。</span><br><span class="line">br：表明实体使用 Brotli 算法的压缩格式。</span><br><span class="line">identity：表明没有对实体进行编码，为默认值。</span><br></pre></td></tr></table></figure></p>
+<p>具体说明见<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Accept-Encoding" target="_blank" rel="noopener">Accept-Encoding</a></p>
 
       
     </div>
@@ -560,7 +567,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -615,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#长连接和短连接是什么？为什么是必要的？"><span class="nav-text">长连接和短连接是什么？为什么是必要的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http加密过程是怎样的"><span class="nav-text">Http加密过程是怎样的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#让第三方CA来确保server公钥正确"><span class="nav-text">让第三方CA来确保server公钥正确</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成会话密钥"><span class="nav-text">生成会话密钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何防止数据被篡改"><span class="nav-text">如何防止数据被篡改</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp三次握手问题"><span class="nav-text">tcp三次握手问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么TIME-WAIT状态还需要等2MSL后才能返回到CLOSED状态？"><span class="nav-text">为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TIME-WAIT状态所导致的服务器问题"><span class="nav-text">TIME_WAIT状态所导致的服务器问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#心跳包作用及格式"><span class="nav-text">心跳包作用及格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Socket连接池干嘛的"><span class="nav-text">Socket连接池干嘛的</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#长连接和短连接是什么？为什么是必要的？"><span class="nav-text">长连接和短连接是什么？为什么是必要的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#心跳包作用及格式"><span class="nav-text">心跳包作用及格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Socket连接池干嘛的"><span class="nav-text">Socket连接池干嘛的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http加密过程是怎样的"><span class="nav-text">Http加密过程是怎样的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#让第三方CA来确保server公钥正确"><span class="nav-text">让第三方CA来确保server公钥正确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成会话密钥"><span class="nav-text">生成会话密钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何防止数据被篡改"><span class="nav-text">如何防止数据被篡改</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp三次握手问题"><span class="nav-text">tcp三次握手问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么TIME-WAIT状态还需要等2MSL后才能返回到CLOSED状态？"><span class="nav-text">为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TIME-WAIT状态所导致的服务器问题"><span class="nav-text">TIME_WAIT状态所导致的服务器问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPDNS"><span class="nav-text">HTTPDNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡"><span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩算法用的是什么？"><span class="nav-text">压缩算法用的是什么？</span></a></li></ol></div>
             
 
           </div>

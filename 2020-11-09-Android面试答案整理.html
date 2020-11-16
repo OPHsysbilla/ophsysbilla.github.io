@@ -126,12 +126,14 @@
 <meta property="og:site_name" content="Android tips">
 <meta property="og:description" content="Retrofit(动态代理)说说组件化和插件化，热更新技术原理知识图谱 Android初级、中级、高级、资深工程师(架构师、专家)技能图谱  面试官: 说一下你做过哪些性能优化?">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cdn.ancii.com/article/image/v1/Qj/zb/RO/ORzjbQVFJasX5aR2DaTg2_Zx5KSH75KdTtVIpx5BAibeJW3s2CVwUVt3uFqg5I-4TSjNCnhoAJhLsjcM99fslnxQJbDmwU5z8sIvZN3h5MQ.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-d6c924f27796e5cc5aad061a70399812_1440w.jpg">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/3/27/17117aa6eb5b454e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2020-11-12T03:11:43.876Z">
+<meta property="og:updated_time" content="2020-11-16T06:11:24.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试答案整理">
 <meta name="twitter:description" content="Retrofit(动态代理)说说组件化和插件化，热更新技术原理知识图谱 Android初级、中级、高级、资深工程师(架构师、专家)技能图谱  面试官: 说一下你做过哪些性能优化?">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/3/27/17117aa6eb5b454e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta name="twitter:image" content="https://cdn.ancii.com/article/image/v1/Qj/zb/RO/ORzjbQVFJasX5aR2DaTg2_Zx5KSH75KdTtVIpx5BAibeJW3s2CVwUVt3uFqg5I-4TSjNCnhoAJhLsjcM99fslnxQJbDmwU5z8sIvZN3h5MQ.jpg">
 
 
 
@@ -432,7 +434,26 @@
 <li><p>一文超翔实的源码：<a href="https://blog.csdn.net/universus/article/details/6211589" target="_blank" rel="noopener">Android Bander设计与实现 - 设计篇</a></p>
 </li>
 </ol>
-<h2 id="Android-ANR的产生原因，如何定位ANR"><a href="#Android-ANR的产生原因，如何定位ANR" class="headerlink" title="Android ANR的产生原因，如何定位ANR"></a>Android ANR的产生原因，如何定位ANR</h2><h2 id="OkHttp相关"><a href="#OkHttp相关" class="headerlink" title="OkHttp相关"></a>OkHttp相关</h2><h3 id="请求队列的使用的线程池"><a href="#请求队列的使用的线程池" class="headerlink" title="请求队列的使用的线程池"></a>请求队列的使用的线程池</h3><p>Dispatcher类里有<strong>两个异步队列，一个同步队列</strong>，<code>readyAsyncCalls</code>是没排上队的请求。</p>
+<h2 id="Android-ANR的产生原因，如何定位ANR"><a href="#Android-ANR的产生原因，如何定位ANR" class="headerlink" title="Android ANR的产生原因，如何定位ANR"></a>Android ANR的产生原因，如何定位ANR</h2><h2 id="Handler-40问"><a href="#Handler-40问" class="headerlink" title="Handler 40问"></a>Handler 40问</h2><p>摘自<a href="https://mp.weixin.qq.com/s?__biz=MzIxNjc0ODExMA==&amp;mid=2247486960&amp;idx=1&amp;sn=9c325c52004c94f5e1a6ca80b6907962&amp;chksm=978514d1a0f29dc77309045867f9243ed1dac77c8e3055a450553a8b84c8978cf6a4dd564939&amp;scene=132#wechat_redirect" target="_blank" rel="noopener">面试常客「Handler」的 40+ 个高频问题 Q &amp; A 对答！</a></p>
+<h2 id="OkHttp相关"><a href="#OkHttp相关" class="headerlink" title="OkHttp相关"></a>OkHttp相关</h2><h3 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h3><ol>
+<li>客户端请求 <code>Range: bytes=200-1000</code> 见<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Range" target="_blank" rel="noopener">Range</a></li>
+<li>服务器返回 <code>206 Partial Content</code> 标示Content-Range: bytes 200-1000/67589 </li>
+<li>同时服务器响应的header中有<code>Accept-Ranges: bytes</code></li>
+<li>使用RandomAccessFile允许自由定义文件记录指针，在同一个文件的不同位置进行<strong>并发读写</strong></li>
+<li>客户端头的 <code>If-Range</code> 需要和 <code>Range</code> 配合起来使用，否则会被服务端忽略<br><img src="https://cdn.ancii.com/article/image/v1/Qj/zb/RO/ORzjbQVFJasX5aR2DaTg2_Zx5KSH75KdTtVIpx5BAibeJW3s2CVwUVt3uFqg5I-4TSjNCnhoAJhLsjcM99fslnxQJbDmwU5z8sIvZN3h5MQ.jpg" alt=""></li>
+</ol>
+<blockquote>
+<p>以下摘自 <a href="https://juejin.im/post/6844903642034765837" target="_blank" rel="noopener">图解：HTTP 范围请求，助力断点续传、多线程下载的核心原理</a>：</p>
+<ol>
+<li>范围请求需要 HTTP/1.1 及之上支持</li>
+<li>客户端通过在请求头中添加 <code>Range</code> 这个请求头，来指定请求的内容实体的字节范围。</li>
+<li>服务端通过 <code>Content-Range</code> 来标识当前返回的内容实体范围，并使用 <code>Content-Length</code> 来标识当前返回的本次压缩后要读多少字节。</li>
+<li>客户端可以通过 <code>If-Range</code> 来区分资源文件是否变动，它的值来自 <code>ETag</code> 或者 <code>Last-Modifled</code>。如果资源文件有改动，服务器会返回code 200重新走下载流程。</li>
+</ol>
+</blockquote>
+<h4 id="为什么多线程下载可以提速"><a href="#为什么多线程下载可以提速" class="headerlink" title="为什么多线程下载可以提速"></a>为什么多线程下载可以提速</h4><p>见这篇文章：<a href="https://zhuanlan.zhihu.com/p/165048187" target="_blank" rel="noopener">撸了个多线程断点续传下载器，我从中学习到了这些知识</a><br>个人理解，当发生了丢包，检测到拥塞时，TCP慢启动会减半线性增长发送窗口。而多线程一起下载，其他线程可能正在正常下载，只影响发生丢包的线程</p>
+<p><img src="https://pic3.zhimg.com/80/v2-d6c924f27796e5cc5aad061a70399812_1440w.jpg" alt="拥塞窗口"></p>
+<h3 id="请求队列的使用的线程池"><a href="#请求队列的使用的线程池" class="headerlink" title="请求队列的使用的线程池"></a>请求队列的使用的线程池</h3><p>Dispatcher类里有<strong>两个异步队列，一个同步队列</strong>，<code>readyAsyncCalls</code>是没排上队的请求。</p>
 <blockquote>
 <p>没排上队是因为在进队时，目前正在执行的请求大于64或者同Host的请求大于5了，参考线程池的思想。<br><code>runningSyncCalls</code>和<code>runningAsyncCalls</code>都是正在执行（包括已经取消但没结束）的请求，区别是一个同步一个异步。<br>结束后。<br>在每个请求停止后会去promoteCall()，遍历<code>readyAsyncCalls</code>能够执行执行，放进<code>runningAsyncCalls</code>里。和线程池里的<code>Worker</code>一个套路。</p>
 </blockquote>
@@ -620,7 +641,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -675,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrofit-动态代理"><span class="nav-text">Retrofit(动态代理)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说说组件化和插件化，热更新技术原理"><span class="nav-text">说说组件化和插件化，热更新技术原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识图谱"><span class="nav-text">知识图谱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binder怎么学"><span class="nav-text">Binder怎么学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#理解AIDL中的in，out，inout吗"><span class="nav-text">理解AIDL中的in，out，inout吗</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-ANR的产生原因，如何定位ANR"><span class="nav-text">Android ANR的产生原因，如何定位ANR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OkHttp相关"><span class="nav-text">OkHttp相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求队列的使用的线程池"><span class="nav-text">请求队列的使用的线程池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#okhttp责任链，递归调用拦截器"><span class="nav-text">okhttp责任链，递归调用拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用拦截器interceptors和网络拦截器networkInterceptors的区别在哪"><span class="nav-text">应用拦截器interceptors和网络拦截器networkInterceptors的区别在哪</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OKHTTP-Socket连接池"><span class="nav-text">OKHTTP Socket连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#socket复用有何标准"><span class="nav-text">socket复用有何标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个socket何时会被关闭？socket池何时被清理"><span class="nav-text">一个socket何时会被关闭？socket池何时被清理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OkHttp的HTTP缓存"><span class="nav-text">OkHttp的HTTP缓存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点击桌面图标进入我们软件应用时发生了什么？"><span class="nav-text">点击桌面图标进入我们软件应用时发生了什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OOM是什么，怎么导致的？"><span class="nav-text">OOM是什么，怎么导致的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件分发"><span class="nav-text">事件分发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何减少卡顿？刷新原理"><span class="nav-text">如何减少卡顿？刷新原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glide是如何监听周期的？"><span class="nav-text">Glide是如何监听周期的？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#监听生命周期"><span class="nav-text">监听生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听网络状态"><span class="nav-text">监听网络状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听内存状态"><span class="nav-text">监听内存状态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个Activity切换生命周期是怎样的？"><span class="nav-text">两个Activity切换生命周期是怎样的？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrofit-动态代理"><span class="nav-text">Retrofit(动态代理)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说说组件化和插件化，热更新技术原理"><span class="nav-text">说说组件化和插件化，热更新技术原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识图谱"><span class="nav-text">知识图谱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binder怎么学"><span class="nav-text">Binder怎么学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#理解AIDL中的in，out，inout吗"><span class="nav-text">理解AIDL中的in，out，inout吗</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-ANR的产生原因，如何定位ANR"><span class="nav-text">Android ANR的产生原因，如何定位ANR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler-40问"><span class="nav-text">Handler 40问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OkHttp相关"><span class="nav-text">OkHttp相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#断点续传"><span class="nav-text">断点续传</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么多线程下载可以提速"><span class="nav-text">为什么多线程下载可以提速</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求队列的使用的线程池"><span class="nav-text">请求队列的使用的线程池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#okhttp责任链，递归调用拦截器"><span class="nav-text">okhttp责任链，递归调用拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用拦截器interceptors和网络拦截器networkInterceptors的区别在哪"><span class="nav-text">应用拦截器interceptors和网络拦截器networkInterceptors的区别在哪</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OKHTTP-Socket连接池"><span class="nav-text">OKHTTP Socket连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#socket复用有何标准"><span class="nav-text">socket复用有何标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个socket何时会被关闭？socket池何时被清理"><span class="nav-text">一个socket何时会被关闭？socket池何时被清理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OkHttp的HTTP缓存"><span class="nav-text">OkHttp的HTTP缓存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点击桌面图标进入我们软件应用时发生了什么？"><span class="nav-text">点击桌面图标进入我们软件应用时发生了什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OOM是什么，怎么导致的？"><span class="nav-text">OOM是什么，怎么导致的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件分发"><span class="nav-text">事件分发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何减少卡顿？刷新原理"><span class="nav-text">如何减少卡顿？刷新原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glide是如何监听周期的？"><span class="nav-text">Glide是如何监听周期的？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#监听生命周期"><span class="nav-text">监听生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听网络状态"><span class="nav-text">监听网络状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听内存状态"><span class="nav-text">监听内存状态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个Activity切换生命周期是怎样的？"><span class="nav-text">两个Activity切换生命周期是怎样的？</span></a></li></ol></div>
             
 
           </div>
