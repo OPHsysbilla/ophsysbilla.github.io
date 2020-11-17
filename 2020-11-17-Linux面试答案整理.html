@@ -118,19 +118,19 @@
 
 
 
-<meta name="description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型  non-blocking IO仅仅要求处理的第一阶段不block即可，而asynchronous IO要求两个阶段都不能block住  select、poll、">
+<meta name="description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
 <meta name="keywords" content="面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux面试答案整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-17-Linux面试答案整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型  non-blocking IO仅仅要求处理的第一阶段不block即可，而asynchronous IO要求两个阶段都不能block住  select、poll、">
+<meta property="og:description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png">
-<meta property="og:updated_time" content="2020-11-17T10:57:50.701Z">
+<meta property="og:updated_time" content="2020-11-17T12:03:22.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux面试答案整理">
-<meta name="twitter:description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型  non-blocking IO仅仅要求处理的第一阶段不block即可，而asynchronous IO要求两个阶段都不能block住  select、poll、">
+<meta name="twitter:description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
 <meta name="twitter:image" content="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png">
 
 
@@ -393,7 +393,8 @@
       
 
       
-        <h1 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h1><p>见从中断讲起的好文：<a href="https://my.oschina.net/editorial-story/blog/3052308?p=2" target="_blank" rel="noopener">epoll 的本质是什么？</a><br>linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型<br><img src="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png" alt="各种I/O模型"></p>
+        <h1 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h1><p>见从中断讲起的好文：<a href="https://my.oschina.net/editorial-story/blog/3052308?p=2" target="_blank" rel="noopener">epoll 的本质是什么？</a><br>linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型<br><a id="more"></a></p>
+<p><img src="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png" alt="各种I/O模型"></p>
 <blockquote>
 <p>non-blocking IO仅仅要求处理的第一阶段不block即可，而asynchronous IO要求两个阶段都不能block住</p>
 </blockquote>
@@ -478,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020-11-16-Handler面试40问答案整理.html" rel="next" title="Handler面试40问答案整理">
-                <i class="fa fa-chevron-left"></i> Handler面试40问答案整理
+              <a href="/2020-11-13-暂存的工具.html" rel="next" title="暂存的工具">
+                <i class="fa fa-chevron-left"></i> 暂存的工具
               </a>
             
           </div>
@@ -565,7 +566,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -587,7 +588,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
