@@ -107,7 +107,7 @@
 
 
 
-  <meta name="keywords" content="Android">
+  <meta name="keywords" content="面试,">
 
 
 
@@ -118,18 +118,20 @@
 
 
 
-<meta name="description" content="Satur的博客">
-<meta name="keywords" content="Android blog">
+<meta name="description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型  non-blocking IO仅仅要求处理的第一阶段不block即可，而asynchronous IO要求两个阶段都不能block住  select、poll、">
+<meta name="keywords" content="面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux面试答案整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-17-Linux面试答案整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="Satur的博客">
+<meta property="og:description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型  non-blocking IO仅仅要求处理的第一阶段不block即可，而asynchronous IO要求两个阶段都不能block住  select、poll、">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-17T07:34:56.142Z">
+<meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png">
+<meta property="og:updated_time" content="2020-11-17T10:57:50.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux面试答案整理">
-<meta name="twitter:description" content="Satur的博客">
+<meta name="twitter:description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型  non-blocking IO仅仅要求处理的第一阶段不block即可，而asynchronous IO要求两个阶段都不能block住  select、poll、">
+<meta name="twitter:image" content="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png">
 
 
 
@@ -391,7 +393,62 @@
       
 
       
-        
+        <h1 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h1><p>见从中断讲起的好文：<a href="https://my.oschina.net/editorial-story/blog/3052308?p=2" target="_blank" rel="noopener">epoll 的本质是什么？</a><br>linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型<br><img src="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png" alt="各种I/O模型"></p>
+<blockquote>
+<p>non-blocking IO仅仅要求处理的第一阶段不block即可，而asynchronous IO要求两个阶段都不能block住</p>
+</blockquote>
+<h1 id="select、poll、epoll之间的区别"><a href="#select、poll、epoll之间的区别" class="headerlink" title="select、poll、epoll之间的区别"></a>select、poll、epoll之间的区别</h1><p><code>select</code> ，<code>poll</code> ，<code>epoll</code> 都是<strong>I/O多路复用</strong>的机制，都是同步I/O。都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是<strong>阻塞</strong>的。好处在于可以以较少的代价来同时监听处理多个IO。</p>
+<blockquote>
+<p><strong>异步I/O</strong>则无需自己负责进行读写，其实现会负责<em>把数据从内核拷贝到用户空间</em>。<br><code>epoll</code>是<code>Linux</code>所特有，而<code>select</code>则应该是<code>POSIX</code>所规定，一般操作系统均有实现</p>
+<ol>
+<li><code>select</code> -&gt; 时间复杂度<code>O(n)</code><ul>
+<li>具有O(n)的无差别轮询复杂度，同时处理的流越多无差别轮询时间就越长。</li>
+<li><blockquote>
+<p>仅仅知道了有I/O事件发生了，却并不知道是哪那几个流。只能无差别轮询所有流，找出能读/写的流。</p>
+</blockquote>
+</li>
+<li>通过设置或者检查存放fd标志位的数据结构来处理。单个进程能监听的fd数量有限。</li>
+<li><blockquote>
+<p>单个进程所能打开的最大连接数有FD_SETSIZE宏定义，默认1024</p>
+</blockquote>
+</li>
+<li>需要维护一个用来存放大量fd的数据结构，这样会使得用户空间和内核空间在传递该结构时复制开销大</li>
+</ul>
+</li>
+<li><code>poll</code> -&gt; 时间复杂度<code>O(n)</code><br><code>poll</code> 本质上和<code>select</code>没有区别。使用<code>pollfd</code>结构而不是select的<code>fd_set</code>结构<ul>
+<li>消息传递需要内核拷贝。将用户传入的数组拷贝到<strong>内核空间</strong>，查询每个<code>fd</code>对应的设备状态数组</li>
+<li><blockquote>
+<p>如果设备就绪则在设备等待队列中加入一项并继续遍历，如果遍历完所有fd后没有发现就绪设备，则挂起当前进程。直到设备就绪或者主动超时，被唤醒后它又要再次遍历fd。这个过程经历了多次无谓的遍历。</p>
+</blockquote>
+</li>
+<li><strong>没有最大连接数的限制</strong>，原因是它是基于<strong>链表</strong>来存储的。缺点：</li>
+<li><ol>
+<li>大量的fd的数组被整体复制于用户态和内核地址空间之间，而不管这样的复制是不是有意义。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>poll如果报告了fd后，没有被处理，那么下次poll时会再次报告该fd。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<ol start="3">
+<li><code>epoll</code> -&gt; 时间复杂度<code>O(1)</code><br><code>epoll</code>可以理解为<strong>event poll</strong>，不同于忙轮询和无差别轮询<br>poll实际上是<strong>事件驱动</strong>（每个事件关联上fd）的，哪个流发生了I/O只回调哪个流</li>
+</ol>
+<ul>
+<li>通过内核和用户空间共享一块内存来实现的。利用<code>mmap()</code>文件映射内存加速与内核空间的消息传递</li>
+<li>连接数上限很大，1G内存的机器上可以打开10万左右的连接。（通过<code>cat /proc/sys/fs/file-max</code>可查看）</li>
+<li><code>epoll</code>每次注册新的事件到<code>epoll</code>句柄中时（在<code>epoll_ctl</code>中指定<code>EPOLL_CTL_ADD</code>），保证了每个<code>fd</code>在整个过程中只会拷贝一次。</li>
+<li><blockquote>
+<p>在活跃<code>socket</code>较少的情况下，使用<code>epoll</code>没有前面两者的线性下降的性能问题，但是所有<code>socket</code>都很活跃的情况下，可能会有性能问题</p>
+</blockquote>
+</li>
+</ul>
+<p>epoll有它的使用场景，更适合于处理高并发的场合。<br>如果并发量很少，比如几百个连接这个级别，select的效率会比epoll高只有连接数大到一定长度，epoll的额外消耗才能抵消select的遍历</p>
+<p>游戏服务器一般是<code>one loop per thread</code><br>多线程服务器此文 <a href="https://www.cnblogs.com/solstice/archive/2010/02/12/multithreaded_server.html" target="_blank" rel="noopener">陈硕的 Blog</a></p>
+
       
     </div>
     
@@ -405,6 +462,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
       
 
       
@@ -477,8 +540,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -515,7 +587,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -538,6 +610,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步I-O"><span class="nav-text">异步I/O</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#select、poll、epoll之间的区别"><span class="nav-text">select、poll、epoll之间的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
