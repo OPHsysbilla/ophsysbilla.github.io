@@ -126,7 +126,7 @@
 <meta property="og:site_name" content="Android tips">
 <meta property="og:description" content="长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-16T05:51:47.043Z">
+<meta property="og:updated_time" content="2020-11-16T06:19:22.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络常见面试整理">
 <meta name="twitter:description" content="长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接">
@@ -441,7 +441,7 @@
 </ul>
 <h2 id="HTTPDNS"><a href="#HTTPDNS" class="headerlink" title="HTTPDNS"></a>HTTPDNS</h2><p><a href="https://help.aliyun.com/document_detail/60181.html" target="_blank" rel="noopener">Android Webview + HttpDns最佳实践</a><br><a href="https://mp.weixin.qq.com/s/iaPtSF-twWz-AN66UJUBDg" target="_blank" rel="noopener">DNS优化 - 百度的HTTPDNS</a>大部分标准DNS都是基于UDP与DNS服务器交互的，HTTPDNS则是利用HTTP协议与DNS服务器交互</p>
 <blockquote>
-<p>摘要一则：对于客户端同学，我们在PC上要学会使用tcpdump和Wireshark等工具，适当使用Fiddler和Charles等工具，很多时候电脑和手机的网络环境不见得一致，所以要在手机上使用iNetTools，Ping&amp;DNS或终端工具。学会使用工具后，要学着创造不同的网络环境，有很多工具能帮助你完成这点，比如苹果的Network Link Conditioner，FaceBook的ATC（Augmented Traffic Control）等</p>
+<p>摘要一则：对于客户端，在PC上要学会使用tcpdump和Wireshark等工具，适当使用Fiddler和Charles等工具，很多时候电脑和手机的网络环境不见得一致，所以要在手机上使用iNetTools，Ping&amp;DNS或终端工具。学会使用工具后，要学着创造不同的网络环境，有很多工具能帮助你完成这点，比如苹果的Network Link Conditioner，FaceBook的ATC（Augmented Traffic Control）等</p>
 </blockquote>
 <h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>nginx负载均衡调度算法默认是 round robin，也就是轮询调度算法<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">j = i;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">    j = (j + <span class="number">1</span>) mod n;</span><br><span class="line">    <span class="keyword">if</span> (W(Sj) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        i = j;</span><br><span class="line">        <span class="keyword">return</span> Si;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">while</span> (j != i);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure></p>
 <h2 id="压缩算法用的是什么？"><a href="#压缩算法用的是什么？" class="headerlink" title="压缩算法用的是什么？"></a>压缩算法用的是什么？</h2><p>客户端发送<code>Accept-Encoding</code>，服务端回应<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Accept-Encoding: gzip, compress, br</span><br><span class="line">Accept-Encoding: br;q=<span class="number">1.0</span>, gzip;q=<span class="number">0.8</span>, *;q=<span class="number">0.1</span></span><br><span class="line"></span><br><span class="line">（除了 identity 之外，都是无损压缩）</span><br><span class="line">gzip：表明实体采用 GNU zip 编码。（gzip 对媒体文件的压缩效果相对较差）</span><br><span class="line">compress：表明实体采用 Unix 的文件压缩程序。</span><br><span class="line">deflate：表明使用是用 zlib 的格式压缩的。</span><br><span class="line">br：表明实体使用 Brotli 算法的压缩格式。</span><br><span class="line">identity：表明没有对实体进行编码，为默认值。</span><br></pre></td></tr></table></figure></p>
@@ -567,7 +567,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

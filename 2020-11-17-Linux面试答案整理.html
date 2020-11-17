@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路  what we need to know 关于Handler的拦截里有谈到，调用callback的时候是根据顺序选择一个来调用的。  优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截">
+<meta name="description" content="Satur的博客">
 <meta name="keywords" content="Android blog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="当你发现自己不知道做什么...">
-<meta property="og:url" content="http://ophsysbilla.github.io/2019-01-28-当你发现自己不知道做什么.html">
+<meta property="og:title" content="Linux面试答案整理">
+<meta property="og:url" content="http://ophsysbilla.github.io/2020-11-17-Linux面试答案整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路  what we need to know 关于Handler的拦截里有谈到，调用callback的时候是根据顺序选择一个来调用的。  优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截">
+<meta property="og:description" content="Satur的博客">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-09T12:36:16.195Z">
+<meta property="og:updated_time" content="2020-11-17T07:34:56.142Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="当你发现自己不知道做什么...">
-<meta name="twitter:description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路  what we need to know 关于Handler的拦截里有谈到，调用callback的时候是根据顺序选择一个来调用的。  优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截">
+<meta name="twitter:title" content="Linux面试答案整理">
+<meta name="twitter:description" content="Satur的博客">
 
 
 
@@ -159,13 +159,13 @@
 
 
 
-  <link rel="canonical" href="http://ophsysbilla.github.io/2019-01-28-当你发现自己不知道做什么.html">
+  <link rel="canonical" href="http://ophsysbilla.github.io/2020-11-17-Linux面试答案整理.html">
 
 
 
 
 
-  <title>当你发现自己不知道做什么... | Android tips</title>
+  <title>Linux面试答案整理 | Android tips</title>
   
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2019-01-28-当你发现自己不知道做什么.html">
+    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2020-11-17-Linux面试答案整理.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Satur">
@@ -341,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">当你发现自己不知道做什么...</h1>
+          <h1 class="post-title" itemprop="name headline">Linux面试答案整理</h1>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-28T17:00:45+08:00">
-                2019-01-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-17T15:34:56+08:00">
+                2020-11-17
               </time>
             
 
@@ -391,30 +391,7 @@
       
 
       
-        <p>去看面试笔记吧！有目标才能快速发现自己不会什么~</p>
-<ol start="2">
-<li><a href="https://mp.weixin.qq.com/s/pJCzKex7qEh2CkOx23eiCA" target="_blank" rel="noopener">2018年年底Android悲催的面试之路</a></li>
-</ol>
-<h3 id="what-we-need-to-know"><a href="#what-we-need-to-know" class="headerlink" title="what we need to know"></a>what we need to know</h3><ul>
-<li><p><a href="https://blog.csdn.net/dingjikerbo/article/details/50673550" target="_blank" rel="noopener">关于Handler的拦截</a>里有谈到，调用callback的时候是根据顺序选择一个来调用的。</p>
-<blockquote>
-<p>优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截，则调用Handler的handleMessage</p>
-</blockquote>
-</li>
-<li><p>epoll_wait是什么唤醒机制？</p>
-</li>
-</ul>
-<a id="more"></a>
-<ul>
-<li>系统是如何监听ANR的? 应用发生卡顿，一定是在dispatchMessage中执行了耗时操作。<a href="https://codezjx.com/2017/08/06/anr-trace-analytics/" target="_blank" rel="noopener">通过给主线程的Looper设置一个Printer，计算方法运行前后两次打印的时间差是否超过阈值来判断是否有ANR</a>。tips： /data/anr/traces.txt中会保存一个最近ANR的信息。</li>
-<li>ThreadLocal所操作的变量只存在于各自的线程里，每一个线程都有一个ThreadLocal且拿到的变量是不同的。每个Thread的对象都有一个ThreadLocalMap，当创建一个ThreadLocal的时候，就会将该ThreadLocal对象添加到该Map中，其中键就是ThreadLocal，值可以是任意类型<blockquote>
-<p>《深入理解java虚拟机》周志明，P396原文：要保证线程安全，并不一定就是要进行同步，两者没有因果关系。同步只是保证共享数据争用时的正确性的手段。<strong>如果一个方法本来就不涉及共享数据</strong>，那它自然就无需任何同步措施去保证正确性</p>
-</blockquote>
-</li>
-<li>在华为的好多手机会OOM是由线程数溢出引起如何解决？java.lang.IllegalArgumentException: register too many Broadcast Receivers，华为5.0+的手机发送超过500个广播就会出现这个问题，因为它内部有白名单，只允许白名单中的应用（微信）发500个广播。这篇<a href="https://www.jianshu.com/p/b95ba9e07208" target="_blank" rel="noopener">绕过华为register too many Broadcast Receivers限制</a>里有用到一些插件化的知识，推荐阅读<a href="http://weishu.me/2016/04/05/understand-plugin-framework-classloader/" target="_blank" rel="noopener">插件加载机制</a></li>
-<li></li>
-</ul>
-
+        
       
     </div>
     
@@ -438,8 +415,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019-01-25-Android踩过的坑.html" rel="next" title="Android踩过的坑">
-                <i class="fa fa-chevron-left"></i> Android踩过的坑
+              <a href="/2020-11-16-Handler面试40问答案整理.html" rel="next" title="Handler面试40问答案整理">
+                <i class="fa fa-chevron-left"></i> Handler面试40问答案整理
               </a>
             
           </div>
@@ -447,10 +424,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019-07-04-数据库面试答案.html" rel="prev" title="数据库面试答案">
-                数据库面试答案 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -504,17 +477,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -574,22 +538,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#what-we-need-to-know"><span class="nav-text">what we need to know</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
