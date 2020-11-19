@@ -132,7 +132,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-df9323d3ae59b8f8.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/432/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-2700bead4cf14739.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/429/format/webp">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190421151618649.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbjEzMTQx,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-11-19T08:24:12.054Z">
+<meta property="og:updated_time" content="2020-11-19T10:11:53.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux面试答案整理">
 <meta name="twitter:description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？ 然后可以看彻底搞懂epoll高效运行的原理 linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
@@ -505,6 +505,21 @@
 <li>进程 A 的文件描述符 2 和进程 B 的文件描述符 2 都指向了同一个文件，这可能是在调用 fork() 后出现的（即进程 A、B 是父子进程关系），或者是不同的进程独自去调用 open() 函数打开了同一个文件，此时进程内部的描述符正好分配到与其他进程打开该文件的描述符一样。</li>
 <li>进程 A 的描述符 0 和进程 B 的描述符 3 分别指向不同的打开文件表项，但这些表项均指向 i-node 表的同一个条目（标号为 1976）；换言之，它们指向了同一个文件。发生这种情况是因为每个进程各自对同一个文件发起了 open() 调用。同一个进程两次打开同一个文件，也会发生类似情况。 </li>
 </ul>
+<h2 id="内核空间和用户空间"><a href="#内核空间和用户空间" class="headerlink" title="内核空间和用户空间"></a>内核空间和用户空间</h2><p>32位操作系统下，寻址空间（虚拟地址空间，或叫线性地址空间）为 4G(2^32)。即一个进程的最大地址空间为 4G。</p>
+<ul>
+<li>内核访问底层硬件设备，拥有所有权限，可以执行各种危险指令。不让普通进程使用是为了提高操作系统的稳定性及可用性。<blockquote>
+<p> Ring3 级别时被称为运行在用户态，而运行在 Ring0 级别时被称为运行在内核态</p>
+</blockquote>
+</li>
+<li>高字节1G为内核空间，低字节3G为各个进程使用，称为用户空间。</li>
+<li>最高 1G 的内核空间是被所有进程共享的<h3 id="从用户态进入到内核态方式"><a href="#从用户态进入到内核态方式" class="headerlink" title="从用户态进入到内核态方式"></a>从用户态进入到内核态方式</h3>系统调用、软中断（定时中断等）、硬件中断</li>
+</ul>
+<p>实际上每个处理器在任何指定时间点上的活动概括为下列三者之一：</p>
+<ul>
+<li>运行于用户空间，执行用户进程。</li>
+<li>运行于内核空间，处于进程上下文，代表某个特定的进程执行。</li>
+<li>运行于内核空间，处于中断上下文，与任何进程无关，处理某个特定的中断。</li>
+</ul>
 
       
     </div>
@@ -677,7 +692,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步I-O"><span class="nav-text">异步I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#各种I-O模型"><span class="nav-text">各种I/O模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select、poll、epoll之间的区别"><span class="nav-text">select、poll、epoll之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零拷贝"><span class="nav-text">零拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-的-NIO-DirectByteBuffer"><span class="nav-text">Java 的 NIO DirectByteBuffer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件描述符"><span class="nav-text">文件描述符</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步I-O"><span class="nav-text">异步I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#各种I-O模型"><span class="nav-text">各种I/O模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select、poll、epoll之间的区别"><span class="nav-text">select、poll、epoll之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零拷贝"><span class="nav-text">零拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-的-NIO-DirectByteBuffer"><span class="nav-text">Java 的 NIO DirectByteBuffer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件描述符"><span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内核空间和用户空间"><span class="nav-text">内核空间和用户空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从用户态进入到内核态方式"><span class="nav-text">从用户态进入到内核态方式</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

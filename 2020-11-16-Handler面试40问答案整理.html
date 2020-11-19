@@ -126,7 +126,7 @@
 <meta property="og:site_name" content="Android tips">
 <meta property="og:description" content="摘自 [Handler高频40问] (https://mubu.com/doc/4AOg4eG-V2v)  epoll 有什么优势？Handler 和管道(Pipe)的关系？Android M 开始，将 Pipe 换成了 eventFd是为什么？Handler 底层为什么使用管道，而不是 Binder ？Handler 可以 IPC 通信吗？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-19T08:59:24.820Z">
+<meta property="og:updated_time" content="2020-11-19T09:27:29.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handler面试40问答案整理">
 <meta name="twitter:description" content="摘自 [Handler高频40问] (https://mubu.com/doc/4AOg4eG-V2v)  epoll 有什么优势？Handler 和管道(Pipe)的关系？Android M 开始，将 Pipe 换成了 eventFd是为什么？Handler 底层为什么使用管道，而不是 Binder ？Handler 可以 IPC 通信吗？">
@@ -442,7 +442,7 @@
 <h1 id="如果-Java-层-MessageQueue-中消息很少，但是响应时间却很长，是什么原因？"><a href="#如果-Java-层-MessageQueue-中消息很少，但是响应时间却很长，是什么原因？" class="headerlink" title="如果 Java 层 MessageQueue 中消息很少，但是响应时间却很长，是什么原因？"></a>如果 Java 层 MessageQueue 中消息很少，但是响应时间却很长，是什么原因？</h1><ol>
 <li><code>MessageQueue</code> 队列中，该 <code>Message</code> 前的 <code>Message</code> 处理较为耗时；</li>
 <li><code>Native</code> 层消息过多，<code>Java</code> 层 <code>MessageQueue</code> 消息优先级最低，最后处理；<blockquote>
-<p>先处理<code>Native Message</code>，再处理<code>Native Request</code>，最后处理<code>Java Message</code>。就是因为Native有消息才用Handler+epoll的，不然只有Java的消息wait() + notify()就够了</p>
+<p>先处理<code>Native Message</code>，再处理<code>Native Request</code>，最后处理<code>Java Message</code>。就是因为Native有消息才用Handler+epoll的，不然只有Java的消息wait() + notify</p>
 </blockquote>
 </li>
 </ol>
