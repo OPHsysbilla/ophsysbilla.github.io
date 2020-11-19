@@ -118,18 +118,24 @@
 
 
 
-<meta name="description" content="长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接">
+<meta name="description" content="摘自TCP 协议面试灵魂 12 问 !  长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检">
 <meta name="keywords" content="面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络常见面试整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-09-计算机网络常见面试整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接">
+<meta property="og:description" content="摘自TCP 协议面试灵魂 12 问 !  长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-16T06:19:22.459Z">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJj6NAPDhL4yUekqwt7TslbxhmQtof0mvtujnB9n3RUbZWMXFS7vUxBMg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJjkfIUVTE7aPj8b57z84V8lxcXyuib6x6oXYlBCJ2oFpwQQdZ91S5nx3Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJjkYY3ib89xV8ZcXrzFLIYInDscbzGiaC3owHnIZJEffApicyTWAMgfVTJw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJjibz2z6kK5Pw4ibicPxQicZniaNkyUpJ5KBFYEkwS9Ese1QfkgyEMGbEm2ug/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJjgN2uwic16EeL6hq7JrSNoBO67UlX7ghtb7muqpajV3TYPX7nEF8iaIibQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:updated_time" content="2020-11-18T10:57:21.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络常见面试整理">
-<meta name="twitter:description" content="长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接">
+<meta name="twitter:description" content="摘自TCP 协议面试灵魂 12 问 !  长连接和短连接是什么？为什么是必要的？心跳包作用及格式作用是保持长连接避免不断创建tcp连接 心跳包格式的定义及处理报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度你发送数据包的格式，是json的还是其他序列化的方式 Socket连接池干嘛的Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJj6NAPDhL4yUekqwt7TslbxhmQtof0mvtujnB9n3RUbZWMXFS7vUxBMg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
 
 
 
@@ -413,7 +419,10 @@
       
 
       
-        <h2 id="长连接和短连接是什么？为什么是必要的？"><a href="#长连接和短连接是什么？为什么是必要的？" class="headerlink" title="长连接和短连接是什么？为什么是必要的？"></a>长连接和短连接是什么？为什么是必要的？</h2><h3 id="心跳包作用及格式"><a href="#心跳包作用及格式" class="headerlink" title="心跳包作用及格式"></a>心跳包作用及格式</h3><p>作用是保持长连接避免不断创建tcp连接</p>
+        <blockquote>
+<p>摘自<a href="https://mp.weixin.qq.com/s?__biz=MzU4MDUyMDQyNQ==&amp;mid=2247487375&amp;idx=2&amp;sn=0a7ac7402333ada0b91021d74684a9dc&amp;chksm=fd54df09ca23561f2bfcb44a4b38b099134e42cea5046038c23d167c3819388fe82be4abd2a1&amp;scene=132#wechat_redirect" target="_blank" rel="noopener">TCP 协议面试灵魂 12 问 !</a></p>
+</blockquote>
+<h2 id="长连接和短连接是什么？为什么是必要的？"><a href="#长连接和短连接是什么？为什么是必要的？" class="headerlink" title="长连接和短连接是什么？为什么是必要的？"></a>长连接和短连接是什么？为什么是必要的？</h2><h3 id="心跳包作用及格式"><a href="#心跳包作用及格式" class="headerlink" title="心跳包作用及格式"></a>心跳包作用及格式</h3><p>作用是保持长连接避免不断创建tcp连接</p>
 <p>心跳包格式的定义及处理<br>报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度<br>你发送数据包的格式，是json的还是其他序列化的方式</p>
 <h3 id="Socket连接池干嘛的"><a href="#Socket连接池干嘛的" class="headerlink" title="Socket连接池干嘛的"></a>Socket连接池干嘛的</h3><p>Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接，补充连接池的长连接的数量</p>
 <h2 id="Http加密过程是怎样的"><a href="#Http加密过程是怎样的" class="headerlink" title="Http加密过程是怎样的"></a>Http加密过程是怎样的</h2><h3 id="让第三方CA来确保server公钥正确"><a href="#让第三方CA来确保server公钥正确" class="headerlink" title="让第三方CA来确保server公钥正确"></a>让第三方CA来确保server公钥正确</h3><a id="more"></a>
@@ -430,15 +439,143 @@
 <li>然后用server私钥对摘要进行加密得到数字签名。server把明文连同数字签名一起发送给client</li>
 <li>client用server公钥对数字签名解密得到信息摘要，然后用相同的hash对数据进行计算得到信息摘要，比对两个信息摘要是否一致。</li>
 </ol>
-<h2 id="tcp三次握手问题"><a href="#tcp三次握手问题" class="headerlink" title="tcp三次握手问题"></a>tcp三次握手问题</h2><h3 id="为什么TIME-WAIT状态还需要等2MSL后才能返回到CLOSED状态？"><a href="#为什么TIME-WAIT状态还需要等2MSL后才能返回到CLOSED状态？" class="headerlink" title="为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态？"></a>为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态？</h3><p><strong>TIME_WAIT状态的作用就是用来重发可能丢失的ACK报文。</strong></p>
-<blockquote>
-<p>虽然双方都同意关闭连接了，但网络是不可靠的，你无法保证你最后发送的ACK报文会一定被对方收到，因此对方处于LAST_ACK状态下的Socket可能会因为超时未收到ACK报文，而重发FIN报文</p>
+<h2 id="为什么客户端在TIME-WAIT状态时还需要等2MSL后才能返回到CLOSED状态？"><a href="#为什么客户端在TIME-WAIT状态时还需要等2MSL后才能返回到CLOSED状态？" class="headerlink" title="为什么客户端在TIME_WAIT状态时还需要等2MSL后才能返回到CLOSED状态？"></a>为什么客户端在TIME_WAIT状态时还需要等2MSL后才能返回到CLOSED状态？</h2><p><strong>TIME_WAIT状态的作用就是用来重发可能丢失的ACK报文。</strong><br><img src="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJj6NAPDhL4yUekqwt7TslbxhmQtof0mvtujnB9n3RUbZWMXFS7vUxBMg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="四次挥手"><br>报文最大生存时间(Maximum Segment Lifetime)</p>
+<ul>
+<li>1 个 <code>MSL</code> 确保四次挥手中主动关闭方最后的 <code>ACK</code> 报文最终能达到对端</li>
+<li>1 个 <code>MSL</code> 确保对端没有收到 <code>ACK</code> 后重传的 <code>FIN</code> 报文可以到达<blockquote>
+<p>虽然双方都同意关闭连接了，但网络是不可靠的，你无法保证你最后发送的<code>ACK</code>报文会一定被对方收到。<br>因此对方处于<code>LAST_ACK</code>状态下的Socket可能会因为超时未收到<code>ACK</code>报文，而重发FIN报文</p>
 </blockquote>
-<h3 id="TIME-WAIT状态所导致的服务器问题"><a href="#TIME-WAIT状态所导致的服务器问题" class="headerlink" title="TIME_WAIT状态所导致的服务器问题"></a>TIME_WAIT状态所导致的服务器问题</h3><p>一台机器上端口号数量的上限是65536个，<a href="https://segmentfault.com/a/1190000014044351" target="_blank" rel="noopener">TCP服务器最大并发连接数是多少？</a>。</p>
+</li>
+</ul>
+<h3 id="TIME-WAIT状态所导致的服务器问题"><a href="#TIME-WAIT状态所导致的服务器问题" class="headerlink" title="TIME_WAIT状态所导致的服务器问题"></a>TIME_WAIT状态所导致的服务器问题</h3><p>一台机器上端口号数量的上限是65536个，<a href="https://segmentfault.com/a/1190000014044351" target="_blank" rel="noopener">TCP服务器最大并发连接数是多少？</a></p>
 <ul>
 <li>如果在同一台机器上进行压力测试模拟上万的客户请求，并且循环与服务端进行短连接通信，那么这台机器将产生4000个左右的TIME_WAIT Socket，后续的短连接就会产生address already in use : connect的异常</li>
-<li>如果使用Nginx作为方向代理也需要考虑TIME_WAIT状态，发现系统存在大量TIME_WAIT状态的连接，通过调整内核参数解决。</li>
+<li>如果使用Nginx作为方向代理也需要考虑TIME_WAIT状态，发现系统存在大量TIME_WAIT状态的连接，通过调整内核参数解决。<h2 id="tcp为什么是四次挥手而不是三次？"><a href="#tcp为什么是四次挥手而不是三次？" class="headerlink" title="tcp为什么是四次挥手而不是三次？"></a>tcp为什么是四次挥手而不是三次？</h2>因为服务端收到客户端发送的FIN后，可能还有需要发送给客户端的内容，所以只先回一个ACK<br>如果服务端的ACK延迟到服务端发完数据后ACK和FIN一起发，会导致超过一个MSL后客户端会以为第一个客户端发起的FIN丢了，不断地重发FIN</li>
 </ul>
+<h2 id="tcp为什么发起握手连接是三次，而不是两次？"><a href="#tcp为什么发起握手连接是三次，而不是两次？" class="headerlink" title="tcp为什么发起握手连接是三次，而不是两次？"></a>tcp为什么发起握手连接是三次，而不是两次？</h2><p>根本原因: 无法确认客户端的接收能力。</p>
+<blockquote>
+<p>三次握手的目的是确认双方发送和接收的能力<br>如果第一次客户端发起的SYN A丢包，等到客户端和服务器重新建立且正常关闭了连接后，这个丢包了的SYN A被服务器收到了，由于只需要两次，服务器会建立新连接，而客户端不知道</p>
+</blockquote>
+<h2 id="tcp三次握手过程中可以携带数据么？"><a href="#tcp三次握手过程中可以携带数据么？" class="headerlink" title="tcp三次握手过程中可以携带数据么？"></a>tcp三次握手过程中可以携带数据么？</h2><p>第三次握手的时候，可以携带。前两次握手不能携带数据。</p>
+<blockquote>
+<p>如果前两次握手能够携带数据，那么一旦有人想攻击服务器，那么他只需要在第一次握手中的 SYN 报文中放大量数据，那么服务器势必会消耗更多的时间和内存空间去处理这些数据，增大了服务器被攻击的风险。</p>
+</blockquote>
+<h2 id="SYN-Flood-攻击是什么，如何解决？"><a href="#SYN-Flood-攻击是什么，如何解决？" class="headerlink" title="SYN Flood 攻击是什么，如何解决？"></a>SYN Flood 攻击是什么，如何解决？</h2><p>典型的 DoS/DDoS 攻击</p>
+<ul>
+<li><p>原因：客户端短时间内伪造大量不存在的IP，疯狂向服务端发送第一次握手SYN</p>
+<ol>
+<li>服务端处理到大量的SYN，需要返回第二次握手的ACK和SYN，半连接队列很快被占满无法接受正常的请求<blockquote>
+<p>半连接队列：服务端收到以后回复第二次握手的ACK和SYN，状态由<code>LISTEN</code>变为<code>SYN_RCVD</code>，并连接挂入SYN半连接队列</p>
+</blockquote>
+</li>
+<li>由于是不存在的IP，服务端发送第二次握手的ACK和SYN后，长期收不到第三次握手，会导致服务端不断重发第二次握手</li>
+</ol>
+</li>
+<li><p>解决方法：</p>
+</li>
+</ul>
+<ol>
+<li>增加服务端SYN半连接队列容量</li>
+<li>减少服务端重试第二次握手的次数，避免短期遇到大量的超时重发</li>
+<li>利用<code>SYN Cookie</code>验证客户端存在：服务端在接收到第一次握手的SYN时不立即分配资源，根据这个SYN计算出一个Cookie，连同第二次握手回复给客户端，客户端在回复第三次握手时带上Cookie，服务端在验证Cookie合法后才会分配连接资源</li>
+</ol>
+<h2 id="介绍一下-TCP-报文头部的字段"><a href="#介绍一下-TCP-报文头部的字段" class="headerlink" title="介绍一下 TCP 报文头部的字段"></a>介绍一下 TCP 报文头部的字段</h2><p><img src="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJjkfIUVTE7aPj8b57z84V8lxcXyuib6x6oXYlBCJ2oFpwQQdZ91S5nx3Q/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="TCP报文Header"></p>
+<ol>
+<li>两个端口，各2字节：传输层TCP 报文怎么没有源 IP 和目标 IP 呢？这是因为在网络层 IP 层就已经处理了 IP。</li>
+<li>序列号(<code>Sequence number</code>)本报文段第一个字节的序号。4字节 - [0,2^32-1]，可以循环到0<ul>
+<li>保证数据包按正确的顺序组装。</li>
+<li>在 SYN 报文中交换彼此的初始序列号</li>
+<li><blockquote>
+<p>ISN(<code>Initial Sequence Number</code>)三次握手时的初始序列号。ISN动态增长每4ms加一，溢出则从0重启，使得无法被攻击者猜测ISN。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>ACK(<code>Acknowledgment number</code>)，告知对方下一个期望收到的序列号，小于ACK的所有字节都已经全部收到</li>
+<li>SYN/ACK/FIN</li>
+<li>RST：<code>Reset</code>，强制断开连接</li>
+<li>PSH：<code>Push</code>，对方这些数据包收到后应该马上交给上层的应用，不能缓存</li>
+<li>窗口大小，2字节(16位)但不够用。可以有窗口缩放作为比例因子，将窗口值扩大为2^n</li>
+<li>校验和(<code>check sum</code>) 2字节</li>
+<li>可选部分：<ul>
+<li>TimeStamp: TCP 时间戳。计算往返时延 RTT(<code>Round-Trip Time</code>)，防止序列号的回绕问题<ul>
+<li>kind = 8， length = 10， info 有两部分构成: <code>timestamp</code>和<code>timestamp echo</code>，各占 4 个字节。</li>
+<li><img src="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJjkYY3ib89xV8ZcXrzFLIYInDscbzGiaC3owHnIZJEffApicyTWAMgfVTJw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="计算RTT时遇到的问题"></li>
+<li>计算RTT时遇到的问题：是以第一次报文为开始还是重发的为开始？所以有<code>timestamp</code>和<code>timestamp echo</code>分别记录本报文时间，和透传上一条对方发的报文的时间。<ol>
+<li>a 向 b 发送的时候，timestamp 中存放的内容就是 a 主机发送时的内核时刻 ta1。</li>
+<li>b 向 a 回复 s2 报文的时候，timestamp 中存放的是 b 主机的时刻 tb, timestamp echo字段为从 s1 报文中解析出来的 ta1。</li>
+<li>a 收到 b 的 s2 报文之后，此时 a 主机的内核时刻是 ta2, 而在 s2 报文中的 timestamp echo 选项中可以得到 ta1, 也就是 s2 对应的报文最初的发送时刻。然后直接采用 ta2 - ta1 就得到了 RTT 的值。</li>
+</ol>
+</li>
+<li>防止序列号回绕问题：网络中如果存在Seq相同报文，需要用时间戳做区分。</li>
+<li><blockquote>
+<p>由于Seq溢出后会返回0，此时溢出前的Seq序列号，在溢出后从0重启后又到了相同Seq序列号。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>MSS: 指的是 TCP 允许的从对方接收的最大报文段。</li>
+<li>SACK: 选择确认选项。</li>
+<li>Window Scale：窗口缩放选项。</li>
+</ul>
+</li>
+</ol>
+<h2 id="TCP-的超时重传时间是如何计算的？"><a href="#TCP-的超时重传时间是如何计算的？" class="headerlink" title="TCP 的超时重传时间是如何计算的？"></a>TCP 的超时重传时间是如何计算的？</h2><p>重传间隔也叫做超时重传时间(<code>Retransmission TimeOut</code>, 简称<code>RTO</code>)，根据<code>RTT</code>密切变化<br>每次传输会根据<code>RTT</code>更新<code>SRTT</code>(<code>Smoothed round trip time</code>，即平滑往返时间)，然后利用<code>|RTT - SRTT|</code>再和<code>SRTT</code>占不同权重求得</p>
+<h2 id="TCP-Fast-Open-TFO-是什么？"><a href="#TCP-Fast-Open-TFO-是什么？" class="headerlink" title="TCP Fast Open (TFO) 是什么？"></a>TCP Fast Open (TFO) 是什么？</h2><p>优化后的 TCP 握手流程，快速打开一个TCP连接。</p>
+<ul>
+<li>在首次三次握手的后续握手，服务端验证<code>Cookie</code>后可以直接返回 HTTP 响应.充分利用了1 个RTT(Round-Trip Time，往返时延)的时间提前进行数据传输</li>
+<li>可以通过上文提到的<code>Cookie</code>达成，后续的TCP请求客户端直接发送缓存的<code>Cookie</code>、<code>SYN</code>和<code>HTTP</code>请求。</li>
+<li>服务器可以把第二次握手改为，仅验证了<code>Cookie</code>是否有效，就可以返回HTTP响应。客户端再第三次握手ACK<br><img src="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJjibz2z6kK5Pw4ibicPxQicZniaNkyUpJ5KBFYEkwS9Ese1QfkgyEMGbEm2ug/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="TCP Fast Open"><blockquote>
+<p>注意: 客户端最后握手的 ACK 不一定要等到服务端的 HTTP 响应到达才发送，两个过程没有任何关系。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="TCP-的流量控制？"><a href="#TCP-的流量控制？" class="headerlink" title="TCP 的流量控制？"></a>TCP 的流量控制？</h2><p>接收端接受能力低，对接收端来说：<br><img src="https://mmbiz.qpic.cn/mmbiz/8Jeic82Or04kGVntmxaM2kMYkqSk10RJjgN2uwic16EeL6hq7JrSNoBO67UlX7ghtb7muqpajV3TYPX7nEF8iaIibQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="滑动窗口"></p>
+<blockquote>
+<p>SND 即send, WND 即window, UNA 即unacknowledged, 表示未被确认（已经发送未被确认），NXT 即next, 表示下一个发送的位置（未发送可以发送）<br>上图是发送方的发送窗口。<br>由于接收端处理能力低：大量负载来不及处理的情况，只能处理一部分，剩下的一部分留在缓冲队列里，这样下次能接受的窗口就小了。</p>
+<ul>
+<li>需要发送端少发送，接收端的ACK报文首部会带上能被接受窗口大小。</li>
+<li>此时发送端收到ACK，UNA往右移动，同时发送窗口会整个缩小</li>
+</ul>
+</blockquote>
+<h2 id="TCP-的拥塞控制？"><a href="#TCP-的拥塞控制？" class="headerlink" title="TCP 的拥塞控制？"></a>TCP 的拥塞控制？</h2><p>发送端发送能力低，容易丢包，对发送端来说：<br>TCP 每条连接都需要维护两个核心状态:</p>
+<ul>
+<li>拥塞窗口（<code>Congestion Window</code>，<code>cwnd</code>）</li>
+<li><blockquote>
+<p>接收窗口(rwnd)是接收端给的限制；拥塞窗口(cwnd)是发送端的限制</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>发送窗口大小 = min(rwnd, cwnd)</p>
+</blockquote>
+</li>
+<li>慢启动阈值（<code>Slow Start Threshold</code>，<code>ssthresh</code>）<br>涉及到的算法有这几个:</li>
+<li>慢启动（三次握手后每一个<code>RTT</code>窗口大小翻倍）</li>
+<li>拥塞避免（慢启动阈值后开始转为缓慢线性增长，避免堵塞）</li>
+<li>快速重传和快速恢复（如果丢包，发现多个重复ACK后不用等待一个<code>RTO</code>，直接进行重传）<ol>
+<li>快速重传：接收端选择性重传(<code>SACK</code>，<code>Selective Acknowledgment</code>)丢掉的部分</li>
+<li>快速恢复：（防止加重网络堵塞）<ul>
+<li><code>cwnd</code>和拥塞阈值同时降低为 <code>cwnd</code> 的一半</li>
+<li><code>cwnd</code>变为线性增长</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="延迟发送和延迟接收"><a href="#延迟发送和延迟接收" class="headerlink" title="延迟发送和延迟接收"></a>延迟发送和延迟接收</h2><p>如果延迟发送和延迟接收同时一起使用，可能会造成更大的延迟，产生性能问题</p>
+<h3 id="如何避免小包的频繁发送？-Nagle-算法"><a href="#如何避免小包的频繁发送？-Nagle-算法" class="headerlink" title="如何避免小包的频繁发送？ Nagle 算法"></a>如何避免小包的频繁发送？ Nagle 算法</h3><ul>
+<li>当第一次发送数据时不用等待，就算是 1byte 的小包也立即发送</li>
+<li>后面发送满足下面条件之一就可以发了:<ol>
+<li>数据包大小达到最大段大小(Max Segment Size, 即 MSS)</li>
+<li>之前所有包的 ACK 都已接收到<h3 id="延迟确认"><a href="#延迟确认" class="headerlink" title="延迟确认"></a>延迟确认</h3>短时间内连续收到包，可以合并ACK，除非需要立即回复ACK的场景：</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>接收到了大于一个 frame 的报文，且需要调整窗口大小</li>
+<li>TCP 处于 quickack 模式（通过tcp_in_quickack_mode设置）</li>
+<li>发现了乱序包</li>
+</ol>
 <h2 id="HTTPDNS"><a href="#HTTPDNS" class="headerlink" title="HTTPDNS"></a>HTTPDNS</h2><p><a href="https://help.aliyun.com/document_detail/60181.html" target="_blank" rel="noopener">Android Webview + HttpDns最佳实践</a><br><a href="https://mp.weixin.qq.com/s/iaPtSF-twWz-AN66UJUBDg" target="_blank" rel="noopener">DNS优化 - 百度的HTTPDNS</a>大部分标准DNS都是基于UDP与DNS服务器交互的，HTTPDNS则是利用HTTP协议与DNS服务器交互</p>
 <blockquote>
 <p>摘要一则：对于客户端，在PC上要学会使用tcpdump和Wireshark等工具，适当使用Fiddler和Charles等工具，很多时候电脑和手机的网络环境不见得一致，所以要在手机上使用iNetTools，Ping&amp;DNS或终端工具。学会使用工具后，要学着创造不同的网络环境，有很多工具能帮助你完成这点，比如苹果的Network Link Conditioner，FaceBook的ATC（Augmented Traffic Control）等</p>
@@ -567,7 +704,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -589,7 +726,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -622,7 +759,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#长连接和短连接是什么？为什么是必要的？"><span class="nav-text">长连接和短连接是什么？为什么是必要的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#心跳包作用及格式"><span class="nav-text">心跳包作用及格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Socket连接池干嘛的"><span class="nav-text">Socket连接池干嘛的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http加密过程是怎样的"><span class="nav-text">Http加密过程是怎样的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#让第三方CA来确保server公钥正确"><span class="nav-text">让第三方CA来确保server公钥正确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成会话密钥"><span class="nav-text">生成会话密钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何防止数据被篡改"><span class="nav-text">如何防止数据被篡改</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp三次握手问题"><span class="nav-text">tcp三次握手问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么TIME-WAIT状态还需要等2MSL后才能返回到CLOSED状态？"><span class="nav-text">为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TIME-WAIT状态所导致的服务器问题"><span class="nav-text">TIME_WAIT状态所导致的服务器问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPDNS"><span class="nav-text">HTTPDNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡"><span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩算法用的是什么？"><span class="nav-text">压缩算法用的是什么？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#长连接和短连接是什么？为什么是必要的？"><span class="nav-text">长连接和短连接是什么？为什么是必要的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#心跳包作用及格式"><span class="nav-text">心跳包作用及格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Socket连接池干嘛的"><span class="nav-text">Socket连接池干嘛的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http加密过程是怎样的"><span class="nav-text">Http加密过程是怎样的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#让第三方CA来确保server公钥正确"><span class="nav-text">让第三方CA来确保server公钥正确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成会话密钥"><span class="nav-text">生成会话密钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何防止数据被篡改"><span class="nav-text">如何防止数据被篡改</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么客户端在TIME-WAIT状态时还需要等2MSL后才能返回到CLOSED状态？"><span class="nav-text">为什么客户端在TIME_WAIT状态时还需要等2MSL后才能返回到CLOSED状态？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TIME-WAIT状态所导致的服务器问题"><span class="nav-text">TIME_WAIT状态所导致的服务器问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp为什么是四次挥手而不是三次？"><span class="nav-text">tcp为什么是四次挥手而不是三次？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp为什么发起握手连接是三次，而不是两次？"><span class="nav-text">tcp为什么发起握手连接是三次，而不是两次？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp三次握手过程中可以携带数据么？"><span class="nav-text">tcp三次握手过程中可以携带数据么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SYN-Flood-攻击是什么，如何解决？"><span class="nav-text">SYN Flood 攻击是什么，如何解决？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍一下-TCP-报文头部的字段"><span class="nav-text">介绍一下 TCP 报文头部的字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-的超时重传时间是如何计算的？"><span class="nav-text">TCP 的超时重传时间是如何计算的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-Fast-Open-TFO-是什么？"><span class="nav-text">TCP Fast Open (TFO) 是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-的流量控制？"><span class="nav-text">TCP 的流量控制？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-的拥塞控制？"><span class="nav-text">TCP 的拥塞控制？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延迟发送和延迟接收"><span class="nav-text">延迟发送和延迟接收</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何避免小包的频繁发送？-Nagle-算法"><span class="nav-text">如何避免小包的频繁发送？ Nagle 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延迟确认"><span class="nav-text">延迟确认</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPDNS"><span class="nav-text">HTTPDNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡"><span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩算法用的是什么？"><span class="nav-text">压缩算法用的是什么？</span></a></li></ol></div>
             
 
           </div>

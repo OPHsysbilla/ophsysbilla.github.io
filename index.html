@@ -394,7 +394,10 @@
 
       
         
-          <h1 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h1><p>见从中断讲起的好文：<a href="https://my.oschina.net/editorial-story/blog/3052308?p=2" target="_blank" rel="noopener">epoll 的本质是什么？</a><br>linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型<br>
+          <h1 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h1><ol>
+<li>见从中断讲起的好文：<a href="https://my.oschina.net/editorial-story/blog/3052308?p=2" target="_blank" rel="noopener">epoll 的本质是什么？</a></li>
+<li>然后可以看<a href="https://mp.weixin.qq.com/s/FRg_lSHDiZofzTZApU6z9Q" target="_blank" rel="noopener">彻底搞懂epoll高效运行的原理
+</a><br>linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020-11-17-Linux面试答案整理.html#more" rel="contents">
@@ -404,7 +407,155 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </li></ol></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2020-11-16-Handler面试40问答案整理.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Satur">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Android tips">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020-11-16-Handler面试40问答案整理.html" itemprop="url">Handler面试40问答案整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-16T14:21:02+08:00">
+                2020-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>摘自 [Handler高频40问] (<a href="https://mubu.com/doc/4AOg4eG-V2v" target="_blank" rel="noopener">https://mubu.com/doc/4AOg4eG-V2v</a>)</p>
+<ul>
+<li><code>epoll</code> 有什么优势？<code>Handler</code> 和管道(<code>Pipe</code>)的关系？<code>Android M</code> 开始，将 <code>Pipe</code> 换成了 <code>eventFd</code>是为什么？<code>Handler</code> 底层为什么使用管道，而不是 <code>Binder</code> ？<code>Handler</code> 可以 <code>IPC</code> 通信吗？
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020-11-16-Handler面试40问答案整理.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </li></ul></div>
     
     
     
@@ -819,7 +970,10 @@
 
       
         
-          <h2 id="长连接和短连接是什么？为什么是必要的？"><a href="#长连接和短连接是什么？为什么是必要的？" class="headerlink" title="长连接和短连接是什么？为什么是必要的？"></a>长连接和短连接是什么？为什么是必要的？</h2><h3 id="心跳包作用及格式"><a href="#心跳包作用及格式" class="headerlink" title="心跳包作用及格式"></a>心跳包作用及格式</h3><p>作用是保持长连接避免不断创建tcp连接</p>
+          <blockquote>
+<p>摘自<a href="https://mp.weixin.qq.com/s?__biz=MzU4MDUyMDQyNQ==&amp;mid=2247487375&amp;idx=2&amp;sn=0a7ac7402333ada0b91021d74684a9dc&amp;chksm=fd54df09ca23561f2bfcb44a4b38b099134e42cea5046038c23d167c3819388fe82be4abd2a1&amp;scene=132#wechat_redirect" target="_blank" rel="noopener">TCP 协议面试灵魂 12 问 !</a></p>
+</blockquote>
+<h2 id="长连接和短连接是什么？为什么是必要的？"><a href="#长连接和短连接是什么？为什么是必要的？" class="headerlink" title="长连接和短连接是什么？为什么是必要的？"></a>长连接和短连接是什么？为什么是必要的？</h2><h3 id="心跳包作用及格式"><a href="#心跳包作用及格式" class="headerlink" title="心跳包作用及格式"></a>心跳包作用及格式</h3><p>作用是保持长连接避免不断创建tcp连接</p>
 <p>心跳包格式的定义及处理<br>报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度<br>你发送数据包的格式，是json的还是其他序列化的方式</p>
 <h3 id="Socket连接池干嘛的"><a href="#Socket连接池干嘛的" class="headerlink" title="Socket连接池干嘛的"></a>Socket连接池干嘛的</h3><p>Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接，补充连接池的长连接的数量</p>
 <h2 id="Http加密过程是怎样的"><a href="#Http加密过程是怎样的" class="headerlink" title="Http加密过程是怎样的"></a>Http加密过程是怎样的</h2><h3 id="让第三方CA来确保server公钥正确"><a href="#让第三方CA来确保server公钥正确" class="headerlink" title="让第三方CA来确保server公钥正确"></a>让第三方CA来确保server公钥正确</h3>
@@ -973,7 +1127,7 @@
 </li>
 <li><p><a href="https://juejin.im/post/6844904105438134286" target="_blank" rel="noopener">面试官: 说一下你做过哪些性能优化?</a></p>
 </li>
-</ol>
+<li><a href="https://www.zybuluo.com/TryLoveCatch/note/1302255" target="_blank" rel="noopener">面试之Android性能优化</a>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020-11-09-Android面试答案整理.html#more" rel="contents">
@@ -983,7 +1137,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </li></ol></div>
     
     
     
@@ -1119,7 +1273,8 @@
 
       
         
-          <h2 id="约瑟夫环问题"><a href="#约瑟夫环问题" class="headerlink" title="约瑟夫环问题"></a>约瑟夫环问题</h2><p> <a href="https://blog.csdn.net/lei396601057/article/details/109312337" target="_blank" rel="noopener">见此</a></p>
+          <h1 id="移动0"><a href="#移动0" class="headerlink" title="移动0"></a>移动0</h1><h1 id="二叉树的中序遍历"><a href="#二叉树的中序遍历" class="headerlink" title="二叉树的中序遍历"></a>二叉树的中序遍历</h1><p>¥ 爬楼梯、括号生成</p>
+<h1 id="删除排序数组中的重复项"><a href="#删除排序数组中的重复项" class="headerlink" title="删除排序数组中的重复项"></a>删除排序数组中的重复项</h1><h1 id="盛水最多的容器"><a href="#盛水最多的容器" class="headerlink" title="盛水最多的容器"></a>盛水最多的容器</h1><h1 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h1><h2 id="约瑟夫环问题"><a href="#约瑟夫环问题" class="headerlink" title="约瑟夫环问题"></a>约瑟夫环问题</h2><p> <a href="https://blog.csdn.net/lei396601057/article/details/109312337" target="_blank" rel="noopener">见此</a></p>
 <h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><ol>
 <li><p><a href="https://leetcode-cn.com/problems/trapping-rain-water/" target="_blank" rel="noopener">42. 接雨水</a></p>
 </li>
@@ -1601,154 +1756,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2019-01-23-算法简明笔记.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Satur">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Android tips">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019-01-23-算法简明笔记.html" itemprop="url">算法简明笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-23T11:09:39+08:00">
-                2019-01-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>简略地描述思路，以供后来观之</p>
-<p><em>本笔记只是备忘录，<strong>并不是详细解决方案</strong>，请使用<code>ctrl+F</code>查询</em></p>
-<h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><h2 id="1-打印字符串全排列"><a href="#1-打印字符串全排列" class="headerlink" title="1. 打印字符串全排列"></a>1. 打印字符串全排列</h2><p>递归后需要马上还原（因为所有的），因为递归是一颗深度优先的树（也就是栈），是先从叶子开始改变的<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019-01-23-算法简明笔记.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1801,7 +1808,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1823,7 +1830,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

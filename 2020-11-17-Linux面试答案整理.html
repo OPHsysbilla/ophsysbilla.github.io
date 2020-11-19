@@ -118,19 +118,24 @@
 
 
 
-<meta name="description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
+<meta name="description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？ 然后可以看彻底搞懂epoll高效运行的原理 linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
 <meta name="keywords" content="面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux面试答案整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-17-Linux面试答案整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
+<meta property="og:description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？ 然后可以看彻底搞懂epoll高效运行的原理 linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png">
-<meta property="og:updated_time" content="2020-11-17T12:03:22.413Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-40631870dd4c58db.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/426/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-66c23adafbfbd47f.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/418/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-df9323d3ae59b8f8.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/432/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-2700bead4cf14739.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/429/format/webp">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190421151618649.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbjEzMTQx,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-11-19T08:24:12.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux面试答案整理">
-<meta name="twitter:description" content="异步I/O见从中断讲起的好文：epoll 的本质是什么？linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
+<meta name="twitter:description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？ 然后可以看彻底搞懂epoll高效运行的原理 linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
 <meta name="twitter:image" content="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png">
 
 
@@ -393,15 +398,17 @@
       
 
       
-        <h1 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h1><p>见从中断讲起的好文：<a href="https://my.oschina.net/editorial-story/blog/3052308?p=2" target="_blank" rel="noopener">epoll 的本质是什么？</a><br>linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型<br><a id="more"></a></p>
-<p><img src="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png" alt="各种I/O模型"></p>
-<blockquote>
+        <h1 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h1><ol>
+<li>见从中断讲起的好文：<a href="https://my.oschina.net/editorial-story/blog/3052308?p=2" target="_blank" rel="noopener">epoll 的本质是什么？</a></li>
+<li>然后可以看<a href="https://mp.weixin.qq.com/s/FRg_lSHDiZofzTZApU6z9Q" target="_blank" rel="noopener">彻底搞懂epoll高效运行的原理
+</a><br>linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型<a id="more"></a>
+<h2 id="各种I-O模型"><a href="#各种I-O模型" class="headerlink" title="各种I/O模型"></a>各种I/O模型</h2><img src="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png" alt="各种I/O模型"><blockquote>
 <p>non-blocking IO仅仅要求处理的第一阶段不block即可，而asynchronous IO要求两个阶段都不能block住</p>
 </blockquote>
-<h1 id="select、poll、epoll之间的区别"><a href="#select、poll、epoll之间的区别" class="headerlink" title="select、poll、epoll之间的区别"></a>select、poll、epoll之间的区别</h1><p><code>select</code> ，<code>poll</code> ，<code>epoll</code> 都是<strong>I/O多路复用</strong>的机制，都是同步I/O。都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是<strong>阻塞</strong>的。好处在于可以以较少的代价来同时监听处理多个IO。</p>
-<blockquote>
+<h2 id="select、poll、epoll之间的区别"><a href="#select、poll、epoll之间的区别" class="headerlink" title="select、poll、epoll之间的区别"></a>select、poll、epoll之间的区别</h2><code>select</code> ，<code>poll</code> ，<code>epoll</code> 都是<strong>I/O多路复用</strong>的机制，都是同步I/O。都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是<strong>阻塞</strong>的。好处在于可以以较少的代价来同时监听处理多个IO。<blockquote>
 <p><strong>异步I/O</strong>则无需自己负责进行读写，其实现会负责<em>把数据从内核拷贝到用户空间</em>。<br><code>epoll</code>是<code>Linux</code>所特有，而<code>select</code>则应该是<code>POSIX</code>所规定，一般操作系统均有实现</p>
-<ol>
+</blockquote>
+</li>
 <li><code>select</code> -&gt; 时间复杂度<code>O(n)</code><ul>
 <li>具有O(n)的无差别轮询复杂度，同时处理的流越多无差别轮询时间就越长。</li>
 <li><blockquote>
@@ -416,7 +423,8 @@
 <li>需要维护一个用来存放大量fd的数据结构，这样会使得用户空间和内核空间在传递该结构时复制开销大</li>
 </ul>
 </li>
-<li><code>poll</code> -&gt; 时间复杂度<code>O(n)</code><br><code>poll</code> 本质上和<code>select</code>没有区别。使用<code>pollfd</code>结构而不是select的<code>fd_set</code>结构<ul>
+<li><p><code>poll</code> -&gt; 时间复杂度<code>O(n)</code><br><code>poll</code> 本质上和<code>select</code>没有区别。使用<code>pollfd</code>结构而不是select的<code>fd_set</code>结构</p>
+<ul>
 <li>消息传递需要内核拷贝。将用户传入的数组拷贝到<strong>内核空间</strong>，查询每个<code>fd</code>对应的设备状态数组</li>
 <li><blockquote>
 <p>如果设备就绪则在设备等待队列中加入一项并继续遍历，如果遍历完所有fd后没有发现就绪设备，则挂起当前进程。直到设备就绪或者主动超时，被唤醒后它又要再次遍历fd。这个过程经历了多次无谓的遍历。</p>
@@ -433,10 +441,8 @@
 </li>
 </ul>
 </li>
-</ol>
-</blockquote>
-<ol start="3">
-<li><code>epoll</code> -&gt; 时间复杂度<code>O(1)</code><br><code>epoll</code>可以理解为<strong>event poll</strong>，不同于忙轮询和无差别轮询<br>poll实际上是<strong>事件驱动</strong>（每个事件关联上fd）的，哪个流发生了I/O只回调哪个流</li>
+<li><p><code>epoll</code> -&gt; 时间复杂度<code>O(1)</code><br><code>epoll</code>可以理解为<strong>event poll</strong>，不同于忙轮询和无差别轮询<br>poll实际上是<strong>事件驱动</strong>（每个事件关联上fd）的，哪个流发生了I/O只回调哪个流</p>
+</li>
 </ol>
 <ul>
 <li>通过内核和用户空间共享一块内存来实现的。利用<code>mmap()</code>文件映射内存加速与内核空间的消息传递</li>
@@ -449,6 +455,56 @@
 </ul>
 <p>epoll有它的使用场景，更适合于处理高并发的场合。<br>如果并发量很少，比如几百个连接这个级别，select的效率会比epoll高只有连接数大到一定长度，epoll的额外消耗才能抵消select的遍历</p>
 <p>游戏服务器一般是<code>one loop per thread</code><br>多线程服务器此文 <a href="https://www.cnblogs.com/solstice/archive/2010/02/12/multithreaded_server.html" target="_blank" rel="noopener">陈硕的 Blog</a></p>
+<h2 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h2><blockquote>
+<p>摘自：<a href="https://www.jianshu.com/p/e76e3580e356" target="_blank" rel="noopener">浅谈 Linux下的零拷贝机制</a></p>
+</blockquote>
+<ol>
+<li>传统I/O<blockquote>
+<p><code>DMA</code>(<code>Direct Memory Access</code>) 直接内存访问 ：允许外设组件将I/O数据直接传送到主存储器中并且传输不需要CPU的参与，将CPU解放出来<br>4次用户空间与内核空间的上下文切换，以及4次数据拷贝。<br>其中4次数据拷贝中包括了2次DMA拷贝和2次CPU拷贝<br><img src="https://upload-images.jianshu.io/upload_images/4235178-40631870dd4c58db.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/426/format/webp" alt="传统I/O"></p>
+<ul>
+<li>通过DMA引擎将内核缓冲区中的数据传递到协议引擎(第四次拷贝: socket buffer ——&gt; protocol engine)，这次拷贝是一个独立且异步的过程（将要发送的数据放入到了一个待发送的队列中后就可以返回了）。</li>
+</ul>
+</blockquote>
+</li>
+<li>通过<code>sendfile</code>实现的零拷贝I/O<br>3次数据拷贝中包括了2次DMA拷贝和1次CPU拷贝<br><img src="https://upload-images.jianshu.io/upload_images/4235178-66c23adafbfbd47f.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/418/format/webp" alt="sendfile()零拷贝"></li>
+<li>支持 <code>scatter</code> / <code>gather</code> 的DMA达成非CPU拷贝<br>2次用户空间与内核空间的上下文切换，以及2次非CPU拷贝的拷贝<br><img src="https://upload-images.jianshu.io/upload_images/4235178-df9323d3ae59b8f8.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/432/format/webp" alt="scatter / gather 的DMA"><ul>
+<li>没有数据拷贝到socket缓冲区，只有相应的描述符信息会被拷贝到相应的socket缓冲区当中。该描述符包含了两方面的信息：a)kernel buffer的内存地址；b)kernel buffer的偏移量</li>
+<li>sendfile零拷贝消除了所有内核空间缓冲区与用户空间缓冲区之间的数据拷贝过程，因此应用程序无法对数据进行操作</li>
+</ul>
+</li>
+<li>通过<code>mmap</code>实现的零拷贝I/O（可以修改数据，但比<code>sendfile</code>昂贵）<br>4次用户空间与内核空间的上下文切换，以及3次数据拷贝。其中3次数据拷贝中包括了2次DMA拷贝和1次CPU拷贝。<br><img src="https://upload-images.jianshu.io/upload_images/4235178-2700bead4cf14739.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/429/format/webp" alt="mmap的零拷贝"><ul>
+<li>用户空间和内核空间共享这个缓冲区，不需要将数据从内核空间到用户空间的一次拷贝</li>
+<li>用户空间可以操作缓冲区</li>
+</ul>
+</li>
+</ol>
+<h3 id="Java-的-NIO-DirectByteBuffer"><a href="#Java-的-NIO-DirectByteBuffer" class="headerlink" title="Java 的 NIO DirectByteBuffer"></a>Java 的 NIO DirectByteBuffer</h3><blockquote>
+<p>里面的图是<a href="https://medium.com/@xunnan.xu/its-all-about-buffers-zero-copy-mmap-and-java-nio-50f2a1bfc05c" target="_blank" rel="noopener">It’s all about buffers: zero-copy, mmap and Java NIO</a>的翻译版</p>
+<ol>
+<li><code>HeapByteBuffer</code> ：调用<code>ByteBuffer.allocate()</code>时返回<ul>
+<li>JVM堆分配，被GC控制优化与回收。</li>
+<li>不是页对齐(<code>page aligned</code>)的。如果要和JNI底层代码通信，JVM会拷贝这部分内容到一个页对齐的缓冲区(<code>aligned buffer space</code>)</li>
+</ul>
+</li>
+<li><code>DirectByteBuffer</code> ：调用<code>ByteBuffer.allocateDirect()</code>时返回。<ul>
+<li>底层直接<code>malloc()</code>，不由JVM管理，需要自动手动释放内存防止内存泄漏</li>
+<li>页对齐(<code>page aligned</code>)的。可以直接和底层代码通信（例如OpenGL）</li>
+</ul>
+</li>
+<li><code>MappedByteBuffer</code>：调用<code>FileChannel.map()</code>时返回<ul>
+<li>是<code>mmap()</code>的包装类，用户空间虚拟内存和内核空间物理内存直接映射</li>
+<li><code>private</code> 模式是 <code>copy on write</code>， 若要修改则自己再拷贝一份到用户空间。不对其他映射相同位置的程序文件可见。</li>
+<li><code>READ_WRITE</code> 模式，<code>unmmp</code>写完后需要刷新 <code>TLB</code> 缓存和内存，修改不总是对其他相同映射对程序可见</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h2><p><img src="https://img-blog.csdnimg.cn/20190421151618649.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbjEzMTQx,size_16,color_FFFFFF,t_70" alt="文件描述符"></p>
+<ul>
+<li>在进程 A 中，文件描述符 1 和 20 都指向了同一个打开文件表项，标号为 23（指向了打开文件表中下标为 23 的数组元素），这可能是通过调用 dup()、dup2()、fcntl() 或者对同一个文件多次调用了 open() 函数形成的。</li>
+<li>进程 A 的文件描述符 2 和进程 B 的文件描述符 2 都指向了同一个文件，这可能是在调用 fork() 后出现的（即进程 A、B 是父子进程关系），或者是不同的进程独自去调用 open() 函数打开了同一个文件，此时进程内部的描述符正好分配到与其他进程打开该文件的描述符一样。</li>
+<li>进程 A 的描述符 0 和进程 B 的描述符 3 分别指向不同的打开文件表项，但这些表项均指向 i-node 表的同一个条目（标号为 1976）；换言之，它们指向了同一个文件。发生这种情况是因为每个进程各自对同一个文件发起了 open() 调用。同一个进程两次打开同一个文件，也会发生类似情况。 </li>
+</ul>
 
       
     </div>
@@ -479,8 +535,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020-11-13-暂存的工具.html" rel="next" title="暂存的工具">
-                <i class="fa fa-chevron-left"></i> 暂存的工具
+              <a href="/2020-11-16-Handler面试40问答案整理.html" rel="next" title="Handler面试40问答案整理">
+                <i class="fa fa-chevron-left"></i> Handler面试40问答案整理
               </a>
             
           </div>
@@ -566,7 +622,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,7 +644,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -621,7 +677,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步I-O"><span class="nav-text">异步I/O</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#select、poll、epoll之间的区别"><span class="nav-text">select、poll、epoll之间的区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步I-O"><span class="nav-text">异步I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#各种I-O模型"><span class="nav-text">各种I/O模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select、poll、epoll之间的区别"><span class="nav-text">select、poll、epoll之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零拷贝"><span class="nav-text">零拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-的-NIO-DirectByteBuffer"><span class="nav-text">Java 的 NIO DirectByteBuffer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件描述符"><span class="nav-text">文件描述符</span></a></li></ol></li></ol></div>
             
 
           </div>
