@@ -324,6 +324,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2020-12-17-信息安全归档.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Satur">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Android tips">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020-12-17-信息安全归档.html" itemprop="url">信息安全归档</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-17T14:59:59+08:00">
+                2020-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://www.v2ex.com/t/715485#reply86" target="_blank" rel="noopener">[信息安全] 开放几个课程 🚀</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2020-11-20-Jetpack-面试答案整理.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -974,7 +1094,23 @@
 
       
         
-          <h2 id="ThreadLocal是干嘛的，作用是什么"><a href="#ThreadLocal是干嘛的，作用是什么" class="headerlink" title="ThreadLocal是干嘛的，作用是什么"></a>ThreadLocal是干嘛的，作用是什么</h2><h2 id="线程池里的参数是什么意思"><a href="#线程池里的参数是什么意思" class="headerlink" title="线程池里的参数是什么意思"></a>线程池里的参数是什么意思</h2><p>以下内容参考<a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html" target="_blank" rel="noopener">Java线程池实现原理及其在美团业务中的实践</a></p>
+          <h2 id="ThreadLocal是干嘛的，作用是什么"><a href="#ThreadLocal是干嘛的，作用是什么" class="headerlink" title="ThreadLocal是干嘛的，作用是什么"></a>ThreadLocal是干嘛的，作用是什么</h2><h2 id="如何停止一个线程？使用volatile？内存屏障是什么？"><a href="#如何停止一个线程？使用volatile？内存屏障是什么？" class="headerlink" title="如何停止一个线程？使用volatile？内存屏障是什么？"></a>如何停止一个线程？使用volatile？内存屏障是什么？</h2><ol>
+<li>使用interrupt()更改子线程的标志位，并且在子线程的while循环里判断isInterrupt()状态 <a href="https://docs.oracle.com/javase/1.5.0/docs/guide/misc/threadPrimitiveDeprecation.html" target="_blank" rel="noopener">JavaDoc: How do I stop a thread</a>。同时<code>volitale</code>需要和<code>synchronized</code>同用。<blockquote>
+<p>如果一个线程在休眠中被interrupt了，那么它的中断标记位会重置为false，并抛出一个interruptedException的异常。所以有两种最佳的处理方式：</p>
+<ol>
+<li>方法里try-catch然后再进行一次interrupt，将中断标记位设置为true，这样调用的方法仍然能捕捉到中断信号。</li>
+<li>发现中断标记位置为true后直接方法签名上直接抛出去，这样外层一层一层往出抛，最后run()里处理这个异常。</li>
+</ol>
+</blockquote>
+</li>
+<li>单独使用一个<code>volatile</code>的bool标志位退出循环还是会有问题，当while循环里被阻塞的时候（比如<code>BlockingQueue的put函数（使用ReenterLock）</code>），是无法走到while判断bool标志位的地方的</li>
+<li>volatile赋值后会多执行一个<code>load addl $0x0, (%esp)</code>，相当于插入一个内存屏障：指令重排序时不能把后面的指令重排序到内存屏障之前的位置<blockquote>
+<p>读的时候从主内存而非缓存读，写的时候有任何修改要同步更新主内存</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐</span><br><span class="line">           Main Memory</span><br><span class="line">│                               │</span><br><span class="line">   ┌───────┐┌───────┐┌───────┐</span><br><span class="line">│  │ <span class="keyword">var</span> A ││ <span class="keyword">var</span> B ││ <span class="keyword">var</span> C │  │</span><br><span class="line">   └───────┘└───────┘└───────┘</span><br><span class="line">│     │ ▲               │ ▲     │</span><br><span class="line"> ─ ─ ─│─│─ ─ ─ ─ ─ ─ ─ ─│─│─ ─ ─</span><br><span class="line">      │ │               │ │</span><br><span class="line">┌ ─ ─ ┼ ┼ ─ ─ ┐   ┌ ─ ─ ┼ ┼ ─ ─ ┐</span><br><span class="line">      ▼ │               ▼ │</span><br><span class="line">│  ┌───────┐  │   │  ┌───────┐  │</span><br><span class="line">   │ <span class="keyword">var</span> A │         │ <span class="keyword">var</span> C │</span><br><span class="line">│  └───────┘  │   │  └───────┘  │</span><br><span class="line">   Thread <span class="number">1</span>          Thread <span class="number">2</span></span><br><span class="line">└ ─ ─ ─ ─ ─ ─ ┘   └ ─ ─ ─ ─ ─ ─ ┘</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ol>
+<h2 id="线程池里的参数是什么意思"><a href="#线程池里的参数是什么意思" class="headerlink" title="线程池里的参数是什么意思"></a>线程池里的参数是什么意思</h2><p>以下内容参考<a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html" target="_blank" rel="noopener">Java线程池实现原理及其在美团业务中的实践</a></p>
 <ol>
 <li>首先检测线程池运行状态，如果不是RUNNING，则直接拒绝，线程池要保证在RUNNING的状态下执行任务。</li>
 <li>如果workerCount &lt; corePoolSize，则创建并启动一个线程来执行新提交的任务。</li>
@@ -1129,6 +1265,8 @@
           <blockquote>
 <p>摘自<a href="https://mp.weixin.qq.com/s?__biz=MzU4MDUyMDQyNQ==&amp;mid=2247487375&amp;idx=2&amp;sn=0a7ac7402333ada0b91021d74684a9dc&amp;chksm=fd54df09ca23561f2bfcb44a4b38b099134e42cea5046038c23d167c3819388fe82be4abd2a1&amp;scene=132#wechat_redirect" target="_blank" rel="noopener">TCP 协议面试灵魂 12 问 !</a></p>
 </blockquote>
+<h2 id="http的各个版本缺陷"><a href="#http的各个版本缺陷" class="headerlink" title="http的各个版本缺陷"></a>http的各个版本缺陷</h2><p>三次握手在高延迟的场景下影响较明显，慢启动则对大量小文件请求影响较大（没有达到最大窗口请求就被终止）<br>HTTP/1 有连接无法复用、队头阻塞、协议开销大和安全因素等多个缺陷<br>HTTP/2 通过多路复用、二进制流与 Header 压缩等技术，极大地提高了性能，但是还是存在一些问题<br>HTTP/3 抛弃 TCP 协议，以全新的视角重新设计 HTTP。其底层支撑是 QUIC 协议，该协议基于 UDP，有 UDP 特有的优势，同时它又取了 TCP 中的精华，实现了即快又可靠的协议</p>
+<h2 id="http-rfc规范"><a href="#http-rfc规范" class="headerlink" title="http rfc规范"></a>http rfc规范</h2><p>HTTP/2 由两个规范组成：<br>Hypertext Transfer Protocol version 2 - RFC7540<br>HPACK - Header Compression for HTTP/2 - RFC7541</p>
 <h2 id="长连接和短连接是什么？为什么是必要的？"><a href="#长连接和短连接是什么？为什么是必要的？" class="headerlink" title="长连接和短连接是什么？为什么是必要的？"></a>长连接和短连接是什么？为什么是必要的？</h2><h3 id="心跳包作用及格式"><a href="#心跳包作用及格式" class="headerlink" title="心跳包作用及格式"></a>心跳包作用及格式</h3><p>作用是保持长连接避免不断创建tcp连接</p>
 <p>心跳包格式的定义及处理<br>报文头的定义，就是你发送数据的时候需要先发送报文头，报文里面能解析出你将要发送的数据长度<br>你发送数据包的格式，是json的还是其他序列化的方式</p>
 <h3 id="Socket连接池干嘛的"><a href="#Socket连接池干嘛的" class="headerlink" title="Socket连接池干嘛的"></a>Socket连接池干嘛的</h3><p>Socket连接池，就是维护着一定数量Socket长连接的集合。它能自动检测Socket长连接的有效性，剔除无效的连接，补充连接池的长连接的数量</p>
@@ -1278,22 +1416,183 @@
 
       
         
-          <h2 id="Retrofit-动态代理"><a href="#Retrofit-动态代理" class="headerlink" title="Retrofit(动态代理)"></a>Retrofit(动态代理)</h2><h2 id="说说组件化和插件化，热更新技术原理"><a href="#说说组件化和插件化，热更新技术原理" class="headerlink" title="说说组件化和插件化，热更新技术原理"></a>说说组件化和插件化，热更新技术原理</h2><h2 id="apk资源加载以及activitythread相关的知识，或者inputevent机制"><a href="#apk资源加载以及activitythread相关的知识，或者inputevent机制" class="headerlink" title="apk资源加载以及activitythread相关的知识，或者inputevent机制"></a>apk资源加载以及activitythread相关的知识，或者inputevent机制</h2><h2 id="Android-系统启动流程吗？"><a href="#Android-系统启动流程吗？" class="headerlink" title="Android 系统启动流程吗？"></a>Android 系统启动流程吗？</h2><h2 id="知识图谱"><a href="#知识图谱" class="headerlink" title="知识图谱"></a>知识图谱</h2><ol>
-<li><p><a href="https://www.jianshu.com/p/659381fcd4e5" target="_blank" rel="noopener">Android初级、中级、高级、资深工程师(架构师、专家)技能图谱</a></p>
+          
+            <h2 id="Retrofit-动态代理"><a href="#Retrofit-动态代理" class="headerlink" title="Retrofit(动态代理)"></a>Retrofit(动态代理)</h2><blockquote>
+<p>动态代理的代理关系是在运行期确定的，Jvm帮忙生成class文件并且会删除class文件<br>JDK原生动态代理是Java原生支持的，不需要任何外部依赖，但是它只能基于接口进行代理；<br>CGLIB通过继承的方式进行代理，无论目标对象有没有实现接口都可以代理，但是无法处理final的情况</p>
+</blockquote>
+<h2 id="说说组件化和插件化，-技术原理"><a href="#说说组件化和插件化，-技术原理" class="headerlink" title="说说组件化和插件化， 技术原理"></a>说说组件化和插件化， 技术原理</h2><p>APT在编译的开始阶段对java文件进行操作，而像AscpectJ、ASM等则是在java文件编译为字节码文件后</p>
+<h3 id="能否在加载类的时候，对字节码进行修改"><a href="#能否在加载类的时候，对字节码进行修改" class="headerlink" title="能否在加载类的时候，对字节码进行修改?"></a>能否在加载类的时候，对字节码进行修改?</h3><p>利用javaAgent和ASM字节码都可以，javaAssist还有Byte-Code都可以<br><img src="https://p0.meituan.net/travelcube/12e1964581f38f04488dfc6d2f84f003110966.png" alt="字节码增强"></p>
+<ol>
+<li><a href="https://blog.csdn.net/hosaos/article/details/102931887" target="_blank" rel="noopener">Java字节码技术(二)字节码增强之ASM、JavaAssist、Agent、Instrumentation</a></li>
+<li><a href="https://tech.meituan.com/2019/09/05/java-bytecode-enhancement.html" target="_blank" rel="noopener">美团 - 字节码增强技术探索</a>包含有ASM的基本用法和工具<blockquote>
+<p><strong>可否在运行时对JVM中的类进行修改并重载？</strong>：通过Instrument充当Agent + Attach API， 依赖JVMTI的Attach API机制实现</p>
+</blockquote>
 </li>
-<li><p><a href="https://juejin.im/post/6844904105438134286" target="_blank" rel="noopener">面试官: 说一下你做过哪些性能优化?</a></p>
+</ol>
+<h2 id="gradle生命周期"><a href="#gradle生命周期" class="headerlink" title="gradle生命周期"></a>gradle生命周期</h2><h2 id="方法数越界为啥？MultiDex是怎么做的？"><a href="#方法数越界为啥？MultiDex是怎么做的？" class="headerlink" title="方法数越界为啥？MultiDex是怎么做的？"></a>方法数越界为啥？MultiDex是怎么做的？</h2><ol>
+<li>方法数超过65536数会报错。<blockquote>
+<p>早期系统中，dexopt会把每一个类的方法id检索起来，存在一个链表结构里，而这个链表的长度是用一个short类型来保存的，2字节 = 2 ^ 16 = 2 ^ 6 <em> 2 ^ 10 = 64 </em> 1024 = 64K = 65536。新版本dexopt修复了这个问题</p>
+</blockquote>
 </li>
-<li><a href="https://www.zybuluo.com/TryLoveCatch/note/1302255" target="_blank" rel="noopener">面试之Android性能优化</a>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020-11-09-Android面试答案整理.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<li>方法数并没有超过65536，编译也完成了，但是在android2.3以前的系统安装的时候，会异常中止安装<blockquote>
+<p><code>dexopt</code>的执行过程是在第一次加载dex文件的时候执行的。这个过程产生了一个<code>ODEX</code>文件，全称<code>Optimised Dex</code>。这个<code>ODEX</code>文件是在安装过程中从apk里提取出的可运行文件，是优化dex产生的，再把apk包里的dex文件删除，这样就做到了预先提取。如果没有ODEX文件，那么系统会从apk包中提取dex然后再运行。所以优化后可以加快软件的启动速度，预先提取，减少对RAM的占用。<br><code>dexopt</code>采用一个固定大小的缓冲区（<code>LinearAlloc</code>）来存储应用中所有方法的信息，那么之所以会出现在老版本停止安装，是因为老版本的缓冲区的大小是5M</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="MultiDex解决方案"><a href="#MultiDex解决方案" class="headerlink" title="MultiDex解决方案"></a>MultiDex解决方案</h3><ul>
+<li>将APK文件中除主dex文件之外的dex文件追加到PathClassLoader（也就是BaseClassLoader）中DexPathListde Element[]数组中。这样在加载一个类的时候就会遍历所有的dex文件，保证了打包的类都能够正常加载。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment">打包时，把一个应用分成多个dex，例：classes.dex、classes2.dex、classes3.dex…，加载的时候把这些dex都追加到DexPathList对应的数组中，这样就解决了方法数的限制。</span></span><br><span class="line"><span class="comment">Andorid 5.0之后，ART虚拟机天然支持MultiDex。</span></span><br><span class="line"><span class="comment">Andorid 5.0之前，系统只加载一个主dex，其它的dex采用MultiDex手段来加载。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">``` </span><br><span class="line">&gt; 使用反射修改DexPathList。</span><br><span class="line">&gt; <span class="number">1</span>. 通过一定的方式把dex文件抽取出来；</span><br><span class="line">&gt; <span class="number">2</span>. 把这些dex文件追加到DexPathList的Element[]数组的后面；</span><br><span class="line">&gt; <span class="number">3</span>. 这个过程要尽可能的早，所以一般是在Application的attachBaseContext()方法中。</span><br><span class="line">&gt; 由于需要IO加载额外的dex文件，应用的启动速度会降低，当其他dex文件较大的时候，甚至会出现ANR现象</span><br><span class="line"></span><br><span class="line">## 如何用代码自行生成接口？</span><br><span class="line">之前是apt，如今是 annotationProcessor</span><br><span class="line">## ASM应用场景</span><br><span class="line">[Gradle+Transform+Asm自动化注入代码](https:<span class="comment">//www.jianshu.com/p/fffb81688dc5)</span></span><br><span class="line">[字节码插桩--你也可以轻松掌握](https:<span class="comment">//www.jianshu.com/p/13d18c631549)</span></span><br><span class="line">[【Android】函数插桩（Gradle + ASM）](https:<span class="comment">//www.jianshu.com/p/16ed4d233fd1)</span></span><br><span class="line"><span class="number">1</span>. 无埋点统计、APM、插桩</span><br><span class="line">其实就是在上面的基础进行各种位置的插桩,具体例子[Android无埋点数据收集SDK关键技术](http:<span class="comment">//www.jianshu.com/p/b5ffe845fe2d)</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span>. 瘦包</span><br><span class="line"></span><br><span class="line">蘑菇街的[ThinRPlugin](http:<span class="comment">//www.jianshu.com/p/b5ffe845fe2d)插件</span></span><br><span class="line">相关原理：android中的R文件，除了styleable类型外，所有字段都是<span class="keyword">int</span>型变量/常量，且在运行期间都不会改变。所以可以在编译时，记录R中所有字段名称及对应值，然后利用asm工具遍历所有<span class="class"><span class="keyword">class</span>，将引用<span class="title">R</span>字段的地方替换成对应常量，然后将<span class="title">R</span>$<span class="title">styleable</span>.<span class="title">class</span>以外的所有<span class="title">R</span>.<span class="title">class</span>删除掉</span></span><br><span class="line">BTW:类似瘦包的思路：Facebook redex(不是使用asm)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## apk资源加载以及activitythread相关的知识，或者inputevent机制</span><br><span class="line"></span><br><span class="line">## Android 系统启动流程吗？</span><br><span class="line">## 知识图谱</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>. [Android初级、中级、高级、资深工程师(架构师、专家)技能图谱](https:<span class="comment">//www.jianshu.com/p/659381fcd4e5)</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span>. [面试官: 说一下你做过哪些性能优化?](https:<span class="comment">//juejin.im/post/6844904105438134286)</span></span><br><span class="line"><span class="number">3</span>. [面试之Android性能优化](https:<span class="comment">//www.zybuluo.com/TryLoveCatch/note/1302255)</span></span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line">## Binder怎么学</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>. [为什么Binder的通信只进行了一次拷贝](https:<span class="comment">//mubu.com/doc/explore/21079) ：</span></span><br><span class="line">	<span class="number">1</span>. 基于 `mmap` 。`Client`与 `Server` 处于不同进程有着不同的虚拟地址规则，所以无法直接通信。一个页框可以映射给多个页，那么就可以将一块物理内存分别与 Client 和 Server 的虚拟内存块进行映射。映射的虚拟内存块大小将近 <span class="number">1</span>M (<span class="number">1</span>M-<span class="number">8</span>K)，所以 IPC 通信传输的数据量也被限制为此值</span><br><span class="line">		&gt; —— 摘自[谈谈你对 binder 的理解？](https:<span class="comment">//zhuanlan.zhihu.com/p/143324649)</span></span><br><span class="line">	<span class="number">2</span>. 通过 `copy_from_user` 将数据从用户空间拷贝到内核空间，通过 `copy_to_user` 将数据从内核空间拷贝到用户空间。一般的 IPC 方式需要分别调用这两个函数，数据就拷贝了两次，而 binder 将内核空间与目标用户空间进行了 `mmap`，只需调 `copy_from_user` 拷贝一次即可。</span><br><span class="line">		</span><br><span class="line"><span class="number">2</span>. [聊聊怎样学习Binder](https:<span class="comment">//cloud.tencent.com/developer/article/1698142)内有c++代码简单传输的过程</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 为什么 binder 驱动要运行在内核空间？可以移到用户空间吗？</span><br><span class="line">&gt; [说说你对 binder 驱动的了解？](https:<span class="comment">//zhuanlan.zhihu.com/p/152237289)</span></span><br><span class="line"></span><br><span class="line">binder 驱动运行在内核空间，向上层提供 /dev/binder 设备节点及 open、mmap、ioctl 等系统调用。</span><br><span class="line">| 结构体 | 说明 | </span><br><span class="line">|--|--| </span><br><span class="line">| binder_proc | 描述使用 binder 的进程，当调用 binder_open 函数时会创建 | </span><br><span class="line">| binder_thread | 描述使用 binder 的线程，当调用 binder_ioctl 函数时会创建 | </span><br><span class="line">| binder_node | 描述 binder 实体节点，对应于一个 server ，即用户态的 BpBinder 对象 | </span><br><span class="line">| binder_ref | 描述对 binder 实体节点的引用，关联到一个 binder_node | </span><br><span class="line">| binder_buffer | 描述 binder 通信过程中存储数据的Buffer | </span><br><span class="line">| binder_work | 描述一个 binder 任务 | </span><br><span class="line">| binder_transaction | 描述一次 binder 任务相关的数据信息 | </span><br><span class="line">| binder_ref_death | 描述 binder_node 即 binder server 的死亡信息 |</span><br><span class="line">——————————————————</span><br><span class="line">### oneway 是什么？如何异步等待？</span><br><span class="line">&gt; [看你简历上写熟悉 AIDL，说一说 oneway 吧](https:<span class="comment">//zhuanlan.zhihu.com/p/143082762)</span></span><br><span class="line"></span><br><span class="line">oneway 修饰的 AIDL 接口方法，是单向调用，不需要等待另一个进程的返回结果，所以方法的返回类型也只允许是 <span class="keyword">void</span>。</span><br><span class="line">即应用进程只向 binder 驱动发送一次数据就结束返回，不再等待回复数据。binder 驱动会将这个请求串行排列在队列里一个个执行。</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>. 同步调用</span><br><span class="line">![同步调用](https:<span class="comment">//pic3.zhimg.com/80/v2-7b2c17503a7abea3e2cb6befaa7f603a_1440w.jpg)</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span>. oneway的发送</span><br><span class="line">![oneway的发送](https:<span class="comment">//pic2.zhimg.com/80/v2-899eafe99d5c70e5cffe9edde3a9cc7d_1440w.jpg)</span></span><br><span class="line">	&gt; 由外部发送给 binder 驱动的都是 BC_ 开头，由 binder 驱动发往外部的都是 BR_开头。</span><br><span class="line"></span><br><span class="line">###  Intent 传值为啥会有大小限制？那跨进程传递大图怎么办？</span><br><span class="line">应用进程在启动 `Binder` 机制时会映射一块 <span class="number">1</span>M 大小的内存，一个进程内所有正在进行的 `Binder` 事务共享这 <span class="number">1</span>M 的缓冲区 。当使用 Intent 进行 IPC 时申请的缓存超过 <span class="number">1</span>M ，其他事务占用的内存时，就会申请失败抛 `TransactionTooLargeException` 异常了。</span><br><span class="line"><span class="number">1</span>. 解决方法：通过 `putBinder` 的方式传 `Bitmap` 就不会抛异常.</span><br><span class="line"><span class="number">2</span>. 原因： `Intent` 启动组件时，系统禁掉了文件描述符 fd 机制 (`mAllowFds = <span class="keyword">false</span>`), bitmap 无法利用共享内存，只能拷贝到 `Binder` 映射的缓冲区，导致缓冲区超限, 触发异常</span><br><span class="line"><span class="number">3</span>. 通过 putBinder 的方式，避免了 Intent 禁用描述符的影响，bitmap 写 parcel 时的 allowFds 默认是 <span class="keyword">true</span> , 可以利用共享内存，所以能高效传输图片。</span><br><span class="line">```JAVA</span><br><span class="line">Bundle b = <span class="keyword">new</span> Bundle();</span><br><span class="line">b.putBinder(“binder”, <span class="keyword">new</span> IRemoteCaller.Stub() &#123;    </span><br><span class="line">	<span class="meta">@Override</span>    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> Bitmap <span class="title">getBitmap</span><span class="params">()</span> </span>&#123;           </span><br><span class="line">		<span class="keyword">return</span> mBitmap;    </span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"></span><br><span class="line">b.putBinder(<span class="string">"bitmap"</span>, <span class="keyword">new</span> ImageBinder(mBitmap));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>底部是<code>ashmem</code>传递的。</p>
+<blockquote>
+<p>bundle 在IPC传递过程中是值的深拷贝，而在Fragment的setArgument之类的地方是引用传递<br>Bitmap，本身就已经实现了 Parcelable 是可以支持序列化</p>
+</blockquote>
+<h3 id="Intent传输限制怎么办？"><a href="#Intent传输限制怎么办？" class="headerlink" title="Intent传输限制怎么办？"></a>Intent传输限制怎么办？</h3><ol>
+<li>减少传输数据量</li>
+<li>非 ipc 通过内存共享，使用静态变量或者使用EventBus等类似的通信工具</li>
+<li>是 ipc 可以用 file 或者 socket 文件共享（比如通过MemoryFile开辟一片共享内存，然后传递FileDescriptor，接收端用这个fd读）</li>
+<li>匿名内存：flying-pigeon 是一个IPC 跨进程通信组件，底层是匿名内存+Binder ， 突破1MB大小限制，无需写AIDL文件，让实现跨进程通信就像写一个接口一样简单</li>
+<li><p>持久化</p>
+<h3 id="理解AIDL中的in，out，inout吗"><a href="#理解AIDL中的in，out，inout吗" class="headerlink" title="理解AIDL中的in，out，inout吗"></a>理解AIDL中的in，out，inout吗</h3></li>
+<li><p>一文看得懂的源码：<a href="https://cloud.tencent.com/developer/article/1698142" target="_blank" rel="noopener">聊聊怎样学习Binder</a></p>
+</li>
+<li><p>一文超翔实的源码：<a href="https://blog.csdn.net/universus/article/details/6211589" target="_blank" rel="noopener">Android Bander设计与实现 - 设计篇</a></p>
+</li>
+</ol>
+<h2 id="Android-ANR的产生原因，如何定位ANR"><a href="#Android-ANR的产生原因，如何定位ANR" class="headerlink" title="Android ANR的产生原因，如何定位ANR"></a>Android ANR的产生原因，如何定位ANR</h2><blockquote>
+<p><a href="http://gityuan.com/2019/04/06/android-anr/" target="_blank" rel="noopener">彻底理解安卓应用无响应机制</a></p>
+</blockquote>
+<h2 id="onCreate-方法里写死循环会-ANR-吗"><a href="#onCreate-方法里写死循环会-ANR-吗" class="headerlink" title="onCreate 方法里写死循环会 ANR 吗"></a>onCreate 方法里写死循环会 ANR 吗</h2><p>ANR 的四种场景：</p>
+<ol>
+<li>Service TimeOut: service 未在规定时间执行完成： 前台服务 20s，后台 200s</li>
+<li>BroadCastQueue TimeOut: 未在规定时间内未处理完广播：前台广播 10s 内, 后台 60s 内</li>
+<li>ContentProvider TimeOut: publish 在 10s 内没有完成</li>
+<li>Input Dispatching timeout: 5s 内未响应键盘输入、触摸屏幕等事件<br>Activity 的生命周期回调的阻塞并不在触发 ANR 的场景里面，所以并不会直接触发 ANR。只不过死循环阻塞了主线程，如果系统再有上述的四种事件发生，就无法在相应的时间内处理从而触发 ANR</li>
+</ol>
+<h2 id="Handler-40问"><a href="#Handler-40问" class="headerlink" title="Handler 40问"></a>Handler 40问</h2><p>摘自<a href="https://mp.weixin.qq.com/s?__biz=MzIxNjc0ODExMA==&amp;mid=2247486960&amp;idx=1&amp;sn=9c325c52004c94f5e1a6ca80b6907962&amp;chksm=978514d1a0f29dc77309045867f9243ed1dac77c8e3055a450553a8b84c8978cf6a4dd564939&amp;scene=132#wechat_redirect" target="_blank" rel="noopener">面试常客「Handler」的 40+ 个高频问题 Q &amp; A 对答！</a></p>
+<h2 id="OkHttp相关"><a href="#OkHttp相关" class="headerlink" title="OkHttp相关"></a>OkHttp相关</h2><h3 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h3><ol>
+<li>客户端请求 <code>Range: bytes=200-1000</code> 见<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Range" target="_blank" rel="noopener">Range</a></li>
+<li>服务器返回 <code>206 Partial Content</code> 标示Content-Range: bytes 200-1000/67589 </li>
+<li>同时服务器响应的header中有<code>Accept-Ranges: bytes</code></li>
+<li>使用RandomAccessFile允许自由定义文件记录指针，在同一个文件的不同位置进行<strong>并发读写</strong></li>
+<li>客户端头的 <code>If-Range</code> 需要和 <code>Range</code> 配合起来使用，否则会被服务端忽略<br><img src="https://cdn.ancii.com/article/image/v1/Qj/zb/RO/ORzjbQVFJasX5aR2DaTg2_Zx5KSH75KdTtVIpx5BAibeJW3s2CVwUVt3uFqg5I-4TSjNCnhoAJhLsjcM99fslnxQJbDmwU5z8sIvZN3h5MQ.jpg" alt=""></li>
+</ol>
+<blockquote>
+<p>以下摘自 <a href="https://juejin.im/post/6844903642034765837" target="_blank" rel="noopener">图解：HTTP 范围请求，助力断点续传、多线程下载的核心原理</a>：</p>
+<ol>
+<li>范围请求需要 HTTP/1.1 及之上支持</li>
+<li>客户端通过在请求头中添加 <code>Range</code> 这个请求头，来指定请求的内容实体的字节范围。</li>
+<li>服务端通过 <code>Content-Range</code> 来标识当前返回的内容实体范围，并使用 <code>Content-Length</code> 来标识当前返回的本次压缩后要读多少字节。</li>
+<li>客户端可以通过 <code>If-Range</code> 来区分资源文件是否变动，它的值来自 <code>ETag</code> 或者 <code>Last-Modifled</code>。如果资源文件有改动，服务器会返回code 200重新走下载流程。</li>
+</ol>
+</blockquote>
+<h4 id="为什么多线程下载可以提速"><a href="#为什么多线程下载可以提速" class="headerlink" title="为什么多线程下载可以提速"></a>为什么多线程下载可以提速</h4><p>见这篇文章：<a href="https://zhuanlan.zhihu.com/p/165048187" target="_blank" rel="noopener">撸了个多线程断点续传下载器，我从中学习到了这些知识</a><br>个人理解，当发生了丢包，检测到拥塞时，TCP慢启动会减半线性增长发送窗口。而多线程一起下载，其他线程可能正在正常下载，只影响发生丢包的线程</p>
+<p><img src="https://pic3.zhimg.com/80/v2-d6c924f27796e5cc5aad061a70399812_1440w.jpg" alt="拥塞窗口"></p>
+<h3 id="请求队列的使用的线程池"><a href="#请求队列的使用的线程池" class="headerlink" title="请求队列的使用的线程池"></a>请求队列的使用的线程池</h3><p>Dispatcher类里有<strong>两个异步队列，一个同步队列</strong>，<code>readyAsyncCalls</code>是没排上队的请求。</p>
+<blockquote>
+<p>没排上队是因为在进队时，目前正在执行的请求大于64或者同Host的请求大于5了，参考线程池的思想。<br><code>runningSyncCalls</code>和<code>runningAsyncCalls</code>都是正在执行（包括已经取消但没结束）的请求，区别是一个同步一个异步。<br>结束后。<br>在每个请求停止后会去promoteCall()，遍历<code>readyAsyncCalls</code>能够执行执行，放进<code>runningAsyncCalls</code>里。和线程池里的<code>Worker</code>一个套路。</p>
+</blockquote>
+<h3 id="okhttp责任链，递归调用拦截器"><a href="#okhttp责任链，递归调用拦截器" class="headerlink" title="okhttp责任链，递归调用拦截器"></a>okhttp责任链，递归调用拦截器</h3><p>根据网络的分层思想，把每一步要做的操作顺序排列为一个list。<br>每个拦截器(<code>Intercept</code>)都要手动调用<code>chain.proceed()</code>去调用list里下一个index的拦截器(<code>Intercept</code>)来达到调用下一层的效果，并递归返回response。</p>
+<blockquote>
+<p>除了发起真正的网络请求的<code>CallServerInterceptor</code>，它不用调用下一层，只用递归返回response</p>
+</blockquote>
+<h4 id="应用拦截器interceptors和网络拦截器networkInterceptors的区别在哪"><a href="#应用拦截器interceptors和网络拦截器networkInterceptors的区别在哪" class="headerlink" title="应用拦截器interceptors和网络拦截器networkInterceptors的区别在哪"></a>应用拦截器interceptors和网络拦截器networkInterceptors的区别在哪</h4><p>区别在应用拦截器是在整个操作前，网络拦截器是在真正请求前<br>由于有多次重试等拦截器的存在，一般应用拦截器只会执行一次，网络拦截器可能会走很多次<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Response <span class="title">getResponseWithInterceptorChain</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">	<span class="comment">// Build a full stack of interceptors.interceptors</span></span><br><span class="line">	List&lt;Interceptor&gt; interceptors = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	interceptors.addAll(client.interceptors());<span class="comment">//应用拦截器</span></span><br><span class="line">	<span class="comment">//重定向、重试</span></span><br><span class="line">	interceptors.add(retryAndFollowUpInterceptor);</span><br><span class="line">	<span class="comment">//用户应用层和网络从桥梁。主要包含：</span></span><br><span class="line">	<span class="comment">//1. 将用户的request，转变为网络层的request，比如添加各种请求头，UA ,Cookie , Content-Type等。</span></span><br><span class="line">	<span class="comment">//2. 将网络层的response转变为用户层的response，比如解压缩，除去各种请求头等。</span></span><br><span class="line">	interceptors.add(<span class="keyword">new</span> BridgeInterceptor(client.cookieJar()));</span><br><span class="line">	<span class="comment">//缓存</span></span><br><span class="line">	interceptors.add(<span class="keyword">new</span> CacheInterceptor(client.internalCache()));</span><br><span class="line">	<span class="comment">//负责与服务器之间建立连接。</span></span><br><span class="line">	interceptors.add(<span class="keyword">new</span> ConnectInterceptor(client));</span><br><span class="line">	<span class="keyword">if</span> (!forWebSocket) &#123;</span><br><span class="line">	  interceptors.addAll(client.networkInterceptors());<span class="comment">//网络拦截器</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//负责请求服务器</span></span><br><span class="line">	interceptors.add(<span class="keyword">new</span> CallServerInterceptor(forWebSocket));</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//第一个chain</span></span><br><span class="line">	Interceptor.Chain chain = <span class="keyword">new</span> RealInterceptorChain(</span><br><span class="line">	    interceptors, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="number">0</span>, originalRequest);</span><br><span class="line">	<span class="comment">//通过链式请求的得到response</span></span><br><span class="line">	<span class="keyword">return</span> chain.proceed(originalRequest);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="OKHTTP-Socket连接池"><a href="#OKHTTP-Socket连接池" class="headerlink" title="OKHTTP Socket连接池"></a>OKHTTP Socket连接池</h3><p>复用Http连接减少请求延迟。<br>避免网络连接的时延，以及避免TCP调谐带来的带宽过小的问题。<br>okhttp记录了每个socket流使用情况，同时设定了每个socket能同时使用多少流。</p>
+<h4 id="socket复用有何标准"><a href="#socket复用有何标准" class="headerlink" title="socket复用有何标准"></a>socket复用有何标准</h4><ul>
+<li>共享socket,HTTP/2支持所有连接到同一个主机的请求共享socket</li>
+</ul>
+<p>对每个socket来说：</p>
+<ol>
+<li>host完全一样，可以直接复用return true</li>
+<li>没有达到socket连接池复用数量的总上陷，且这个socket流还没有关闭</li>
+<li>okhttp只在2.0的时候会复用</li>
+<li>有相同IP地址的（说明两个对比的连接都已经DNS得到过IP），且没有使用代理，有了代理就不知道最初的IP是多少了 </li>
+<li>复用socket连接意味着跳过了https握手，所以要验证证书，如果证书可以覆盖的话，IP不一样也可以</li>
+</ol>
+<blockquote>
+<p>一个socket如果被复用，只有http2.0允许同一个socket在同一个时候写入多个流数据。http1.x协议下当前socket没有其他流正在读写时可以复用，http2.0对流数量没有限制</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>http1.x<br>在http 1.x协议下，所有的请求的都是顺序的，即使使用了管道技术（可以同时按顺序连续发送请求，但消息的返回还是按照请求发送的顺序返回）也是如此，因此一个socket在任何时刻只能有一个流在写入，这意味着正在写入数据的socket无法被另一个请求复用</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>http2.0<br>http2.0协议使用了多路复用技术，允许同一个socket在同一个时候写入多个流数据，每个流有id，会进行组装，因此，这个时候正在写入数据的socket是可以被复用的。</li>
+</ul>
+</blockquote>
+<h4 id="一个socket何时会被关闭？socket池何时被清理"><a href="#一个socket何时会被关闭？socket池何时被清理" class="headerlink" title="一个socket何时会被关闭？socket池何时被清理"></a>一个socket何时会被关闭？socket池何时被清理</h4><p><a href="https://juejin.im/entry/6844903750000181256" target="_blank" rel="noopener">okhttp通过一个单独的线程来清理socket池</a>。每次put一个新连接的时候都会判断当前是否有在清理socket池。<br>这个线程<code>while(true)</code>循环找出空闲时间最长的sockect连接，默认可以保存5个空闲线程，并且5分钟内依旧空闲的话，将被关闭回收。</p>
+<blockquote>
+<p>规定时间t = sockect默认设定的生存时间</p>
+<ol>
+<li>如果哪个空闲连接超过了规定时间t，关掉这个socket，立刻返回继续找下一个</li>
+<li>如果每个空闲连接都没有超过规定时间t的，就返回空闲时间最长的sockect连接，得到<code>diff = 规定时间 - 空闲时间</code>，开始<code>wait(diff)</code>，<code>wait()</code>完后继续下一次清理</li>
+<li>如果没有空闲连接， 最少<code>wait()</code>等待一个规定时间t</li>
+<li>没有任何连接，返回-1退出<code>while(true)</code>，等待下次put个新连接的时候的时候重新开启清理socket池的线程<br>只要连接池中有连接，基本清理线程就一直存在，直到所有连接被释放该线程才会停止</li>
+</ol>
+</blockquote>
+<p>清理的线程池okHttp使用的是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Executor executor = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span> <span class="comment">/* corePoolSize */</span>,</span><br><span class="line">    Integer.MAX_VALUE <span class="comment">/* maximumPoolSize */</span>, <span class="number">60L</span> <span class="comment">/* keepAliveTime */</span>, TimeUnit.SECONDS,</span><br><span class="line">    <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;(), Util.threadFactory(<span class="string">"OkHttp ConnectionPool"</span>, <span class="keyword">true</span>));</span><br></pre></td></tr></table></figure></p>
+<p>和newCachedThreadPool一样，可以动态添加到无限大的，用的SynchronousQueue当等待队列所以新来的线程没有地方去就会阻塞住，直到开了一个空线程来执行。<br><a href="https://blog.csdn.net/u012881042/article/details/79759203?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param" target="_blank" rel="noopener">Okhttp3 总结研究 （面试）</a></p>
+<h3 id="OkHttp的HTTP缓存"><a href="#OkHttp的HTTP缓存" class="headerlink" title="OkHttp的HTTP缓存"></a>OkHttp的HTTP缓存</h3><p>主要是根据<code>Header(Date\Expires\Last-Modified\ETag\Age)</code>来缓存响应数据减少重复的网络请求</p>
+<h2 id="点击桌面图标进入我们软件应用时发生了什么？"><a href="#点击桌面图标进入我们软件应用时发生了什么？" class="headerlink" title="点击桌面图标进入我们软件应用时发生了什么？"></a>点击桌面图标进入我们软件应用时发生了什么？</h2><p>通过翻阅 Application 启动的源码，当我们点击桌面图标进入我们软件应用的时候，会由 AMS 通过 Socket 给 Zygote 发送一个 fork 子进程的消息，当 Zygote fork 子进程完成之后会通过反射启动 ActivityThread##main 函数，最后又由 AMS 通过 aidl 告诉 ActivityThread##H 来反射启动创建Application 实例，并且依次执行 <code>attachBaseContext</code> 、<code>onCreate</code> 生命周期，由此可见我们不能在这 2 个生命周期里做主线程耗时操作。</p>
+<h2 id="OOM是什么，怎么导致的？"><a href="#OOM是什么，怎么导致的？" class="headerlink" title="OOM是什么，怎么导致的？"></a>OOM是什么，怎么导致的？</h2><ul>
+<li>java.lang.OutOfMemoryError: Java heap space ——&gt;java堆内存溢出，此种情况最常见，一般由于内存泄露或者堆的大小设置不当引起。对于内存泄露，需要通过内存监控软件查找程序中的泄露代码，而堆大小可以通过虚拟机参数-Xms,-Xmx等修改。</li>
+<li>java.lang.OutOfMemoryError: PermGen space ——&gt;java永久代溢出，即方法区溢出了，一般出现于大量Class或者jsp页面，或者采用cglib等反射机制的情况，因为上述情况会产生大量的Class信息存储于方法区。此种情况可以通过更改方法区的大小来解决，使用类似-XX:PermSize=64m -XX:MaxPermSize=256m的形式修改。另外，过多的常量尤其是字符串也会导致方法区溢出。</li>
+<li>java.lang.StackOverflowError ——&gt; 不会抛OOM error，但也是比较常见的Java内存溢出。JAVA虚拟机栈溢出，一般是由于程序中存在死循环或者深度递归调用造成的，栈大小设置太小也会出现此种溢出。可以通过虚拟机参数-Xss来设置栈的大小。</li>
+</ul>
+<h2 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h2><ol>
+<li><a href="https://blog.csdn.net/carson_ho/article/details/54136311" target="_blank" rel="noopener">Android事件分发机制 详解攻略，您值得拥有</a></li>
+</ol>
+<h2 id="如何减少卡顿？刷新原理"><a href="#如何减少卡顿？刷新原理" class="headerlink" title="如何减少卡顿？刷新原理"></a>如何减少卡顿？刷新原理</h2><p><img src="https://user-gold-cdn.xitu.io/2020/3/27/17117aa6eb5b454e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<h2 id="Glide是如何监听周期的？"><a href="#Glide是如何监听周期的？" class="headerlink" title="Glide是如何监听周期的？"></a>Glide是如何监听周期的？</h2><h4 id="监听生命周期"><a href="#监听生命周期" class="headerlink" title="监听生命周期"></a>监听生命周期</h4><p>用了一个没有UI的Fragment（名为RequestManagerFragment）入到传入的非Application的Context的FragmentManager中</p>
+<p>监听传入的Context的AcitivityLifeCycle（由RequestManager实现的事实上）</p>
+<h4 id="监听网络状态"><a href="#监听网络状态" class="headerlink" title="监听网络状态"></a>监听网络状态</h4><p>依然是用上面的fragment的AcitivityLifeCycle回调达到的</p>
+<p>在onStart和onStop的时候分别注册、反注册网络状态的监听，来达到在变得有网的情况下重启请求的目的</p>
+<h4 id="监听内存状态"><a href="#监听内存状态" class="headerlink" title="监听内存状态"></a>监听内存状态</h4><p>在Glide构造的时候会调用registerComponentCallbacks进行全局注册</p>
+<blockquote>
+<p>registerComponentCallbacks是ApplicationContext提供具有内存过低等时机的回调（onTrimMemory、onLowMemory、onConfigurationChanged）</p>
+</blockquote>
+<p>在<code>onTrimMemory</code>时，会依次执行：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">memoryCache.trimMemory(level)<span class="comment">;</span></span><br><span class="line">bitmapPool.trimMemory(level)<span class="comment">;</span></span><br><span class="line">arrayPool.trimMemory(level)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h3 id="两个Activity切换生命周期是怎样的？"><a href="#两个Activity切换生命周期是怎样的？" class="headerlink" title="两个Activity切换生命周期是怎样的？"></a>两个Activity切换生命周期是怎样的？</h3><p> <a href="https://blog.csdn.net/lei396601057/article/details/109272301" target="_blank" rel="noopener">两个Activity切换生命周期是怎样的？</a><br>假设 从 A Activity 跳转到 B Activity</p>
+<ul>
+<li>lanchMode不同：</li>
+</ul>
+<ol>
+<li>B Activity 的 <code>launchMode</code> 为 <code>standard</code> ｜｜ B Activity 没有可复用的实例时：A.onPause -&gt; B.onCrete -&gt; B.onStart -&gt; B.onResume -&gt; A.onStop</li>
+<li>B Activity 的 <code>launchMode</code> 为 <code>singleTop</code> &amp;&amp; B Activity 已经在栈顶时：（一些特殊情况如通知栏点击、连点）此时只有 B 页面自己有生命周期变化: B.onPause -&gt; B.onNewIntent -&gt; B.onResume</li>
+<li>当 B Activity 的 <code>launchMode</code> 为 <code>singleInstance</code> \ <code>singleTask</code> &amp;&amp; 对应的 B Activity 有可复用的实例时: A.onPause -&gt; B.onNewIntent -&gt; B.onRestart -&gt; B.onStart -&gt; B.onResume -&gt; A.onStop -&gt; ( 如果 A 被移出栈的话还有一个 A.onDestory)</li>
+</ol>
+<blockquote>
+<p>摘自<a href="https://zhuanlan.zhihu.com/p/150787285" target="_blank" rel="noopener">5 道刁钻的 Activity 生命周期面试题</a></p>
+<ul>
+<li>生命周期回调都是 AMS 通过 Binder 通知应用进程调用的；而弹出 Dialog、Toast、PopupWindow 本质上都直接是通过 WindowManager.addView() 显示的（没有经过 AMS），所以不会对生命周期有任何影响。</li>
+<li>如果是启动一个 <code>Theme</code> 为 <code>Dialog</code> 或 <code>Transparent</code> 的 Activity , 则生命周期为： A.onPause -&gt; B.onCrete -&gt; B.onStart -&gt; B.onResume。<ul>
+<li>注意这边没有前一个 Activity 不会回调 onStop，因为只有在 Activity 切到后台不可见才会回调 onStop；</li>
+<li>弹出 Dialog 主题的 Activity 时前一个页面还是可见的，只是失去了焦点而已所以仅有 onPause 回调。</li>
+<li><blockquote>
+<p>这是因为透明的弹窗前一个 Acitivity 被认为其实还可见</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="Activity-在-onResume-之后才显示的原因是什么"><a href="#Activity-在-onResume-之后才显示的原因是什么" class="headerlink" title="Activity 在 onResume 之后才显示的原因是什么"></a>Activity 在 onResume 之后才显示的原因是什么</h4><ul>
+<li><code>onCreate</code> 方法里调用 <code>setContentView</code> 。里面是直接调用 <code>window</code> 的 <code>setContentView</code>，创建一个 <code>DecorView</code> 用来包住我们创建的布局。</li>
+<li>加载好了布局，生成一个 <code>ViewTree</code> ，<code>WindowManager#addView</code> 方法最终将 <code>DecorView</code> 添加到 <code>WMS</code>。</li>
+<li>在 <code>onResume</code> 回调之后，会创建一个 <code>ViewRootImpl</code> ，有了它之后应用端就可以和 <code>WMS</code> 进行双向调用了。同时也是通过 <code>ViewRootImpl</code> 从 <code>WMS</code> 申请 <code>Surface</code> 来绘制 <code>ViewTree</code> </li>
+</ul>
+<h4 id="onActivityResult-在哪两个生命周期之间回调"><a href="#onActivityResult-在哪两个生命周期之间回调" class="headerlink" title="onActivityResult 在哪两个生命周期之间回调"></a>onActivityResult 在哪两个生命周期之间回调</h4><blockquote>
+<p>You will receive this call immediately before onResume() when your activity is re-starting<br><code>onActivityResult</code> 回调先于该 Activity 的所有生命周期回调，从 B Activity 返回 A Activity 的生命周期调用为： B.onPause -&gt; A.onActivityResult -&gt; A.onRestart -&gt; A.onStart -&gt; A.onResume</p>
+</blockquote>
+<p>####</p>
+
+          
         
       
-    </li></ol></div>
+    </div>
     
     
     
@@ -1430,7 +1729,26 @@
       
         
           <h1 id="移动0"><a href="#移动0" class="headerlink" title="移动0"></a>移动0</h1><h1 id="二叉树的中序遍历"><a href="#二叉树的中序遍历" class="headerlink" title="二叉树的中序遍历"></a>二叉树的中序遍历</h1><p>¥ 爬楼梯、括号生成</p>
-<h1 id="删除排序数组中的重复项"><a href="#删除排序数组中的重复项" class="headerlink" title="删除排序数组中的重复项"></a>删除排序数组中的重复项</h1><h1 id="盛水最多的容器"><a href="#盛水最多的容器" class="headerlink" title="盛水最多的容器"></a>盛水最多的容器</h1><h1 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h1><h3 id="trim树-搜索自动补全"><a href="#trim树-搜索自动补全" class="headerlink" title="trim树 - 搜索自动补全"></a>trim树 - 搜索自动补全</h3><h3 id="TSP问题"><a href="#TSP问题" class="headerlink" title="TSP问题"></a>TSP问题</h3><h3 id="三重dp"><a href="#三重dp" class="headerlink" title="三重dp"></a>三重dp</h3><h3 id="拓扑-？"><a href="#拓扑-？" class="headerlink" title="拓扑 + ？"></a>拓扑 + ？</h3><h3 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h3><h3 id="括号生成"><a href="#括号生成" class="headerlink" title="括号生成"></a>括号生成</h3><h3 id="最长连续序列"><a href="#最长连续序列" class="headerlink" title="最长连续序列"></a>最长连续序列</h3><p>并查集，用v和v+1并组，每一个数字a的parent就是并查集里该组对应的最大数字b，<code>b - a + 1</code> 就是的距离取max</p>
+<h1 id="删除排序数组中的重复项"><a href="#删除排序数组中的重复项" class="headerlink" title="删除排序数组中的重复项"></a>删除排序数组中的重复项</h1><h1 id="盛水最多的容器"><a href="#盛水最多的容器" class="headerlink" title="盛水最多的容器"></a>盛水最多的容器</h1><h1 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h1><h3 id="trim树-搜索自动补全"><a href="#trim树-搜索自动补全" class="headerlink" title="trim树 - 搜索自动补全"></a>trim树 - 搜索自动补全</h3><h3 id="TSP问题"><a href="#TSP问题" class="headerlink" title="TSP问题"></a>TSP问题</h3><h3 id="三重dp"><a href="#三重dp" class="headerlink" title="三重dp"></a>三重dp</h3><h3 id="拓扑-？"><a href="#拓扑-？" class="headerlink" title="拓扑 + ？"></a>拓扑 + ？</h3><h3 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h3><h3 id="括号生成"><a href="#括号生成" class="headerlink" title="括号生成"></a>括号生成</h3><h3 id="大根堆"><a href="#大根堆" class="headerlink" title="大根堆"></a>大根堆</h3><p><code>PriorityQueue</code>默认是小跟堆</p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><blockquote>
+<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/" target="_blank" rel="noopener">剑指 Offer 51. 数组中的逆序对</a>和 [315. 计算右侧小于当前元素的个数]都是归并排序的相同方法，区别在于左指针还是右指针入队时判断</p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/noKing/p/7940531.html" target="_blank" rel="noopener">归并排序优化</a></p>
+<ul>
+<li>当递归到规模足够小时，利用插入排序（归并排序只是需要两个有序数组，小于7的时候使用插入排序可以更节省栈空间）</li>
+<li>归并前判断一下是否还有必要归并（如果左边的最大的比右边的最小的还小(或者等于)，那就不用归并了，已经有序了）</li>
+<li>只在排序前开辟一次空间（如文中所述， <code>System.copyOfRange</code>每次会分配空间，<code>System.arraycopy</code> 只是每次在已经开辟的空间上复制 ） </li>
+</ul>
+<h4 id="方法一-递归归并"><a href="#方法一-递归归并" class="headerlink" title="方法一 递归归并"></a>方法一 递归归并</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reversePairs</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">    <span class="keyword">return</span> sort(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>, temp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 变成 [left, mid] [mid + 1, right]的闭区间</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span>[] temp)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// mid + 1的时候left可能会比right大1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> mid = (right - left) / <span class="number">2</span> + left; <span class="comment">// 防止溢出</span></span><br><span class="line">    <span class="keyword">int</span> leftReverse = sort(arr, left, mid, temp);</span><br><span class="line">    <span class="keyword">int</span> rightReverse = sort(arr, mid + <span class="number">1</span>, right, temp);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对已经排序后，两个有序数组来说，此处发现已经有序，不用继续</span></span><br><span class="line">    <span class="keyword">if</span> (arr[mid] &lt;= arr[mid + <span class="number">1</span>]) <span class="keyword">return</span> leftReverse + rightReverse;</span><br><span class="line">    <span class="keyword">return</span> mergeS(arr, left, mid, right, temp) + leftReverse + rightReverse;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">mergeS</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> l, <span class="keyword">int</span> m, <span class="keyword">int</span> r, <span class="keyword">int</span>[] temp)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> total = r - l + <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 拷贝一遍当前排序状态的[l, r]当作辅助数组</span></span><br><span class="line">    <span class="comment">// 一个用于指针遍历，一个用于存放结果</span></span><br><span class="line">    <span class="comment">// 这里是修改了原数组存放结果，拷贝的辅助数组来遍历指针</span></span><br><span class="line">    System.arraycopy(arr, l, temp, l, total);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> reverseNum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> p = l;</span><br><span class="line">    <span class="keyword">int</span> q = m + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt;= r; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (p &gt; m) &#123;    <span class="comment">// 左区间指针已经走完</span></span><br><span class="line">            arr[i] = temp[q++];</span><br><span class="line">            <span class="comment">// 已经没有</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (q &gt; r) &#123; <span class="comment">// 右区间指针已经走完</span></span><br><span class="line">            arr[i] = temp[p++];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (temp[p] &lt;= temp[q]) &#123; <span class="comment">// 辅助数组大于等于时，归并排序才是稳定排序（指相同数字依然按照原数组顺序排序）</span></span><br><span class="line">            arr[i] = temp[p++];  <span class="comment">// 左区间更小</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  <span class="comment">// 右区间更小</span></span><br><span class="line">            arr[i] = temp[q++];</span><br><span class="line">            <span class="comment">// 右指针前进时，左区间尚存的数都是该数都逆序数（两数组各自有序，左区间尚存的数肯定比右指针之前一个指向的数大）</span></span><br><span class="line">            reverseNum += m - p + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> reverseNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="354-俄罗斯套娃信封问题"><a href="#354-俄罗斯套娃信封问题" class="headerlink" title="354. 俄罗斯套娃信封问题"></a>354. 俄罗斯套娃信封问题</h3><p>长宽都需要大于另一个信封时才能被套娃</p>
+<ol>
+<li>按长升序，宽降序<blockquote>
+<p>长相同的信封不能套娃，所以长相同时需要按宽降序，忽略相同的长：使用LIS寻找不连续的上升序列的时候可以自动忽略相同的长</p>
+</blockquote>
+</li>
+<li>使用LIS对宽进行LIS，寻找不连续的上升序列</li>
+</ol>
+<h3 id="最长连续序列"><a href="#最长连续序列" class="headerlink" title="最长连续序列"></a>最长连续序列</h3><p>并查集，用v和v+1并组，每一个数字a的parent就是并查集里该组对应的最大数字b，<code>b - a + 1</code> 就是的距离取max</p>
 <p>###<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String[] largestNumberList(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="comment">// Get input integers as strings.</span></span><br><span class="line">    String[] asStrs = <span class="keyword">new</span> String[nums.length];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        asStrs[i] = String.valueOf(nums[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 把问题丢给string...</span></span><br><span class="line">    Arrays.sort(asStrs, (a, b) -&gt; (b + a).compareTo(a + b)); <span class="comment">// 降序</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 特别地，所有数都为0的情况下，返回0（因为前导0是要去掉的）</span></span><br><span class="line">    <span class="keyword">if</span> (asStrs[<span class="number">0</span>].equals(<span class="string">"0"</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> asStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a>46. 全排列</h3><blockquote>
 <p>总个数是卡特兰数<br>方法一，回溯，不重复元素下标，然后对应两个位置交换。这种不保证字典序<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recursion</span><span class="params">(List&lt;Integer&gt; a, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index == nums.length) &#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> ArrayList&lt;&gt;(a));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; total; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; total; j++) &#123;</span><br><span class="line">            swap(a, i, j); <span class="comment">// 注意重要的点在这里</span></span><br><span class="line">            recursion(a, k + <span class="number">1</span>);</span><br><span class="line">            swap(a, j, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -1645,142 +1963,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ophsysbilla.github.io/2019-01-28-当你发现自己不知道做什么.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Satur">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Android tips">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019-01-28-当你发现自己不知道做什么.html" itemprop="url">当你发现自己不知道做什么...</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-28T17:00:45+08:00">
-                2019-01-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>去看面试笔记吧！有目标才能快速发现自己不会什么~</p>
-<ol start="2">
-<li><a href="https://mp.weixin.qq.com/s/pJCzKex7qEh2CkOx23eiCA" target="_blank" rel="noopener">2018年年底Android悲催的面试之路</a></li>
-</ol>
-<h3 id="what-we-need-to-know"><a href="#what-we-need-to-know" class="headerlink" title="what we need to know"></a>what we need to know</h3><ul>
-<li><p><a href="https://blog.csdn.net/dingjikerbo/article/details/50673550" target="_blank" rel="noopener">关于Handler的拦截</a>里有谈到，调用callback的时候是根据顺序选择一个来调用的。</p>
-<blockquote>
-<p>优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截，则调用Handler的handleMessage</p>
-</blockquote>
-</li>
-<li><p>epoll_wait是什么唤醒机制？</p>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019-01-28-当你发现自己不知道做什么.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1833,7 +2015,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
