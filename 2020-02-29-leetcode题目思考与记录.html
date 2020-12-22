@@ -107,7 +107,7 @@
 
 
 
-  <meta name="keywords" content="面试,Algorithm,算法,">
+  <meta name="keywords" content="Algorithm,算法,面试,">
 
 
 
@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="移动0二叉树的中序遍历¥ 爬楼梯、括号生成 删除排序数组中的重复项盛水最多的容器跳表trim树 - 搜索自动补全TSP问题三重dp拓扑 + ？单调栈括号生成大根堆PriorityQueue默认是小跟堆 归并排序 剑指 Offer 51. 数组中的逆序对和 [315. 计算右侧小于当前元素的个数]都是归并排序的相同方法，区别在于左指针还是右指针入队时判断  归并排序优化  当递归到规模足够小时，利用">
-<meta name="keywords" content="面试,Algorithm,算法">
+<meta name="description" content="移动0二叉树的中序遍历爬楼梯、括号生成">
+<meta name="keywords" content="Algorithm,算法,面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题目思考与记录">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-02-29-leetcode题目思考与记录.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="移动0二叉树的中序遍历¥ 爬楼梯、括号生成 删除排序数组中的重复项盛水最多的容器跳表trim树 - 搜索自动补全TSP问题三重dp拓扑 + ？单调栈括号生成大根堆PriorityQueue默认是小跟堆 归并排序 剑指 Offer 51. 数组中的逆序对和 [315. 计算右侧小于当前元素的个数]都是归并排序的相同方法，区别在于左指针还是右指针入队时判断  归并排序优化  当递归到规模足够小时，利用">
+<meta property="og:description" content="移动0二叉树的中序遍历爬楼梯、括号生成">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-12-02T10:06:38.959Z">
+<meta property="og:updated_time" content="2020-12-22T03:52:38.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题目思考与记录">
-<meta name="twitter:description" content="移动0二叉树的中序遍历¥ 爬楼梯、括号生成 删除排序数组中的重复项盛水最多的容器跳表trim树 - 搜索自动补全TSP问题三重dp拓扑 + ？单调栈括号生成大根堆PriorityQueue默认是小跟堆 归并排序 剑指 Offer 51. 数组中的逆序对和 [315. 计算右侧小于当前元素的个数]都是归并排序的相同方法，区别在于左指针还是右指针入队时判断  归并排序优化  当递归到规模足够小时，利用">
+<meta name="twitter:description" content="移动0二叉树的中序遍历爬楼梯、括号生成">
 
 
 
@@ -413,9 +413,9 @@
       
 
       
-        <h1 id="移动0"><a href="#移动0" class="headerlink" title="移动0"></a>移动0</h1><h1 id="二叉树的中序遍历"><a href="#二叉树的中序遍历" class="headerlink" title="二叉树的中序遍历"></a>二叉树的中序遍历</h1><p>¥ 爬楼梯、括号生成</p>
+        <h1 id="移动0"><a href="#移动0" class="headerlink" title="移动0"></a>移动0</h1><h1 id="二叉树的中序遍历"><a href="#二叉树的中序遍历" class="headerlink" title="二叉树的中序遍历"></a>二叉树的中序遍历</h1><h1 id="爬楼梯、括号生成"><a href="#爬楼梯、括号生成" class="headerlink" title="爬楼梯、括号生成"></a>爬楼梯、括号生成</h1><a id="more"></a>
 <h1 id="删除排序数组中的重复项"><a href="#删除排序数组中的重复项" class="headerlink" title="删除排序数组中的重复项"></a>删除排序数组中的重复项</h1><h1 id="盛水最多的容器"><a href="#盛水最多的容器" class="headerlink" title="盛水最多的容器"></a>盛水最多的容器</h1><h1 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h1><h3 id="trim树-搜索自动补全"><a href="#trim树-搜索自动补全" class="headerlink" title="trim树 - 搜索自动补全"></a>trim树 - 搜索自动补全</h3><h3 id="TSP问题"><a href="#TSP问题" class="headerlink" title="TSP问题"></a>TSP问题</h3><h3 id="三重dp"><a href="#三重dp" class="headerlink" title="三重dp"></a>三重dp</h3><h3 id="拓扑-？"><a href="#拓扑-？" class="headerlink" title="拓扑 + ？"></a>拓扑 + ？</h3><h3 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h3><h3 id="括号生成"><a href="#括号生成" class="headerlink" title="括号生成"></a>括号生成</h3><h3 id="大根堆"><a href="#大根堆" class="headerlink" title="大根堆"></a>大根堆</h3><p><code>PriorityQueue</code>默认是小跟堆</p>
-<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><blockquote>
+<h3 id="快排优化"><a href="#快排优化" class="headerlink" title="快排优化"></a>快排优化</h3><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><blockquote>
 <p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/" target="_blank" rel="noopener">剑指 Offer 51. 数组中的逆序对</a>和 [315. 计算右侧小于当前元素的个数]都是归并排序的相同方法，区别在于左指针还是右指针入队时判断</p>
 </blockquote>
 <p><a href="https://www.cnblogs.com/noKing/p/7940531.html" target="_blank" rel="noopener">归并排序优化</a></p>
@@ -460,7 +460,7 @@
 </ol>
 <h3 id="矩阵最长递增路径"><a href="#矩阵最长递增路径" class="headerlink" title="矩阵最长递增路径"></a>矩阵最长递增路径</h3><p>同一个单元格对应的最长递增路径的长度是固定不变的。<br>所以记忆化搜索从<code>memo[i][j]</code>开始的最长递增路径</p>
 <h3 id="无损压缩算法：deflate、Huffman-Coding"><a href="#无损压缩算法：deflate、Huffman-Coding" class="headerlink" title="无损压缩算法：deflate、Huffman Coding"></a>无损压缩算法：deflate、Huffman Coding</h3><h3 id="寻找两个有序数组的中位数"><a href="#寻找两个有序数组的中位数" class="headerlink" title="寻找两个有序数组的中位数"></a>寻找两个有序数组的中位数</h3><p>要求算法的时间复杂度为 O(log(m + n))<br>即找出第(m+n)/2个元素<br>设k=(m+n)/2，则需要在两个数组中分别寻找第k/2个元素，原因如下：</p>
-<a id="more"></a>
+<!--more-->
 <p>题目中要求的时间复杂度为 O(log(m + n))，很容易想到的方法就是二分，现在有两个数组，要对那个数组进行二分合适？由于找的是中位数，那么这个数字的两边的元素个数是相等的，所以只需要确定一个数组中的两边元素，两一个数组的对应的补上去就可以了，为了提高效率，要选择最短的数组做二分查找 — <a href="https://blog.csdn.net/Shuffle_Ts/article/details/93142735" target="_blank" rel="noopener">原文</a></p>
 <h3 id="为什么Java中int型数据取值范围是-2-31-2-31-1"><a href="#为什么Java中int型数据取值范围是-2-31-2-31-1" class="headerlink" title="为什么Java中int型数据取值范围是[-2^{31}, 2^{31}-1]"></a>为什么Java中int型数据取值范围是[-2^{31}, 2^{31}-1]</h3><p><a href="https://blog.csdn.net/AlpinistWang/article/details/87994617?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">为什么Java中int型数据取值范围是[-2^{31}, 2^{31}-1]</a></p>
 <h3 id="判断一个有符号int型整数是不是溢出："><a href="#判断一个有符号int型整数是不是溢出：" class="headerlink" title="判断一个有符号int型整数是不是溢出："></a>判断一个有符号int型整数是不是溢出：</h3><p>x &gt; INT_MAX / 10 || x == INT_MAX &amp;&amp; x <em> 10 + 7 就会溢出<br>x &lt; INT_MIN / 10 || x == INT_MIN. &amp;&amp;  x </em> 10 + 8 就会溢出</p>
@@ -489,11 +489,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/面试/" rel="tag"># 面试</a>
-          
             <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
           
             <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
           
         </div>
       
@@ -652,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#移动0"><span class="nav-text">移动0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉树的中序遍历"><span class="nav-text">二叉树的中序遍历</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除排序数组中的重复项"><span class="nav-text">删除排序数组中的重复项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盛水最多的容器"><span class="nav-text">盛水最多的容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跳表"><span class="nav-text">跳表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#trim树-搜索自动补全"><span class="nav-text">trim树 - 搜索自动补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TSP问题"><span class="nav-text">TSP问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三重dp"><span class="nav-text">三重dp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑-？"><span class="nav-text">拓扑 + ？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单调栈"><span class="nav-text">单调栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#括号生成"><span class="nav-text">括号生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大根堆"><span class="nav-text">大根堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-text">归并排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一-递归归并"><span class="nav-text">方法一 递归归并</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#354-俄罗斯套娃信封问题"><span class="nav-text">354. 俄罗斯套娃信封问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最长连续序列"><span class="nav-text">最长连续序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#46-全排列"><span class="nav-text">46. 全排列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#329-矩阵中的最长递增路径"><span class="nav-text">329. 矩阵中的最长递增路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#螺旋矩阵"><span class="nav-text">螺旋矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一"><span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二"><span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约瑟夫环问题"><span class="nav-text">约瑟夫环问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵最长递增路径"><span class="nav-text">矩阵最长递增路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无损压缩算法：deflate、Huffman-Coding"><span class="nav-text">无损压缩算法：deflate、Huffman Coding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寻找两个有序数组的中位数"><span class="nav-text">寻找两个有序数组的中位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么Java中int型数据取值范围是-2-31-2-31-1"><span class="nav-text">为什么Java中int型数据取值范围是[-2^{31}, 2^{31}-1]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断一个有符号int型整数是不是溢出："><span class="nav-text">判断一个有符号int型整数是不是溢出：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反转数字"><span class="nav-text">反转数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lru最近访问"><span class="nav-text">Lru最近访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、3、5硬币面值（无限个数），构成总数为k的方法数"><span class="nav-text">2、3、5硬币面值（无限个数），构成总数为k的方法数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#300-最长上升子序列-LIS"><span class="nav-text">300. 最长上升子序列 LIS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一-动态规划"><span class="nav-text">方法一 动态规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二-贪心-二分"><span class="nav-text">方法二 贪心 + 二分</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#移动0"><span class="nav-text">移动0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉树的中序遍历"><span class="nav-text">二叉树的中序遍历</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#爬楼梯、括号生成"><span class="nav-text">爬楼梯、括号生成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除排序数组中的重复项"><span class="nav-text">删除排序数组中的重复项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盛水最多的容器"><span class="nav-text">盛水最多的容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跳表"><span class="nav-text">跳表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#trim树-搜索自动补全"><span class="nav-text">trim树 - 搜索自动补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TSP问题"><span class="nav-text">TSP问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三重dp"><span class="nav-text">三重dp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑-？"><span class="nav-text">拓扑 + ？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单调栈"><span class="nav-text">单调栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#括号生成"><span class="nav-text">括号生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大根堆"><span class="nav-text">大根堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快排优化"><span class="nav-text">快排优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-text">归并排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一-递归归并"><span class="nav-text">方法一 递归归并</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#354-俄罗斯套娃信封问题"><span class="nav-text">354. 俄罗斯套娃信封问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最长连续序列"><span class="nav-text">最长连续序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#46-全排列"><span class="nav-text">46. 全排列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#329-矩阵中的最长递增路径"><span class="nav-text">329. 矩阵中的最长递增路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#螺旋矩阵"><span class="nav-text">螺旋矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一"><span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二"><span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约瑟夫环问题"><span class="nav-text">约瑟夫环问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵最长递增路径"><span class="nav-text">矩阵最长递增路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无损压缩算法：deflate、Huffman-Coding"><span class="nav-text">无损压缩算法：deflate、Huffman Coding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寻找两个有序数组的中位数"><span class="nav-text">寻找两个有序数组的中位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么Java中int型数据取值范围是-2-31-2-31-1"><span class="nav-text">为什么Java中int型数据取值范围是[-2^{31}, 2^{31}-1]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断一个有符号int型整数是不是溢出："><span class="nav-text">判断一个有符号int型整数是不是溢出：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反转数字"><span class="nav-text">反转数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lru最近访问"><span class="nav-text">Lru最近访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、3、5硬币面值（无限个数），构成总数为k的方法数"><span class="nav-text">2、3、5硬币面值（无限个数），构成总数为k的方法数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#300-最长上升子序列-LIS"><span class="nav-text">300. 最长上升子序列 LIS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一-动态规划"><span class="nav-text">方法一 动态规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二-贪心-二分"><span class="nav-text">方法二 贪心 + 二分</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

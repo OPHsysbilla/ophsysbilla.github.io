@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路  what we need to know 关于Handler的拦截里有谈到，调用callback的时候是根据顺序选择一个来调用的。  优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截">
+<meta name="description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路">
 <meta name="keywords" content="Android blog">
 <meta property="og:type" content="article">
 <meta property="og:title" content="当你发现自己不知道做什么...">
 <meta property="og:url" content="http://ophsysbilla.github.io/2019-01-28-当你发现自己不知道做什么.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路  what we need to know 关于Handler的拦截里有谈到，调用callback的时候是根据顺序选择一个来调用的。  优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截">
+<meta property="og:description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-09T12:36:16.195Z">
+<meta property="og:updated_time" content="2020-12-22T03:50:09.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="当你发现自己不知道做什么...">
-<meta name="twitter:description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路  what we need to know 关于Handler的拦截里有谈到，调用callback的时候是根据顺序选择一个来调用的。  优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截">
+<meta name="twitter:description" content="去看面试笔记吧！有目标才能快速发现自己不会什么~  2018年年底Android悲催的面试之路">
 
 
 
@@ -393,9 +393,10 @@
       
         <p>去看面试笔记吧！有目标才能快速发现自己不会什么~</p>
 <ol start="2">
-<li><a href="https://mp.weixin.qq.com/s/pJCzKex7qEh2CkOx23eiCA" target="_blank" rel="noopener">2018年年底Android悲催的面试之路</a></li>
+<li><a href="https://mp.weixin.qq.com/s/pJCzKex7qEh2CkOx23eiCA" target="_blank" rel="noopener">2018年年底Android悲催的面试之路</a><a id="more"></a>
+<h3 id="what-we-need-to-know"><a href="#what-we-need-to-know" class="headerlink" title="what we need to know"></a>what we need to know</h3></li>
 </ol>
-<h3 id="what-we-need-to-know"><a href="#what-we-need-to-know" class="headerlink" title="what we need to know"></a>what we need to know</h3><ul>
+<ul>
 <li><p><a href="https://blog.csdn.net/dingjikerbo/article/details/50673550" target="_blank" rel="noopener">关于Handler的拦截</a>里有谈到，调用callback的时候是根据顺序选择一个来调用的。</p>
 <blockquote>
 <p>优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截，则调用Handler的handleMessage</p>
@@ -404,7 +405,6 @@
 <li><p>epoll_wait是什么唤醒机制？</p>
 </li>
 </ul>
-<a id="more"></a>
 <ul>
 <li>系统是如何监听ANR的? 应用发生卡顿，一定是在dispatchMessage中执行了耗时操作。<a href="https://codezjx.com/2017/08/06/anr-trace-analytics/" target="_blank" rel="noopener">通过给主线程的Looper设置一个Printer，计算方法运行前后两次打印的时间差是否超过阈值来判断是否有ANR</a>。tips： /data/anr/traces.txt中会保存一个最近ANR的信息。</li>
 <li>ThreadLocal所操作的变量只存在于各自的线程里，每一个线程都有一个ThreadLocal且拿到的变量是不同的。每个Thread的对象都有一个ThreadLocalMap，当创建一个ThreadLocal的时候，就会将该ThreadLocal对象添加到该Map中，其中键就是ThreadLocal，值可以是任意类型<blockquote>

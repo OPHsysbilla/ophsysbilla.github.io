@@ -396,17 +396,7 @@
         
           <p>去看面试笔记吧！有目标才能快速发现自己不会什么~</p>
 <ol start="2">
-<li><a href="https://mp.weixin.qq.com/s/pJCzKex7qEh2CkOx23eiCA" target="_blank" rel="noopener">2018年年底Android悲催的面试之路</a></li>
-</ol>
-<h3 id="what-we-need-to-know"><a href="#what-we-need-to-know" class="headerlink" title="what we need to know"></a>what we need to know</h3><ul>
-<li><p><a href="https://blog.csdn.net/dingjikerbo/article/details/50673550" target="_blank" rel="noopener">关于Handler的拦截</a>里有谈到，调用callback的时候是根据顺序选择一个来调用的。</p>
-<blockquote>
-<p>优先调用Message中的Callback，再来调用Handler的全局Callback；如果没有全局mCallback，或者全局mCallback返回false不拦截，则调用Handler的handleMessage</p>
-</blockquote>
-</li>
-<li><p>epoll_wait是什么唤醒机制？</p>
-</li>
-</ul>
+<li><a href="https://mp.weixin.qq.com/s/pJCzKex7qEh2CkOx23eiCA" target="_blank" rel="noopener">2018年年底Android悲催的面试之路</a>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019-01-28-当你发现自己不知道做什么.html#more" rel="contents">
@@ -416,7 +406,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </li></ol></div>
     
     
     
@@ -552,8 +542,7 @@
 
       
         
-          <h2 id="从AutoScroll的View说起Scroller的原理与作用"><a href="#从AutoScroll的View说起Scroller的原理与作用" class="headerlink" title="从AutoScroll的View说起Scroller的原理与作用"></a>从AutoScroll的View说起Scroller的原理与作用</h2><p>二话不说，先看看<a href="https://www.cnblogs.com/jdhdevelop/p/6743501.html" target="_blank" rel="noopener">判断RecyclerView是否滚动到底部</a>中说到的computeVerticalScrollExtent()函数表示的View内容与View位置的相对滚动<br><img src="https://raw.githubusercontent.com/OPHsysbilla/ophsysbilla.github.io/master/images/bg/hwo_scorll_view_act_hint.png" alt="多么美丽的一张图"></p>
-<h2 id="错误使用PorterDuffXferMode后效果并没有得到想要的效果！"><a href="#错误使用PorterDuffXferMode后效果并没有得到想要的效果！" class="headerlink" title="错误使用PorterDuffXferMode后效果并没有得到想要的效果！"></a>错误使用PorterDuffXferMode后效果并没有得到想要的效果！</h2><p>-&gt; 关了硬件加速还是不行555</p>
+          <h2 id="错误使用PorterDuffXferMode后效果并没有得到想要的效果！"><a href="#错误使用PorterDuffXferMode后效果并没有得到想要的效果！" class="headerlink" title="错误使用PorterDuffXferMode后效果并没有得到想要的效果！"></a>错误使用PorterDuffXferMode后效果并没有得到想要的效果！</h2><p>-&gt; 关了硬件加速还是不行555</p>
 <h3 id="为何和谷歌给的样子不同？"><a href="#为何和谷歌给的样子不同？" class="headerlink" title="为何和谷歌给的样子不同？"></a>为何和谷歌给的样子不同？</h3><p>因为谷歌写的demo里，是两个高宽一样的bitmap在相交，如果发现有多余的位置没有被遮住，说明两个相交的位置不一样。</p>
           <!--noindex-->
           <div class="post-button text-center">
@@ -849,10 +838,7 @@
       
         
           <p>依然很简洁的条例，备忘用</p>
-<p><em>本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》</em> </p>
-<h2 id="条例"><a href="#条例" class="headerlink" title="条例"></a>条例</h2><ol>
-<li>onActivityResult()发生在onResume()之前</li>
-<li>onFinishInflate()在加载完成xml后执行：只有当自定义View，通过在XML中创建时才会调用。不从xml布局文件中解析的话，比如通过new方式创建，则不会执行该方法；
+<p><em>本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》</em><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019-01-23-Android代码规范条例.html#more" rel="contents">
@@ -862,7 +848,7 @@
           <!--/noindex-->
         
       
-    </li></ol></div>
+    </p></div>
     
     
     

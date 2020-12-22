@@ -118,23 +118,23 @@
 
 
 
-<meta name="description" content="ThreadLocal是干嘛的，作用是什么如何停止一个线程？使用volatile？内存屏障是什么？ 使用interrupt()更改子线程的标志位，并且在子线程的while循环里判断isInterrupt()状态 JavaDoc: How do I stop a thread。同时volitale需要和synchronized同用。 如果一个线程在休眠中被interrupt了，那么它的中断标记位会重">
+<meta name="description" content="ThreadLocal是干嘛的，作用是什么">
 <meta name="keywords" content="面试,Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="惹Java面试答案整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-09-惹Java面试答案整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="ThreadLocal是干嘛的，作用是什么如何停止一个线程？使用volatile？内存屏障是什么？ 使用interrupt()更改子线程的标志位，并且在子线程的while循环里判断isInterrupt()状态 JavaDoc: How do I stop a thread。同时volitale需要和synchronized同用。 如果一个线程在休眠中被interrupt了，那么它的中断标记位会重">
+<meta property="og:description" content="ThreadLocal是干嘛的，作用是什么">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://p0.meituan.net/travelcube/31bad766983e212431077ca8da92762050214.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201103165654872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlaTM5NjYwMTA1Nw==,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201104114138160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlaTM5NjYwMTA1Nw==,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201104110937322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlaTM5NjYwMTA1Nw==,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201104111007699.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlaTM5NjYwMTA1Nw==,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:updated_time" content="2020-12-22T03:44:21.471Z">
+<meta property="og:updated_time" content="2020-12-22T03:50:18.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="惹Java面试答案整理">
-<meta name="twitter:description" content="ThreadLocal是干嘛的，作用是什么如何停止一个线程？使用volatile？内存屏障是什么？ 使用interrupt()更改子线程的标志位，并且在子线程的while循环里判断isInterrupt()状态 JavaDoc: How do I stop a thread。同时volitale需要和synchronized同用。 如果一个线程在休眠中被interrupt了，那么它的中断标记位会重">
+<meta name="twitter:description" content="ThreadLocal是干嘛的，作用是什么">
 <meta name="twitter:image" content="https://p0.meituan.net/travelcube/31bad766983e212431077ca8da92762050214.png">
 
 
@@ -419,7 +419,8 @@
       
 
       
-        <h2 id="ThreadLocal是干嘛的，作用是什么"><a href="#ThreadLocal是干嘛的，作用是什么" class="headerlink" title="ThreadLocal是干嘛的，作用是什么"></a>ThreadLocal是干嘛的，作用是什么</h2><h2 id="如何停止一个线程？使用volatile？内存屏障是什么？"><a href="#如何停止一个线程？使用volatile？内存屏障是什么？" class="headerlink" title="如何停止一个线程？使用volatile？内存屏障是什么？"></a>如何停止一个线程？使用volatile？内存屏障是什么？</h2><ol>
+        <h2 id="ThreadLocal是干嘛的，作用是什么"><a href="#ThreadLocal是干嘛的，作用是什么" class="headerlink" title="ThreadLocal是干嘛的，作用是什么"></a>ThreadLocal是干嘛的，作用是什么</h2><a id="more"></a>
+<h2 id="如何停止一个线程？使用volatile？内存屏障是什么？"><a href="#如何停止一个线程？使用volatile？内存屏障是什么？" class="headerlink" title="如何停止一个线程？使用volatile？内存屏障是什么？"></a>如何停止一个线程？使用volatile？内存屏障是什么？</h2><ol>
 <li>使用interrupt()更改子线程的标志位，并且在子线程的while循环里判断isInterrupt()状态 <a href="https://docs.oracle.com/javase/1.5.0/docs/guide/misc/threadPrimitiveDeprecation.html" target="_blank" rel="noopener">JavaDoc: How do I stop a thread</a>。同时<code>volitale</code>需要和<code>synchronized</code>同用。<blockquote>
 <p>如果一个线程在休眠中被interrupt了，那么它的中断标记位会重置为false，并抛出一个interruptedException的异常。所以有两种最佳的处理方式：</p>
 <ol>
@@ -441,7 +442,7 @@
 <li>如果workerCount &lt; corePoolSize，则创建并启动一个线程来执行新提交的任务。</li>
 <li>如果workerCount &gt;= corePoolSize，且线程池内的阻塞队列未满，则将任务添加到该阻塞队列中。</li>
 <li>如果workerCount &gt;= corePoolSize &amp;&amp; workerCount &lt; maximumPoolSize，且线程池内的阻塞队列已满，则创建并启动一个线程来执行新提交的任务。</li>
-<li>如果workerCount &gt;= maximumPoolSize，并且线程池内的阻塞队列已满, 则根据拒绝策略来处理该任务, 默认的处理方式是直接抛异常。<a id="more"></a>
+<li>如果workerCount &gt;= maximumPoolSize，并且线程池内的阻塞队列已满, 则根据拒绝策略来处理该任务, 默认的处理方式是直接抛异常。<!--more-->
 </li>
 </ol>
 <p><img src="https://p0.meituan.net/travelcube/31bad766983e212431077ca8da92762050214.png" alt="图4 任务调度流程"></p>

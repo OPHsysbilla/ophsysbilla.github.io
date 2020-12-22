@@ -118,18 +118,20 @@
 
 
 
-<meta name="description" content="依然很简洁的条例，备忘用 本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》  条例 onActivityResult()发生在onResume()之前 onFinishInflate()在加载完成xml后执行：只有当自定义View，通过在XML中创建时才会调用。不从xml布局文件中解析的话，比如通过new方式创建，则不会执行该方法；">
+<meta name="description" content="依然很简洁的条例，备忘用 本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 警醒向条例">
 <meta property="og:url" content="http://ophsysbilla.github.io/2019-01-23-Android代码规范条例.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="依然很简洁的条例，备忘用 本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》  条例 onActivityResult()发生在onResume()之前 onFinishInflate()在加载完成xml后执行：只有当自定义View，通过在XML中创建时才会调用。不从xml布局文件中解析的话，比如通过new方式创建，则不会执行该方法；">
+<meta property="og:description" content="依然很简洁的条例，备忘用 本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-09T12:31:35.541Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/OPHsysbilla/ophsysbilla.github.io/master/images/bg/hwo_scorll_view_act_hint.png">
+<meta property="og:updated_time" content="2020-12-22T03:52:29.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 警醒向条例">
-<meta name="twitter:description" content="依然很简洁的条例，备忘用 本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》  条例 onActivityResult()发生在onResume()之前 onFinishInflate()在加载完成xml后执行：只有当自定义View，通过在XML中创建时才会调用。不从xml布局文件中解析的话，比如通过new方式创建，则不会执行该方法；">
+<meta name="twitter:description" content="依然很简洁的条例，备忘用 本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/OPHsysbilla/ophsysbilla.github.io/master/images/bg/hwo_scorll_view_act_hint.png">
 
 
 
@@ -414,11 +416,13 @@
 
       
         <p>依然很简洁的条例，备忘用</p>
-<p><em>本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》</em> </p>
+<p><em>本篇是搜集关于Android的仅以提醒作用的条例，见名知意。 相关注意事项推荐阅读《阿里巴巴的安卓手册》</em><br><a id="more"></a></p>
 <h2 id="条例"><a href="#条例" class="headerlink" title="条例"></a>条例</h2><ol>
 <li>onActivityResult()发生在onResume()之前</li>
-<li>onFinishInflate()在加载完成xml后执行：只有当自定义View，通过在XML中创建时才会调用。不从xml布局文件中解析的话，比如通过new方式创建，则不会执行该方法；<a id="more"></a></li>
-<li>foreach使用前需要判空</li>
+<li><p>onFinishInflate()在加载完成xml后执行：只有当自定义View，通过在XML中创建时才会调用。不从xml布局文件中解析的话，比如通过new方式创建，则不会执行该方法；</p>
+</li>
+<li><p>foreach使用前需要判空</p>
+</li>
 <li>overridependingtransition()进入动画需要再startActivity之后，退出动画需要再finish后</li>
 <li>view的调用过程:构造方法-&gt;onFinishInflate-&gt;onSizeChanged-&gt;onDraw</li>
 <li>如果用户finish()方法结束了Activity，则不会调用onSaveInstanceState()</li>
@@ -597,7 +601,7 @@ PathMeasure.TANGENT_MATRIX_FLAG | PathMeasure.POSITION_MATRIX_FLAG);</code><br>�
 <li>很悲伤的是<code>Rxjava</code>中<code>DisposableSubscriber</code>的<code>onStart()</code>是在subscribeOn指定的线程上进行的（通常是子线程），它在整个任务的开始的时候调用。而<code>onComplete()</code>、<code>onNext()</code>、<code>onError()</code>是在observeOn指定的线程上进行的（通常是UI线程）。事实上，如果不指定线程，observe都将在主线程进行</li>
 <li>注意RecycleView里都每个子项设置<code>focusable</code>=true的时候，这个时候设置点击就可能被最后一个抢掉了。</li>
 <li>当一个Activity反常销毁重建的时候，请先查看下你的“不保留活动“是不是开启了。</li>
-<li>dp和px的关系，是与屏幕像素密度为160的倍数而不同：像素密度为160时1px = 1dp<br>117.</li>
+<li>dp和px的关系，是与屏幕像素密度为160的倍数而不同：像素密度为160时1px = 1dp<br>117.<h2 id="从AutoScroll的View说起Scroller的原理与作用"><a href="#从AutoScroll的View说起Scroller的原理与作用" class="headerlink" title="从AutoScroll的View说起Scroller的原理与作用"></a>从AutoScroll的View说起Scroller的原理与作用</h2>二话不说，先看看<a href="https://www.cnblogs.com/jdhdevelop/p/6743501.html" target="_blank" rel="noopener">判断RecyclerView是否滚动到底部</a>中说到的computeVerticalScrollExtent()函数表示的View内容与View位置的相对滚动<br><img src="https://raw.githubusercontent.com/OPHsysbilla/ophsysbilla.github.io/master/images/bg/hwo_scorll_view_act_hint.png" alt="多么美丽的一张图"></li>
 </ol>
 <h2 id="更多应该阅读的"><a href="#更多应该阅读的" class="headerlink" title="更多应该阅读的"></a>更多应该阅读的</h2><ol>
 <li>CopyOnWriteArrayList</li>
@@ -793,7 +797,7 @@ PathMeasure.TANGENT_MATRIX_FLAG | PathMeasure.POSITION_MATRIX_FLAG);</code><br>�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#条例"><span class="nav-text">条例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多应该阅读的"><span class="nav-text">更多应该阅读的</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#条例"><span class="nav-text">条例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从AutoScroll的View说起Scroller的原理与作用"><span class="nav-text">从AutoScroll的View说起Scroller的原理与作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多应该阅读的"><span class="nav-text">更多应该阅读的</span></a></li></ol></div>
             
 
           </div>

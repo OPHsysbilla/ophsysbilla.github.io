@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="Framgnet里的setRetainInstance干嘛用的？在Acitivty因为configurationChange要销毁重建时，设置为setRetainInstance的Fragment的不会被重建，生命周期会受影响：  onDestroy() 和 onCreate() 不会调用（因为fragment没有被重建） 这个setRetainInstance的Framgnet不允许在backs">
+<meta name="description" content="Framgnet里的setRetainInstance干嘛用的？在Acitivty因为configurationChange要销毁重建时，设置为setRetainInstance的Fragment的不会被重建，生命周期会受影响：">
 <meta name="keywords" content="Android,面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jetpack 面试答案整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-20-Jetpack-面试答案整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="Framgnet里的setRetainInstance干嘛用的？在Acitivty因为configurationChange要销毁重建时，设置为setRetainInstance的Fragment的不会被重建，生命周期会受影响：  onDestroy() 和 onCreate() 不会调用（因为fragment没有被重建） 这个setRetainInstance的Framgnet不允许在backs">
+<meta property="og:description" content="Framgnet里的setRetainInstance干嘛用的？在Acitivty因为configurationChange要销毁重建时，设置为setRetainInstance的Fragment的不会被重建，生命周期会受影响：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-27T02:38:22.095Z">
+<meta property="og:updated_time" content="2020-12-22T03:49:22.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jetpack 面试答案整理">
-<meta name="twitter:description" content="Framgnet里的setRetainInstance干嘛用的？在Acitivty因为configurationChange要销毁重建时，设置为setRetainInstance的Fragment的不会被重建，生命周期会受影响：  onDestroy() 和 onCreate() 不会调用（因为fragment没有被重建） 这个setRetainInstance的Framgnet不允许在backs">
+<meta name="twitter:description" content="Framgnet里的setRetainInstance干嘛用的？在Acitivty因为configurationChange要销毁重建时，设置为setRetainInstance的Fragment的不会被重建，生命周期会受影响：">
 
 
 
@@ -413,7 +413,7 @@
       
 
       
-        <h1 id="Framgnet里的setRetainInstance干嘛用的？"><a href="#Framgnet里的setRetainInstance干嘛用的？" class="headerlink" title="Framgnet里的setRetainInstance干嘛用的？"></a>Framgnet里的setRetainInstance干嘛用的？</h1><p>在Acitivty因为<code>configurationChange</code>要销毁重建时，设置为<code>setRetainInstance</code>的Fragment的不会被重建，生命周期会受影响：</p>
+        <h1 id="Framgnet里的setRetainInstance干嘛用的？"><a href="#Framgnet里的setRetainInstance干嘛用的？" class="headerlink" title="Framgnet里的setRetainInstance干嘛用的？"></a>Framgnet里的setRetainInstance干嘛用的？</h1><p>在Acitivty因为<code>configurationChange</code>要销毁重建时，设置为<code>setRetainInstance</code>的Fragment的不会被重建，生命周期会受影响：<br><a id="more"></a></p>
 <ul>
 <li><code>onDestroy()</code> 和 <code>onCreate()</code> 不会调用（因为fragment没有被重建）</li>
 <li>这个<code>setRetainInstance</code>的<code>Framgnet</code>不允许在<code>backstack</code>里</li>

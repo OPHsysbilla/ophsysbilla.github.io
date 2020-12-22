@@ -118,13 +118,13 @@
 
 
 
-<meta name="description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？ 然后可以看彻底搞懂epoll高效运行的原理 linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
+<meta name="description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？">
 <meta name="keywords" content="面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux面试答案整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-17-Linux面试答案整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？ 然后可以看彻底搞懂epoll高效运行的原理 linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
+<meta property="og:description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-40631870dd4c58db.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/426/format/webp">
@@ -132,10 +132,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-df9323d3ae59b8f8.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/432/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-2700bead4cf14739.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/429/format/webp">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190421151618649.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbjEzMTQx,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-11-19T10:11:53.649Z">
+<meta property="og:updated_time" content="2020-12-22T03:49:52.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux面试答案整理">
-<meta name="twitter:description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？ 然后可以看彻底搞懂epoll高效运行的原理 linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型">
+<meta name="twitter:description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？">
 <meta name="twitter:image" content="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png">
 
 
@@ -399,16 +399,18 @@
 
       
         <h1 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h1><ol>
-<li>见从中断讲起的好文：<a href="https://my.oschina.net/editorial-story/blog/3052308?p=2" target="_blank" rel="noopener">epoll 的本质是什么？</a></li>
+<li>见从中断讲起的好文：<a href="https://my.oschina.net/editorial-story/blog/3052308?p=2" target="_blank" rel="noopener">epoll 的本质是什么？</a><a id="more"></a></li>
 <li>然后可以看<a href="https://mp.weixin.qq.com/s/FRg_lSHDiZofzTZApU6z9Q" target="_blank" rel="noopener">彻底搞懂epoll高效运行的原理
-</a><br>linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型<a id="more"></a>
-<h2 id="各种I-O模型"><a href="#各种I-O模型" class="headerlink" title="各种I/O模型"></a>各种I/O模型</h2><img src="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png" alt="各种I/O模型"><blockquote>
+</a><br>linux的网络IO中是不存在异步IO的，linux的网络IO处理的第二阶段总是阻塞等待数据copy完成的。真正意义上的网络异步IO是Windows下的IOCP（IO完成端口）模型</li>
+</ol>
+<h2 id="各种I-O模型"><a href="#各种I-O模型" class="headerlink" title="各种I/O模型"></a>各种I/O模型</h2><p><img src="https://blog-10039692.file.myqcloud.com/1500017105443_4641_1500017105783.png" alt="各种I/O模型"></p>
+<blockquote>
 <p>non-blocking IO仅仅要求处理的第一阶段不block即可，而asynchronous IO要求两个阶段都不能block住</p>
 </blockquote>
-<h2 id="select、poll、epoll之间的区别"><a href="#select、poll、epoll之间的区别" class="headerlink" title="select、poll、epoll之间的区别"></a>select、poll、epoll之间的区别</h2><code>select</code> ，<code>poll</code> ，<code>epoll</code> 都是<strong>I/O多路复用</strong>的机制，都是同步I/O。都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是<strong>阻塞</strong>的。好处在于可以以较少的代价来同时监听处理多个IO。<blockquote>
+<h2 id="select、poll、epoll之间的区别"><a href="#select、poll、epoll之间的区别" class="headerlink" title="select、poll、epoll之间的区别"></a>select、poll、epoll之间的区别</h2><p><code>select</code> ，<code>poll</code> ，<code>epoll</code> 都是<strong>I/O多路复用</strong>的机制，都是同步I/O。都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是<strong>阻塞</strong>的。好处在于可以以较少的代价来同时监听处理多个IO。</p>
+<blockquote>
 <p><strong>异步I/O</strong>则无需自己负责进行读写，其实现会负责<em>把数据从内核拷贝到用户空间</em>。<br><code>epoll</code>是<code>Linux</code>所特有，而<code>select</code>则应该是<code>POSIX</code>所规定，一般操作系统均有实现</p>
-</blockquote>
-</li>
+<ol>
 <li><code>select</code> -&gt; 时间复杂度<code>O(n)</code><ul>
 <li>具有O(n)的无差别轮询复杂度，同时处理的流越多无差别轮询时间就越长。</li>
 <li><blockquote>
@@ -423,8 +425,7 @@
 <li>需要维护一个用来存放大量fd的数据结构，这样会使得用户空间和内核空间在传递该结构时复制开销大</li>
 </ul>
 </li>
-<li><p><code>poll</code> -&gt; 时间复杂度<code>O(n)</code><br><code>poll</code> 本质上和<code>select</code>没有区别。使用<code>pollfd</code>结构而不是select的<code>fd_set</code>结构</p>
-<ul>
+<li><code>poll</code> -&gt; 时间复杂度<code>O(n)</code><br><code>poll</code> 本质上和<code>select</code>没有区别。使用<code>pollfd</code>结构而不是select的<code>fd_set</code>结构<ul>
 <li>消息传递需要内核拷贝。将用户传入的数组拷贝到<strong>内核空间</strong>，查询每个<code>fd</code>对应的设备状态数组</li>
 <li><blockquote>
 <p>如果设备就绪则在设备等待队列中加入一项并继续遍历，如果遍历完所有fd后没有发现就绪设备，则挂起当前进程。直到设备就绪或者主动超时，被唤醒后它又要再次遍历fd。这个过程经历了多次无谓的遍历。</p>
@@ -441,8 +442,10 @@
 </li>
 </ul>
 </li>
-<li><p><code>epoll</code> -&gt; 时间复杂度<code>O(1)</code><br><code>epoll</code>可以理解为<strong>event poll</strong>，不同于忙轮询和无差别轮询<br>poll实际上是<strong>事件驱动</strong>（每个事件关联上fd）的，哪个流发生了I/O只回调哪个流</p>
-</li>
+</ol>
+</blockquote>
+<ol start="3">
+<li><code>epoll</code> -&gt; 时间复杂度<code>O(1)</code><br><code>epoll</code>可以理解为<strong>event poll</strong>，不同于忙轮询和无差别轮询<br>poll实际上是<strong>事件驱动</strong>（每个事件关联上fd）的，哪个流发生了I/O只回调哪个流</li>
 </ol>
 <ul>
 <li>通过内核和用户空间共享一块内存来实现的。利用<code>mmap()</code>文件映射内存加速与内核空间的消息传递</li>

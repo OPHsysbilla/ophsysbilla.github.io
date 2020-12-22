@@ -118,22 +118,22 @@
 
 
 
-<meta name="description" content="Retrofit(动态代理) 动态代理的代理关系是在运行期确定的，Jvm帮忙生成class文件并且会删除class文件JDK原生动态代理是Java原生支持的，不需要任何外部依赖，但是它只能基于接口进行代理；CGLIB通过继承的方式进行代理，无论目标对象有没有实现接口都可以代理，但是无法处理final的情况  说说组件化和插件化， 技术原理APT在编译的开始阶段对java文件进行操作，而像Ascpe">
+<meta name="description" content="Retrofit(动态代理) 动态代理的代理关系是在运行期确定的，Jvm帮忙生成class文件并且会删除class文件JDK原生动态代理是Java原生支持的，不需要任何外部依赖，但是它只能基于接口进行代理；CGLIB通过继承的方式进行代理，无论目标对象有没有实现接口都可以代理，但是无法处理final的情况">
 <meta name="keywords" content="面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android面试答案整理">
 <meta property="og:url" content="http://ophsysbilla.github.io/2020-11-09-Android面试答案整理.html">
 <meta property="og:site_name" content="Android tips">
-<meta property="og:description" content="Retrofit(动态代理) 动态代理的代理关系是在运行期确定的，Jvm帮忙生成class文件并且会删除class文件JDK原生动态代理是Java原生支持的，不需要任何外部依赖，但是它只能基于接口进行代理；CGLIB通过继承的方式进行代理，无论目标对象有没有实现接口都可以代理，但是无法处理final的情况  说说组件化和插件化， 技术原理APT在编译的开始阶段对java文件进行操作，而像Ascpe">
+<meta property="og:description" content="Retrofit(动态代理) 动态代理的代理关系是在运行期确定的，Jvm帮忙生成class文件并且会删除class文件JDK原生动态代理是Java原生支持的，不需要任何外部依赖，但是它只能基于接口进行代理；CGLIB通过继承的方式进行代理，无论目标对象有没有实现接口都可以代理，但是无法处理final的情况">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://p0.meituan.net/travelcube/12e1964581f38f04488dfc6d2f84f003110966.png">
 <meta property="og:image" content="https://cdn.ancii.com/article/image/v1/Qj/zb/RO/ORzjbQVFJasX5aR2DaTg2_Zx5KSH75KdTtVIpx5BAibeJW3s2CVwUVt3uFqg5I-4TSjNCnhoAJhLsjcM99fslnxQJbDmwU5z8sIvZN3h5MQ.jpg">
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-d6c924f27796e5cc5aad061a70399812_1440w.jpg">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/3/27/17117aa6eb5b454e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2020-12-22T03:35:50.435Z">
+<meta property="og:updated_time" content="2020-12-22T03:49:12.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试答案整理">
-<meta name="twitter:description" content="Retrofit(动态代理) 动态代理的代理关系是在运行期确定的，Jvm帮忙生成class文件并且会删除class文件JDK原生动态代理是Java原生支持的，不需要任何外部依赖，但是它只能基于接口进行代理；CGLIB通过继承的方式进行代理，无论目标对象有没有实现接口都可以代理，但是无法处理final的情况  说说组件化和插件化， 技术原理APT在编译的开始阶段对java文件进行操作，而像Ascpe">
+<meta name="twitter:description" content="Retrofit(动态代理) 动态代理的代理关系是在运行期确定的，Jvm帮忙生成class文件并且会删除class文件JDK原生动态代理是Java原生支持的，不需要任何外部依赖，但是它只能基于接口进行代理；CGLIB通过继承的方式进行代理，无论目标对象有没有实现接口都可以代理，但是无法处理final的情况">
 <meta name="twitter:image" content="https://p0.meituan.net/travelcube/12e1964581f38f04488dfc6d2f84f003110966.png">
 
 
@@ -421,6 +421,7 @@
         <h2 id="Retrofit-动态代理"><a href="#Retrofit-动态代理" class="headerlink" title="Retrofit(动态代理)"></a>Retrofit(动态代理)</h2><blockquote>
 <p>动态代理的代理关系是在运行期确定的，Jvm帮忙生成class文件并且会删除class文件<br>JDK原生动态代理是Java原生支持的，不需要任何外部依赖，但是它只能基于接口进行代理；<br>CGLIB通过继承的方式进行代理，无论目标对象有没有实现接口都可以代理，但是无法处理final的情况</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="说说组件化和插件化，-技术原理"><a href="#说说组件化和插件化，-技术原理" class="headerlink" title="说说组件化和插件化， 技术原理"></a>说说组件化和插件化， 技术原理</h2><p>APT在编译的开始阶段对java文件进行操作，而像AscpectJ、ASM等则是在java文件编译为字节码文件后</p>
 <h3 id="能否在加载类的时候，对字节码进行修改"><a href="#能否在加载类的时候，对字节码进行修改" class="headerlink" title="能否在加载类的时候，对字节码进行修改?"></a>能否在加载类的时候，对字节码进行修改?</h3><p>利用javaAgent和ASM字节码都可以，javaAssist还有Byte-Code都可以<br><img src="https://p0.meituan.net/travelcube/12e1964581f38f04488dfc6d2f84f003110966.png" alt="字节码增强"></p>
 <ol>
