@@ -130,7 +130,7 @@
 <meta property="og:image" content="https://cdn.ancii.com/article/image/v1/Qj/zb/RO/ORzjbQVFJasX5aR2DaTg2_Zx5KSH75KdTtVIpx5BAibeJW3s2CVwUVt3uFqg5I-4TSjNCnhoAJhLsjcM99fslnxQJbDmwU5z8sIvZN3h5MQ.jpg">
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-d6c924f27796e5cc5aad061a70399812_1440w.jpg">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/3/27/17117aa6eb5b454e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2020-12-22T04:20:23.075Z">
+<meta property="og:updated_time" content="2020-12-22T06:16:31.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试答案整理">
 <meta name="twitter:description" content="图片内存泄漏如何处理？gradle生命周期">
@@ -440,7 +440,7 @@
 </ol>
 <h2 id="方法数越界为啥？MultiDex是怎么做的？"><a href="#方法数越界为啥？MultiDex是怎么做的？" class="headerlink" title="方法数越界为啥？MultiDex是怎么做的？"></a>方法数越界为啥？MultiDex是怎么做的？</h2><ol>
 <li>方法数超过65536数会报错。<blockquote>
-<p>早期系统中，dexopt会把每一个类的方法id检索起来，存在一个链表结构里，而这个链表的长度是用一个short类型来保存的，2字节 = 2 ^ 16 = 2 ^ 6 <em> 2 ^ 10 = 64 </em> 1024 = 64K = 65536。新版本dexopt修复了这个问题</p>
+<p>早期系统中，dexopt会把每一个类的方法id检索起来，存在一个链表结构里，而这个链表的长度是用一个short类型来保存的，2字节 = 2 ^ 16 = 2 ^ 6 <em> 2 ^ 10= 64 </em> 1024 = 64K = 65536。新版本dexopt修复了这个问题</p>
 </blockquote>
 </li>
 <li>方法数并没有超过65536，编译也完成了，但是在android2.3以前的系统安装的时候，会异常中止安装<blockquote>
