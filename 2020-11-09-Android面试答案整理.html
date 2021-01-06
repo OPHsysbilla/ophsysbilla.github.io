@@ -130,7 +130,7 @@
 <meta property="og:image" content="https://cdn.ancii.com/article/image/v1/Qj/zb/RO/ORzjbQVFJasX5aR2DaTg2_Zx5KSH75KdTtVIpx5BAibeJW3s2CVwUVt3uFqg5I-4TSjNCnhoAJhLsjcM99fslnxQJbDmwU5z8sIvZN3h5MQ.jpg">
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-d6c924f27796e5cc5aad061a70399812_1440w.jpg">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/3/27/17117aa6eb5b454e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2021-01-05T10:58:34.575Z">
+<meta property="og:updated_time" content="2021-01-06T03:17:21.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试答案整理">
 <meta name="twitter:description" content="Retrofit(动态代理)RN和flutter绘制原理Android冷启动与冷启动优化binder机制原理gradle生命周期">
@@ -583,7 +583,7 @@
 <li>ContentProvider TimeOut: publish 在 10s 内没有完成</li>
 <li>Input Dispatching timeout: 5s 内未响应键盘输入、触摸屏幕等事件<br>Activity 的生命周期回调的阻塞并不在触发 ANR 的场景里面，所以并不会直接触发 ANR。只不过死循环阻塞了主线程，如果系统再有上述的四种事件发生，就无法在相应的时间内处理从而触发 ANR</li>
 </ol>
-<h2 id="Handler-40问"><a href="#Handler-40问" class="headerlink" title="Handler 40问"></a>Handler 40问</h2><p>摘自<a href="https://mp.weixin.qq.com/s?__biz=MzIxNjc0ODExMA==&amp;mid=2247486960&amp;idx=1&amp;sn=9c325c52004c94f5e1a6ca80b6907962&amp;chksm=978514d1a0f29dc77309045867f9243ed1dac77c8e3055a450553a8b84c8978cf6a4dd564939&amp;scene=132#wechat_redirect" target="_blank" rel="noopener">面试常客「Handler」的 40+ 个高频问题 Q &amp; A 对答！</a></p>
+<h2 id="Handler-40问"><a href="#Handler-40问" class="headerlink" title="Handler 40问"></a>Handler 40问</h2><p>见<a href="https://ophsysbilla.github.io/2020-11-16-Handler%E9%9D%A2%E8%AF%9540%E9%97%AE%E7%AD%94%E6%A1%88%E6%95%B4%E7%90%86.html">Handler面试40问答案整理</a></p>
 <h2 id="图片内存泄漏如何处理"><a href="#图片内存泄漏如何处理" class="headerlink" title="图片内存泄漏如何处理"></a>图片内存泄漏如何处理</h2><p>内存泄漏是指没有使用的对象资源与GC-Root保持可达路径，导致系统无法进行回收。</p>
 <ol>
 <li>使用软引用引用Bitmap，Bitmap在确定不调用后需要recycle()，然后设置为null</li>
