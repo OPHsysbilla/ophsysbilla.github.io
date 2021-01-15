@@ -132,7 +132,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-df9323d3ae59b8f8.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/432/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4235178-2700bead4cf14739.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/429/format/webp">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190421151618649.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbjEzMTQx,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2021-01-04T10:36:14.345Z">
+<meta property="og:updated_time" content="2021-01-08T04:35:39.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux面试答案整理">
 <meta name="twitter:description" content="异步I/O 见从中断讲起的好文：epoll 的本质是什么？">
@@ -524,7 +524,7 @@
 <li>运行于内核空间，处于中断上下文，与任何进程无关，处理某个特定的中断。</li>
 </ul>
 <h2 id="为什么kill-9-杀不死一号进程init"><a href="#为什么kill-9-杀不死一号进程init" class="headerlink" title="为什么kill -9 杀不死一号进程init"></a>为什么kill -9 杀不死一号进程init</h2><p>因为你无法在思考的时候关掉自己的大脑</p>
-
+<h2 id="socket加NET-LINK"><a href="#socket加NET-LINK" class="headerlink" title="socket加NET_LINK"></a>socket加NET_LINK</h2>
       
     </div>
     
@@ -700,7 +700,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步I-O"><span class="nav-text">异步I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#各种I-O模型"><span class="nav-text">各种I/O模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select、poll、epoll之间的区别"><span class="nav-text">select、poll、epoll之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零拷贝"><span class="nav-text">零拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-的-NIO-DirectByteBuffer"><span class="nav-text">Java 的 NIO DirectByteBuffer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件描述符"><span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内核空间和用户空间"><span class="nav-text">内核空间和用户空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从用户态进入到内核态方式"><span class="nav-text">从用户态进入到内核态方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么kill-9-杀不死一号进程init"><span class="nav-text">为什么kill -9 杀不死一号进程init</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步I-O"><span class="nav-text">异步I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#各种I-O模型"><span class="nav-text">各种I/O模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select、poll、epoll之间的区别"><span class="nav-text">select、poll、epoll之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零拷贝"><span class="nav-text">零拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-的-NIO-DirectByteBuffer"><span class="nav-text">Java 的 NIO DirectByteBuffer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件描述符"><span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内核空间和用户空间"><span class="nav-text">内核空间和用户空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从用户态进入到内核态方式"><span class="nav-text">从用户态进入到内核态方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么kill-9-杀不死一号进程init"><span class="nav-text">为什么kill -9 杀不死一号进程init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#socket加NET-LINK"><span class="nav-text">socket加NET_LINK</span></a></li></ol></li></ol></div>
             
 
           </div>
